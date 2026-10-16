@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="es-BO">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Te Resuelvo · Técnicos cerca de ti, sin perder tiempo</title>
+<meta name="description" content="Encuentra técnicos cerca de ti, compara cotizaciones y soluciona tus problemas sin perder tiempo. Electricidad, plomería, climatización, limpieza, jardinería, carpintería, pintura, cerrajería, albañilería, mudanzas y fumigación.">
+<meta name="theme-color" content="#161616">
+<meta property="og:title" content="Te Resuelvo · ¿Necesitas algo? Te Resuelvo.">
+<meta property="og:description" content="Encuentra técnicos cerca de ti, compara cotizaciones y soluciona tus problemas sin perder tiempo.">
+<meta property="og:image" content="img/hero-1600.webp">
+<meta property="og:locale" content="es_BO">
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="apple-touch-icon" href="img/logo-te-resuelvo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="img/hero-1600.webp" imagesrcset="img/hero-900.webp 900w, img/hero-1600.webp 1600w" imagesizes="(min-width: 960px) 50vw, 100vw">
+<link rel="stylesheet" href="css/estilos.css">
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+<!-- Íconos de herramientas (solo decorativos) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-llave" viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3.5 17.5a2 2 0 0 0 3 3l5.8-5.8a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-manometro" viewBox="0 0 24 24"><circle cx="12" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 11l3.5-3M8 21h8M12 18v3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-tubo" viewBox="0 0 24 24"><path d="M3 9h7a3 3 0 0 1 3 3v9M3 13h5a1 1 0 0 1 1 1v7M3 7v8M11 21h8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-multimetro" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><rect x="8" y="5.5" width="8" height="4" rx="1" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="15" r="2.5" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+    <symbol id="i-rayo" viewBox="0 0 24 24"><path d="M13 2 5 13h6l-1 9 8-11h-6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-candado" viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="10.5" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5M12 14.5v3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-paleta" viewBox="0 0 24 24"><path d="M14 3 21 10l-8.5 2.5L11.5 13 3 21M14 3l-2.5 8.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-nivel" viewBox="0 0 24 24"><rect x="2" y="8" width="20" height="8" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><rect x="9.5" y="10.5" width="5" height="3" rx="1.5" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+    <symbol id="i-ladrillo" viewBox="0 0 24 24"><path d="M3 6h18v12H3zM3 12h18M9 6v6M15 12v6" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-copo" viewBox="0 0 24 24"><path d="M12 2v20M4 6.5l16 11M4 17.5l16-11M9.5 3.5 12 6l2.5-2.5M9.5 20.5 12 18l2.5 2.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-spray" viewBox="0 0 24 24"><path d="M8 9h7v12H8zM9.5 9V6h4v3M13.5 6h3l1.5-2M18 7h2M18 9.5l1.5 1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-hoja" viewBox="0 0 24 24"><path d="M5 19c0-8 5-14 15-15-1 10-7 15-15 15zM5 19l7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-serrucho" viewBox="0 0 24 24"><path d="M3 14 15 4l6 6-12 10H3zM7 16l1.5-1.5M10 13.5l1.5-1.5M13 11l1.5-1.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-rodillo" viewBox="0 0 24 24"><rect x="3" y="3" width="15" height="6" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M18 6h3v5h-9v3M10.5 14h3v7h-3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-camion" viewBox="0 0 24 24"><path d="M2 6h12v10H2zM14 9h4.5L22 12.5V16h-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="6" cy="18" r="2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="18" r="2" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+    <symbol id="i-insecto" viewBox="0 0 24 24"><ellipse cx="12" cy="14" rx="4.5" ry="6" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 8V20M9.5 5.5 8 3M14.5 5.5 16 3M7.5 11 3.5 9.5M16.5 11l4-1.5M7.5 15H3.5M16.5 15h4M8 18.5 5 21M16 18.5l3 2.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-flecha" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="10" r="2.5" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+    <symbol id="i-camara" viewBox="0 0 24 24"><path d="M4 8h3l2-3h6l2 3h3v11H4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.5" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-facebook" viewBox="0 0 24 24"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v6h4v-6h3l1-4h-4V8z" fill="currentColor"/></symbol>
+    <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.3" fill="currentColor"/></symbol>
+    <symbol id="i-tiktok" viewBox="0 0 24 24"><path d="M14.5 3h3c.3 2.2 1.7 3.6 3.5 3.8v3.1c-1.3 0-2.5-.4-3.5-1v6.4a5.8 5.8 0 1 1-5.8-5.8c.3 0 .6 0 .9.1v3.2a2.7 2.7 0 1 0 1.9 2.6z" fill="currentColor"/></symbol>
+    <symbol id="i-whatsapp" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 2.9 2.9 0 0 0-.9 2.2c0 1.3.9 2.5 1 2.7.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.6-.3z"/></symbol>
+    <symbol id="i-estrella" viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.8z" fill="currentColor"/></symbol>
+  </defs>
+</svg>
+
+<a class="skip" href="#principal">Saltar al contenido</a>
+
+<!-- ===================== ENCABEZADO ===================== -->
+<header class="header" id="header">
+  <div class="wrap header-in">
+    <a class="logo" href="#inicio" aria-label="Te Resuelvo, ir al inicio">
+      <img src="img/logo-te-resuelvo.png" alt="" width="40" height="40">
+      <span>Te Resuelvo</span>
+    </a>
+    <nav class="nav" aria-label="Principal">
+      <a href="#inicio">Inicio</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#como-funciona">Cómo funciona</a>
+      <a href="#trabajadores">Para trabajadores</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <a class="btn btn-yellow btn-sm header-cta" href="#contacto" data-form-open="solicitud">Solicitar servicio</a>
+    <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="menu-movil" aria-label="Abrir menú"><span></span></button>
+  </div>
+</header>
+
+<nav class="menu-movil" id="menu-movil" aria-label="Menú móvil">
+  <a href="#inicio">Inicio</a>
+  <a href="#servicios">Servicios</a>
+  <a href="#como-funciona">Cómo funciona</a>
+  <a href="#trabajadores">Para trabajadores</a>
+  <a href="#contacto">Contacto</a>
+  <a class="btn btn-yellow" href="#contacto" data-form-open="solicitud">Solicitar servicio</a>
+</nav>
+
+<main id="principal">
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="inicio" aria-labelledby="hero-titulo">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <h1 id="hero-titulo" class="title-xl" data-subs data-subs-now>¿NECESITAS ALGO? <span class="hl">TE RESUELVO.</span></h1>
+      <p class="hero-text anim" style="--d:.9s">Encuentra técnicos cerca de ti, compara cotizaciones y soluciona tus problemas sin perder tiempo.</p>
+      <div class="hero-ctas anim" style="--d:1.05s">
+        <a class="btn btn-yellow btn-lg" href="#contacto" data-form-open="solicitud">ENCONTRAR UN TÉCNICO <svg class="ico"><use href="#i-flecha"/></svg></a>
+        <a class="btn btn-black btn-lg" href="#contacto" data-form-open="trabajador">QUIERO TRABAJAR</a>
+      </div>
+      <ul class="hero-tags anim" style="--d:1.2s" aria-label="Servicios disponibles">
+        <li>Electricidad</li><li>Plomería</li><li>Climatización</li><li>Limpieza</li><li>Jardinería</li><li>Carpintería</li><li>Pintura</li><li>Cerrajería</li><li>Albañilería</li><li>Mudanzas</li><li>Fumigación</li>
+      </ul>
+    </div>
+
+    <div class="hero-visual anim-pop" style="--d:.35s">
+      <figure class="hero-photo">
+        <img src="img/hero-1600.webp" srcset="img/hero-900.webp 900w, img/hero-1600.webp 1600w" sizes="(min-width: 960px) 50vw, 100vw" alt="Técnico sonriente con una caja de herramientas y dos llaves inglesas" width="1600" height="1067" fetchpriority="high">
+        <!-- Subtítulos tipo Reels sobre la foto (decorativos; el texto completo está abajo para lectores de pantalla) -->
+        <div class="reel" aria-hidden="true" data-reel>
+          <p class="reel-line">¿TIENES UN <span class="hl">PROBLEMA?</span></p>
+          <p class="reel-line">ENCUENTRA A ALGUIEN <span class="hl">CERCA.</span></p>
+          <p class="reel-line">COMPARA <span class="hl">PRECIOS.</span></p>
+          <p class="reel-line">Y <span class="hl">TE RESUELVO.</span></p>
+        </div>
+        <p class="sr-only">¿Tienes un problema? Encuentra a alguien cerca. Compara precios. Y te resuelvo.</p>
+      </figure>
+
+      <div class="phone phone-hero" aria-label="Ejemplo ilustrativo de una solicitud en la app">
+        <div class="phone-notch" aria-hidden="true"></div>
+        <div class="phone-screen">
+          <p class="phone-tag">Ejemplo ilustrativo</p>
+          <p class="phone-label">Tu solicitud</p>
+          <p class="phone-big">Fuga en el baño</p>
+          <p class="phone-row"><svg class="ico"><use href="#i-pin"/></svg> Zona norte</p>
+          <div class="phone-quotes">
+            <span class="dot-live" aria-hidden="true"></span>
+            <span><b>3 cotizaciones</b> recibidas</span>
+          </div>
+          <span class="phone-btn">Ver técnicos</span>
+        </div>
+      </div>
+
+      <span class="tool-chip t1 float" aria-hidden="true"><svg><use href="#i-llave"/></svg></span>
+      <span class="tool-chip t2 float" aria-hidden="true"><svg><use href="#i-multimetro"/></svg></span>
+      <span class="tool-chip t3 float" aria-hidden="true"><svg><use href="#i-candado"/></svg></span>
+    </div>
+  </div>
+</section>
+
+<!-- Franja de servicios -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>ELECTRICIDAD</span><i>✦</i><span>PLOMERÍA</span><i>✦</i><span>CLIMATIZACIÓN</span><i>✦</i><span>LIMPIEZA</span><i>✦</i><span>JARDINERÍA</span><i>✦</i><span>CARPINTERÍA</span><i>✦</i><span>PINTURA</span><i>✦</i><span>CERRAJERÍA</span><i>✦</i><span>ALBAÑILERÍA</span><i>✦</i><span>MUDANZAS</span><i>✦</i><span>FUMIGACIÓN</span><i>✦</i><span class="y">TE RESUELVO</span><i>✦</i>
+    <span>ELECTRICIDAD</span><i>✦</i><span>PLOMERÍA</span><i>✦</i><span>CLIMATIZACIÓN</span><i>✦</i><span>LIMPIEZA</span><i>✦</i><span>JARDINERÍA</span><i>✦</i><span>CARPINTERÍA</span><i>✦</i><span>PINTURA</span><i>✦</i><span>CERRAJERÍA</span><i>✦</i><span>ALBAÑILERÍA</span><i>✦</i><span>MUDANZAS</span><i>✦</i><span>FUMIGACIÓN</span><i>✦</i><span class="y">TE RESUELVO</span><i>✦</i>
+  </div>
+</div>
+
+<!-- ===================== SERVICIOS: TRES COMPOSICIONES ===================== -->
+<section class="servicios" id="servicios" aria-labelledby="serv-titulo">
+  <div class="wrap">
+    <h2 id="serv-titulo" class="title-lg center" data-subs><span class="hl">SOLUCIONES</span> RÁPIDAS, TÉCNICOS <span class="hl">CERCA</span>.</h2>
+    <p class="section-lead center reveal">Tres frentes para empezar. Elige el tuyo y cuéntanos qué pasa.</p>
+  </div>
+
+  <!-- Composición 1 -->
+  <article class="comp" aria-labelledby="comp1-t">
+    <div class="wrap comp-grid">
+      <div class="comp-media reveal">
+        <div class="comp-photo">
+          <img src="img/plomeria-1600.webp" srcset="img/plomeria-900.webp 900w, img/plomeria-1600.webp 1600w" sizes="(min-width: 960px) 58vw, 100vw" alt="Técnico revisando un equipo de aire acondicionado con manómetros de refrigeración" width="1600" height="1067" loading="lazy">
+        </div>
+        <figure class="comp-inset">
+          <img src="img/plomeria-detalle-700.webp" alt="Manos de un plomero ajustando una conexión de tubería" width="700" height="467" loading="lazy">
+        </figure>
+        <span class="comp-num" aria-hidden="true">01</span>
+        <span class="tool-chip c1 float" aria-hidden="true"><svg><use href="#i-manometro"/></svg></span>
+        <span class="tool-chip c2 float" aria-hidden="true"><svg><use href="#i-tubo"/></svg></span>
+      </div>
+      <div class="comp-copy">
+        <p class="comp-kicker reveal">Plomería y climatización</p>
+        <h3 id="comp1-t" class="title-lg" data-subs>¿<span class="hl">FUGAS</span> O PROBLEMAS CON TU <span class="hl">AIRE</span>?</h3>
+        <p class="comp-text reveal">Encuentra profesionales para reparar tuberías, grifos, instalaciones de agua y equipos de refrigeración.</p>
+        <ul class="chips reveal" aria-label="Problemas frecuentes">
+          <li><button type="button" data-cat="Plomería" data-detalle="Hay una fuga de agua">Hay una fuga de agua</button></li>
+          <li><button type="button" data-cat="Plomería" data-detalle="Se tapó el inodoro">Se tapó el inodoro</button></li>
+          <li><button type="button" data-cat="Plomería" data-detalle="La bomba de agua no funciona">La bomba de agua no funciona</button></li>
+          <li><button type="button" data-cat="Climatización" data-detalle="El aire acondicionado no enfría">El aire no enfría</button></li>
+        </ul>
+        <a class="btn btn-black btn-lg reveal" href="#contacto" data-form-open="solicitud" data-cat="Plomería">BUSCAR TÉCNICO <svg class="ico"><use href="#i-flecha"/></svg></a>
+      </div>
+    </div>
+  </article>
+
+  <!-- Composición 2 -->
+  <article class="comp comp-rev" aria-labelledby="comp2-t">
+    <div class="wrap comp-grid">
+      <div class="comp-media reveal">
+        <div class="comp-photo">
+          <img src="img/electricidad-1600.webp" srcset="img/electricidad-900.webp 900w, img/electricidad-1600.webp 1600w" sizes="(min-width: 960px) 58vw, 100vw" alt="Electricista con guantes de protección midiendo un tablero con un multímetro" width="1600" height="1067" loading="lazy">
+        </div>
+        <figure class="comp-inset">
+          <img src="img/cerrajeria-detalle-700.webp" alt="Cilindros de cerradura y herramientas de cerrajero" width="700" height="467" loading="lazy">
+        </figure>
+        <span class="comp-num" aria-hidden="true">02</span>
+        <span class="tool-chip c1 float" aria-hidden="true"><svg><use href="#i-rayo"/></svg></span>
+        <span class="tool-chip c2 float" aria-hidden="true"><svg><use href="#i-candado"/></svg></span>
+      </div>
+      <div class="comp-copy">
+        <p class="comp-kicker reveal">Electricidad y cerrajería</p>
+        <h3 id="comp2-t" class="title-lg" data-subs><span class="hl">SEGURIDAD</span> Y <span class="hl">SOLUCIONES</span> ELÉCTRICAS</h3>
+        <p class="comp-text reveal">Encuentra electricistas y cerrajeros para resolver problemas de instalaciones y seguridad.</p>
+        <ul class="chips reveal" aria-label="Problemas frecuentes">
+          <li><button type="button" data-cat="Electricidad" data-detalle="Se quemó mi ducha eléctrica o no calienta">La ducha eléctrica no calienta</button></li>
+          <li><button type="button" data-cat="Electricidad" data-detalle="Salta el térmico y se corta la luz">Salta el térmico</button></li>
+          <li><button type="button" data-cat="Cerrajería" data-detalle="Me quedé afuera de mi casa">Me quedé afuera</button></li>
+          <li><button type="button" data-cat="Cerrajería" data-detalle="Quiero cambiar la chapa">Cambiar la chapa</button></li>
+        </ul>
+        <a class="btn btn-black btn-lg reveal" href="#contacto" data-form-open="solicitud" data-cat="Electricidad">ENCONTRAR PROFESIONAL <svg class="ico"><use href="#i-flecha"/></svg></a>
+      </div>
+    </div>
+  </article>
+
+  <!-- Composición 3 -->
+  <article class="comp" aria-labelledby="comp3-t">
+    <div class="wrap comp-grid">
+      <div class="comp-media reveal">
+        <div class="comp-photo">
+          <img src="img/albanileria-1600.webp" srcset="img/albanileria-900.webp 900w, img/albanileria-1600.webp 1600w" sizes="(min-width: 960px) 58vw, 100vw" alt="Albañil con casco levantando un muro de ladrillo en una obra" width="1600" height="1067" loading="lazy">
+        </div>
+        <figure class="comp-inset">
+          <img src="img/albanileria-detalle-700.webp" alt="Mano con guante de trabajo colocando un ladrillo sobre mezcla" width="700" height="467" loading="lazy">
+        </figure>
+        <span class="comp-num" aria-hidden="true">03</span>
+        <span class="tool-chip c1 float" aria-hidden="true"><svg><use href="#i-paleta"/></svg></span>
+        <span class="tool-chip c2 float" aria-hidden="true"><svg><use href="#i-nivel"/></svg></span>
+      </div>
+      <div class="comp-copy">
+        <p class="comp-kicker reveal">Albañilería y reparaciones</p>
+        <h3 id="comp3-t" class="title-lg" data-subs><span class="hl">REPARA</span>, MEJORA Y <span class="hl">CONSTRUYE</span></h3>
+        <p class="comp-text reveal">Encuentra trabajadores para reparaciones, mantenimiento y mejoras de tu hogar.</p>
+        <ul class="chips reveal" aria-label="Problemas frecuentes">
+          <li><button type="button" data-cat="Albañilería" data-detalle="Hay una gotera en el techo">Gotera en el techo</button></li>
+          <li><button type="button" data-cat="Albañilería" data-detalle="La pared tiene grietas o fisuras">Grietas en la pared</button></li>
+          <li><button type="button" data-cat="Albañilería" data-detalle="Hay cerámicas sueltas o rotas">Cerámicas rotas</button></li>
+          <li><button type="button" data-cat="Albañilería" data-detalle="Quiero ampliar o construir">Ampliar o construir</button></li>
+        </ul>
+        <a class="btn btn-black btn-lg reveal" href="#contacto" data-form-open="solicitud" data-cat="Albañilería">SOLICITAR SERVICIO <svg class="ico"><use href="#i-flecha"/></svg></a>
+      </div>
+    </div>
+  </article>
+</section>
+
+<!-- ===================== TODOS LOS SERVICIOS ===================== -->
+<section class="todos" id="todos-los-servicios" aria-labelledby="todos-titulo">
+  <div class="wrap">
+    <h2 id="todos-titulo" class="title-lg" data-subs><span class="hl">11 SERVICIOS</span> PARA TU CASA</h2>
+    <p class="section-lead reveal" style="margin-left:0">Toca un servicio y cuéntanos qué pasa.</p>
+    <ul class="svc-grid">
+      <li><button class="svc-card" type="button" data-cat="Electricidad">
+        <span class="svc-ico"><svg aria-hidden="true"><use href="#i-rayo"/></svg></span>
+        <b>Electricidad</b>
+        <span class="svc-probs">La ducha eléctrica no calienta · Salta el térmico · Más enchufes o luces</span>
+        <span class="svc-go">Solicitar <svg class="ico" aria-hidden="true"><use href="#i-flecha"/></svg></span>
+      </button></li>
+      <li><button class="svc-card" type="button" data-cat="Plomería">
+        <span class="svc-ico"><svg aria-hidden="true"><use href="#i-llave"/></svg></span>
+        <b>Plomería</b>
+        <span class="svc-probs">Fugas de agua · Inodoro o lavaplatos tapado · Bomba de agua</span>
+        <span class="svc-go">Solicitar <svg class="ico" aria-hidden="true"><use href="#i-flecha"/></svg></span>
+      </button></li>
+      <li><button class="svc-card" type="button" data-cat="Climatización">
+        <span class="svc-ico"><svg aria-hidden="true"><use href="#i-copo"/></svg></span>
+        <b>Climatización</b>
+        <span class="svc-probs">El aire no enfría · Mantenimiento de split · Instalación de aire</span>
+        <span class="svc-go">Solicitar <svg class="ico" aria-hidden="true"><use href="#i-flecha"/></svg></span>
+      </button></li>
+      <li><button class="svc-card" type="button" data-cat="Limpieza">
+        <span class="svc-ico"><svg aria-hidden="true"><use href="#i-spray"/></svg></span>
+        <b>Limpieza</b>
+        <span class="svc-probs">Limpieza de casa por horas · Limpieza profunda · Sofás y colchones</span>
+        <span class="svc-go">Solicitar <svg class="ico" aria-hidden="true"><use href="#i-flecha"/></svg></span>
+      </button></li>
+      <li><button class="svc-card" type="button" data-cat="Jardinería">
+        <span class="svc-ico"><svg aria-hidden="true"><use href="#i-hoja"/></svg></span>
+        <b>Jardinería</b>
+        <span class="svc-probs">Corte de césped · Poda de árboles y arbustos · Desmalezado</span>
+        <span class="svc-go">Solicitar <svg class="ico" aria-hidden="true"><use href="#i-flecha"/></svg></span>
+      </button></li>
+      <li><button class="svc-card" type="button" data-cat="Carpintería">
+        <span class="svc-ico"><svg aria-hidden="true"><use href="#i-serrucho"/></svg></span>
+        <b>Carpintería</b>
+        <span class="svc-probs">Puertas que no cierran · Armado de muebles · Repisas y muebles a medida</span>
+        <span class="svc-go">Solicitar <svg class="ico" aria-hidden="true"><use href="#i-flecha"/></svg></span>
+      </button></li>
+      <li><button class="svc-card" type="button" data-cat="Pintura">
+        <span class="svc-ico"><svg aria-hidden="true"><use href="#i-rodillo"/></svg></span>
+        <b>Pintura</b>
+        <span class="svc-probs">Pintar un ambiente · Manchas de humedad · Rejas, puertas y portones</span>
+        <span class="svc-go">Solicitar <svg class="ico" aria-hidden="true"><use href="#i-flecha"/></svg></span>
+      </button></li>
+      <li><button class="svc-card" type="button" data-cat="Cerrajería">
+        <span class="svc-ico"><svg aria-hidden="true"><use href="#i-candado"/></svg></span>
+        <b>Cerrajería</b>
+        <span class="svc-probs">Me quedé afuera · Cambio de chapa · Copias y cerraduras digitales</span>
+        <span class="svc-go">Solicitar <svg class="ico" aria-hidden="true"><use href="#i-flecha"/></svg></span>
+      </button></li>
+      <li><button class="svc-card" type="button" data-cat="Albañilería">
+        <span class="svc-ico"><svg aria-hidden="true"><use href="#i-ladrillo"/></svg></span>
+        <b>Albañilería</b>
+        <span class="svc-probs">Goteras en el techo · Grietas y revoque · Cerámica y ampliaciones</span>
+        <span class="svc-go">Solicitar <svg class="ico" aria-hidden="true"><use href="#i-flecha"/></svg></span>
+      </button></li>
+      <li><button class="svc-card" type="button" data-cat="Mudanzas">
+        <span class="svc-ico"><svg aria-hidden="true"><use href="#i-camion"/></svg></span>
+        <b>Mudanzas</b>
+        <span class="svc-probs">Fletes pequeños · Muebles pesados · Mudanza completa</span>
+        <span class="svc-go">Solicitar <svg class="ico" aria-hidden="true"><use href="#i-flecha"/></svg></span>
+      </button></li>
+      <li><button class="svc-card" type="button" data-cat="Fumigación">
+        <span class="svc-ico"><svg aria-hidden="true"><use href="#i-insecto"/></svg></span>
+        <b>Fumigación</b>
+        <span class="svc-probs">Cucarachas y hormigas · Mosquitos (dengue) · Termitas y roedores</span>
+        <span class="svc-go">Solicitar <svg class="ico" aria-hidden="true"><use href="#i-flecha"/></svg></span>
+      </button></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===================== CÓMO FUNCIONA ===================== -->
+<section class="como" id="como-funciona" aria-labelledby="como-titulo">
+  <div class="wrap">
+    <h2 id="como-titulo" class="title-lg" data-subs>ASÍ DE <span class="hl">RÁPIDO</span> SE RESUELVE</h2>
+    <div class="como-grid">
+      <ol class="steps" id="steps">
+        <li class="step" data-step="0">
+          <span class="step-n">1</span>
+          <div><h3>Selecciona el servicio</h3><p>Elige entre 11 servicios: electricidad, plomería, climatización, limpieza, jardinería y más.</p></div>
+        </li>
+        <li class="step" data-step="1">
+          <span class="step-n">2</span>
+          <div><h3>Describe tu problema</h3><p>Cuéntalo con tus palabras y, si corresponde, adjunta fotografías.</p></div>
+        </li>
+        <li class="step" data-step="2">
+          <span class="step-n">3</span>
+          <div><h3>Recibe cotizaciones</h3><p>Profesionales disponibles te envían su propuesta.</p></div>
+        </li>
+        <li class="step" data-step="3">
+          <span class="step-n">4</span>
+          <div><h3>Elige y coordina</h3><p>Escoge al trabajador que prefieras y coordina el servicio.</p></div>
+        </li>
+      </ol>
+
+      <div class="phone phone-como" aria-label="Ejemplo ilustrativo de la app. Perfiles y precios ficticios.">
+        <div class="phone-notch" aria-hidden="true"></div>
+        <div class="phone-screen" id="phone-screens">
+          <p class="phone-tag">Ejemplo ilustrativo · perfiles y precios ficticios</p>
+
+          <div class="scr is-on" data-scr="0">
+            <p class="phone-label">¿Qué necesitas?</p>
+            <div class="scr-grid">
+              <span class="is-sel"><svg class="ico"><use href="#i-llave"/></svg>Plomería</span>
+              <span><svg class="ico"><use href="#i-copo"/></svg>Climatización</span>
+              <span><svg class="ico"><use href="#i-rayo"/></svg>Electricidad</span>
+              <span><svg class="ico"><use href="#i-candado"/></svg>Cerrajería</span>
+              <span><svg class="ico"><use href="#i-ladrillo"/></svg>Albañilería</span>
+              <span>+6 servicios más</span>
+            </div>
+          </div>
+
+          <div class="scr" data-scr="1">
+            <p class="phone-label">Describe el problema</p>
+            <p class="scr-input">«Gotea la llave del lavaplatos y hay agua debajo del mueble.»</p>
+            <div class="scr-photos"><span><svg class="ico"><use href="#i-camara"/></svg></span><span class="ph1"></span><span class="ph2"></span></div>
+            <p class="phone-row"><svg class="ico"><use href="#i-pin"/></svg> Zona norte · Hoy</p>
+          </div>
+
+          <div class="scr" data-scr="2">
+            <p class="phone-label">Cotizaciones recibidas</p>
+            <ul class="pros">
+              <li><span class="av">CM</span><div><b>Carlos M.</b><small>Plomero · <svg class="ico st"><use href="#i-estrella"/></svg> 4,8</small><small class="ok">Disponible hoy</small></div><b class="price">Bs 180</b></li>
+              <li><span class="av">RP</span><div><b>Rosa P.</b><small>Plomera · <svg class="ico st"><use href="#i-estrella"/></svg> 4,9</small><small class="ok">Mañana 9:00</small></div><b class="price">Bs 200</b></li>
+              <li><span class="av">JL</span><div><b>Jorge L.</b><small>Plomero · <svg class="ico st"><use href="#i-estrella"/></svg> 4,6</small><small class="ok">Disponible hoy</small></div><b class="price">Bs 170</b></li>
+            </ul>
+          </div>
+
+          <div class="scr" data-scr="3">
+            <p class="phone-label">Servicio coordinado</p>
+            <div class="pro-big"><span class="av">RP</span><div><b>Rosa P.</b><small>Plomera · Bs 200</small></div></div>
+            <div class="bubble in">Hola, llego mañana a las 9:00.</div>
+            <div class="bubble out">¡Perfecto, te espero!</div>
+            <span class="phone-btn"><svg class="ico"><use href="#i-check"/></svg> Confirmado</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TRABAJADORES ===================== -->
+<section class="workers" id="trabajadores" aria-labelledby="work-titulo">
+  <div class="wrap workers-grid">
+    <div class="workers-copy">
+      <h2 id="work-titulo" class="title-lg on-dark" data-subs>TU TALENTO MERECE <span class="hl">MÁS OPORTUNIDADES</span></h2>
+      <p class="workers-text reveal">Conecta con clientes, presenta tus cotizaciones y encuentra nuevas oportunidades de trabajo con Te Resuelvo.</p>
+      <ul class="workers-list reveal">
+        <li><svg class="ico"><use href="#i-check"/></svg>Solicitudes de clientes cerca de tu zona</li>
+        <li><svg class="ico"><use href="#i-check"/></svg>Tú decides qué trabajos tomar y cuánto cotizar</li>
+        <li><svg class="ico"><use href="#i-check"/></svg>Tu perfil y tus calificaciones hablan por ti</li>
+      </ul>
+      <p class="workers-trades reveal">Electricistas · Plomeros · Técnicos de climatización · Personal de limpieza · Jardineros · Carpinteros · Pintores · Cerrajeros · Albañiles · Mudanzas · Fumigadores</p>
+      <a class="btn btn-yellow btn-lg reveal" href="#contacto" data-form-open="trabajador">QUIERO TRABAJAR <svg class="ico"><use href="#i-flecha"/></svg></a>
+    </div>
+    <div class="workers-media reveal">
+      <div class="workers-photo">
+        <img src="img/trabajador-1600.webp" srcset="img/trabajador-900.webp 900w, img/trabajador-1600.webp 1600w" sizes="(min-width: 960px) 50vw, 100vw" alt="Trabajador sonriente con casco amarillo y overol en una obra" width="1600" height="1067" loading="lazy">
+      </div>
+      <p class="workers-caption" aria-hidden="true">TU <span class="hl">TRABAJO</span>, TU NOMBRE.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FORMULARIOS (CONTACTO) ===================== -->
+<section class="contacto" id="contacto" aria-labelledby="contacto-titulo">
+  <div class="wrap">
+    <h2 id="contacto-titulo" class="title-lg center" data-subs>CUÉNTANOS Y <span class="hl">TE RESUELVO</span></h2>
+
+    <div class="tabs" role="tablist" aria-label="Tipo de formulario">
+      <button class="tab is-on" role="tab" id="tab-solicitud" aria-controls="panel-solicitud" aria-selected="true" type="button" data-tab="solicitud">Necesito un servicio</button>
+      <button class="tab" role="tab" id="tab-trabajador" aria-controls="panel-trabajador" aria-selected="false" type="button" data-tab="trabajador" tabindex="-1">Quiero trabajar</button>
+    </div>
+
+    <!-- Solicitud de servicio -->
+    <div class="panel" id="panel-solicitud" role="tabpanel" aria-labelledby="tab-solicitud">
+      <form class="form" id="form-solicitud" data-endpoint="solicitud" novalidate>
+        <fieldset class="field full">
+          <legend>Servicio que necesitas <span class="req">*</span></legend>
+          <div class="cat-pick" role="radiogroup">
+            <label><input type="radio" name="servicio" value="Electricidad" required><span><svg class="ico"><use href="#i-rayo"/></svg>Electricidad</span></label>
+            <label><input type="radio" name="servicio" value="Plomería"><span><svg class="ico"><use href="#i-llave"/></svg>Plomería</span></label>
+            <label><input type="radio" name="servicio" value="Climatización"><span><svg class="ico"><use href="#i-copo"/></svg>Climatización</span></label>
+            <label><input type="radio" name="servicio" value="Limpieza"><span><svg class="ico"><use href="#i-spray"/></svg>Limpieza</span></label>
+            <label><input type="radio" name="servicio" value="Jardinería"><span><svg class="ico"><use href="#i-hoja"/></svg>Jardinería</span></label>
+            <label><input type="radio" name="servicio" value="Carpintería"><span><svg class="ico"><use href="#i-serrucho"/></svg>Carpintería</span></label>
+            <label><input type="radio" name="servicio" value="Pintura"><span><svg class="ico"><use href="#i-rodillo"/></svg>Pintura</span></label>
+            <label><input type="radio" name="servicio" value="Cerrajería"><span><svg class="ico"><use href="#i-candado"/></svg>Cerrajería</span></label>
+            <label><input type="radio" name="servicio" value="Albañilería"><span><svg class="ico"><use href="#i-ladrillo"/></svg>Albañilería</span></label>
+            <label><input type="radio" name="servicio" value="Mudanzas"><span><svg class="ico"><use href="#i-camion"/></svg>Mudanzas</span></label>
+            <label><input type="radio" name="servicio" value="Fumigación"><span><svg class="ico"><use href="#i-insecto"/></svg>Fumigación</span></label>
+            <label><input type="radio" name="servicio" value="Otro"><span>Otro</span></label>
+          </div>
+          <p class="err" data-err="servicio">Elige el servicio que necesitas.</p>
+        </fieldset>
+
+        <div class="field full">
+          <label for="s-detalle">Describe tu problema <span class="req">*</span></label>
+          <textarea id="s-detalle" name="detalle" rows="4" minlength="10" maxlength="1000" required placeholder="Ejemplo: gotea la llave del lavaplatos y hay agua debajo del mueble."></textarea>
+          <p class="err" data-err="detalle">Cuéntanos un poco más (al menos 10 caracteres).</p>
+        </div>
+
+        <div class="field full">
+          <label for="s-fotos">Fotografías <span class="opt">(opcional, hasta 3)</span></label>
+          <label class="drop" for="s-fotos"><svg class="ico"><use href="#i-camara"/></svg><span>Toca para adjuntar fotos del problema</span></label>
+          <input id="s-fotos" name="fotos" type="file" accept="image/*" multiple class="file">
+          <div class="previews" id="s-previews" aria-live="polite"></div>
+          <p class="err" data-err="fotos">Puedes subir hasta 3 fotos de máximo 5 MB cada una.</p>
+        </div>
+
+        <div class="field">
+          <label for="s-zona">Ciudad y zona <span class="req">*</span></label>
+          <input id="s-zona" name="zona" type="text" autocomplete="address-level2" required placeholder="Ejemplo: Santa Cruz, zona norte">
+          <p class="err" data-err="zona">Indica tu ciudad y zona.</p>
+        </div>
+        <div class="field">
+          <label for="s-cuando">¿Para cuándo?</label>
+          <select id="s-cuando" name="cuando">
+            <option>Lo antes posible</option><option>Hoy</option><option>Esta semana</option><option>Puedo coordinar</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="s-nombre">Tu nombre <span class="req">*</span></label>
+          <input id="s-nombre" name="nombre" type="text" autocomplete="name" required>
+          <p class="err" data-err="nombre">Escribe tu nombre.</p>
+        </div>
+        <div class="field">
+          <label for="s-tel">Celular o WhatsApp <span class="req">*</span></label>
+          <input id="s-tel" name="telefono" type="tel" inputmode="tel" autocomplete="tel" required placeholder="Ejemplo: 7xxxxxxx">
+          <p class="err" data-err="telefono">Escribe un número válido (al menos 8 dígitos).</p>
+        </div>
+
+        <div class="form-foot full">
+          <button class="btn btn-yellow btn-lg" type="submit"><span class="btn-label">ENVIAR SOLICITUD</span><span class="spinner" aria-hidden="true"></span></button>
+          <p class="form-note">Usaremos estos datos solo para responder a tu solicitud. Al enviar aceptas los <a href="terminos.html">Términos y condiciones</a> y la <a href="privacidad.html">Política de privacidad</a>.</p>
+        </div>
+        <div class="form-status full" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+
+    <!-- Registro de trabajadores -->
+    <div class="panel" id="panel-trabajador" role="tabpanel" aria-labelledby="tab-trabajador" hidden>
+      <form class="form" id="form-trabajador" data-endpoint="trabajador" novalidate>
+        <fieldset class="field full">
+          <legend>¿Qué sabes hacer? <span class="req">*</span> <span class="opt">(puedes marcar varios)</span></legend>
+          <div class="cat-pick">
+            <label><input type="checkbox" name="oficios" value="Electricidad"><span>Electricidad</span></label>
+            <label><input type="checkbox" name="oficios" value="Plomería"><span>Plomería</span></label>
+            <label><input type="checkbox" name="oficios" value="Climatización"><span>Climatización</span></label>
+            <label><input type="checkbox" name="oficios" value="Limpieza"><span>Limpieza</span></label>
+            <label><input type="checkbox" name="oficios" value="Jardinería"><span>Jardinería</span></label>
+            <label><input type="checkbox" name="oficios" value="Carpintería"><span>Carpintería</span></label>
+            <label><input type="checkbox" name="oficios" value="Pintura"><span>Pintura</span></label>
+            <label><input type="checkbox" name="oficios" value="Cerrajería"><span>Cerrajería</span></label>
+            <label><input type="checkbox" name="oficios" value="Albañilería"><span>Albañilería</span></label>
+            <label><input type="checkbox" name="oficios" value="Mudanzas"><span>Mudanzas</span></label>
+            <label><input type="checkbox" name="oficios" value="Fumigación"><span>Fumigación</span></label>
+            <label><input type="checkbox" name="oficios" value="Otro oficio"><span>Otro oficio</span></label>
+          </div>
+          <p class="err" data-err="oficios">Marca al menos un oficio.</p>
+        </fieldset>
+        <div class="field">
+          <label for="t-nombre">Nombre completo <span class="req">*</span></label>
+          <input id="t-nombre" name="nombre" type="text" autocomplete="name" required>
+          <p class="err" data-err="nombre">Escribe tu nombre completo.</p>
+        </div>
+        <div class="field">
+          <label for="t-tel">Celular o WhatsApp <span class="req">*</span></label>
+          <input id="t-tel" name="telefono" type="tel" inputmode="tel" autocomplete="tel" required placeholder="Ejemplo: 7xxxxxxx">
+          <p class="err" data-err="telefono">Escribe un número válido (al menos 8 dígitos).</p>
+        </div>
+        <div class="field">
+          <label for="t-zona">Ciudad y zonas donde trabajas <span class="req">*</span></label>
+          <input id="t-zona" name="zona" type="text" required placeholder="Ejemplo: Santa Cruz, zona norte y centro">
+          <p class="err" data-err="zona">Indica dónde trabajas.</p>
+        </div>
+        <div class="field">
+          <label for="t-exp">Años de experiencia</label>
+          <select id="t-exp" name="experiencia">
+            <option>Menos de 1 año</option><option>1 a 3 años</option><option>3 a 5 años</option><option>Más de 5 años</option>
+          </select>
+        </div>
+        <div class="field full">
+          <label for="t-msg">Cuéntanos de tu trabajo <span class="opt">(opcional)</span></label>
+          <textarea id="t-msg" name="mensaje" rows="3" maxlength="800" placeholder="Especialidades, herramientas propias, trabajos que más haces…"></textarea>
+        </div>
+        <div class="form-foot full">
+          <button class="btn btn-black btn-lg" type="submit"><span class="btn-label">QUIERO TRABAJAR</span><span class="spinner" aria-hidden="true"></span></button>
+          <p class="form-note">Te contactaremos para verificar tus datos antes de activar tu perfil. Al enviar aceptas los <a href="terminos.html">Términos y condiciones</a> y la <a href="privacidad.html">Política de privacidad</a>.</p>
+        </div>
+        <div class="form-status full" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== LLAMADA FINAL ===================== -->
+<section class="final" aria-labelledby="final-titulo">
+  <div class="wrap final-grid">
+    <div class="final-copy">
+      <h2 id="final-titulo" class="title-xl on-dark" data-subs>EL PRÓXIMO PROBLEMA QUE TENGAS, YA SABES A QUIÉN LLAMAR: <span class="hl">TE RESUELVO.</span></h2>
+      <div class="final-ctas reveal">
+        <a class="btn btn-yellow btn-lg" href="#contacto" data-form-open="solicitud">NECESITO UN SERVICIO <svg class="ico"><use href="#i-flecha"/></svg></a>
+        <a class="btn btn-outline btn-lg" href="#contacto" data-form-open="trabajador">QUIERO OFRECER MIS SERVICIOS</a>
+      </div>
+      <div class="stores" id="stores" hidden></div>
+      <div class="follow reveal" id="final-follow" hidden>
+        <p>Síguenos</p>
+        <ul class="social social-big" data-social></ul>
+      </div>
+    </div>
+    <div class="final-media reveal">
+      <img src="img/final-1600.webp" srcset="img/final-900.webp 900w, img/final-1600.webp 1600w" sizes="(min-width: 960px) 40vw, 100vw" alt="Técnico sonriente con un taladro haciendo un gesto de aprobación" width="1600" height="1067" loading="lazy">
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===================== PIE ===================== -->
+<footer class="footer">
+  <div class="wrap footer-grid">
+    <div>
+      <a class="logo logo-light" href="#inicio"><img src="img/logo-te-resuelvo.png" alt="" width="40" height="40"><span>Te Resuelvo</span></a>
+      <p class="footer-tag">¿Necesitas algo? Te Resuelvo.</p>
+      <ul class="social" data-social aria-label="Redes sociales de Te Resuelvo"></ul>
+    </div>
+    <nav aria-label="Pie de página">
+      <a href="#inicio">Inicio</a><a href="#servicios">Servicios</a><a href="#como-funciona">Cómo funciona</a><a href="#trabajadores">Para trabajadores</a><a href="#contacto">Contacto</a>
+    </nav>
+    <div class="footer-contact" id="footer-contact"></div>
+  </div>
+  <div class="wrap footer-bottom">
+    <p>© <span id="anio">2026</span> Te Resuelvo · Un producto de <a href="https://sibnova.com.bo" target="_blank" rel="noopener">SIBNOVA LTDA.</a></p>
+    <p id="footer-legal"></p>
+    <p class="credits">Fotografías: <a href="https://www.pexels.com" target="_blank" rel="noopener">Pexels</a> (licencia libre).</p>
+  </div>
+</footer>
+
+<!-- Botón flotante de WhatsApp (se activa con contacto.whatsapp en js/config.js) -->
+<a class="wa-float" id="wa-float" href="#" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp" hidden>
+  <svg aria-hidden="true"><use href="#i-whatsapp"/></svg>
+  <span class="wa-label">¿Te ayudamos?</span>
+</a>
+
+<script src="js/config.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
