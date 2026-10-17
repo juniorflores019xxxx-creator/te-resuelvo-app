@@ -28,7 +28,7 @@ window.TR_CONFIG = {
   /* Redes sociales. Vacías = no se muestran. */
   redes: {
     facebook: "https://www.facebook.com/profile.php?id=61595675542080",
-    instagram: "https://www.instagram.com/junior37724/",
+    instagram: "",   // pendiente: cuenta de Instagram de Te Resuelvo (no usar la personal)
     tiktok: "https://www.tiktok.com/@te.resuelvo1"
   },
 

@@ -242,6 +242,31 @@
   });
 
   /* ---------- Envío ---------- */
+  // Arma el mensaje de WhatsApp con los datos del formulario (se usa mientras no haya endpoint)
+  const val = (form, name) => {
+    const els = $$(`[name="${name}"]`, form);
+    if (!els.length) return "";
+    if (els[0].type === "radio" || els[0].type === "checkbox") return els.filter((el) => el.checked).map((el) => el.value).join(", ");
+    return els[0].value.trim();
+  };
+  const waMensaje = (form, key) => {
+    const filas = key === "solicitud"
+      ? [["Servicio", "servicio"], ["Problema", "detalle"], ["Ciudad y zona", "zona"], ["Para cuándo", "cuando"], ["Nombre", "nombre"], ["Celular", "telefono"]]
+      : [["Oficios", "oficios"], ["Nombre", "nombre"], ["Celular", "telefono"], ["Zonas donde trabajo", "zona"], ["Experiencia", "experiencia"], ["Sobre mi trabajo", "mensaje"]];
+    const lineas = filas.map(([t, n]) => [t, val(form, n)]).filter(([, v]) => v).map(([t, v]) => `*${t}:* ${v}`);
+    const inicio = key === "solicitud" ? "Hola Te Resuelvo, quiero solicitar un servicio." : "Hola Te Resuelvo, quiero trabajar como técnico en la app.";
+    let txt = inicio + "\n\n" + lineas.join("\n");
+    if (key === "solicitud" && fotos.length) txt += `\n\nTengo ${fotos.length} foto${fotos.length > 1 ? "s" : ""} del problema; las envío en este chat.`;
+    return txt;
+  };
+  // Mientras el formulario no tenga endpoint, se avisa que se enviará por WhatsApp
+  $$(".form").forEach((form) => {
+    if (!(CFG.endpoints || {})[form.dataset.endpoint] && wa) {
+      const note = $(".form-note", form);
+      if (note) note.insertAdjacentHTML("afterbegin", "<b>Se enviará por WhatsApp.</b> ");
+    }
+  });
+
   $$(".form").forEach((form) => form.addEventListener("submit", async (e) => {
     e.preventDefault();
     const status = $(".form-status", form), btn = $("button[type=submit]", form);
@@ -249,8 +274,18 @@
     if (!validate(form)) return;
 
     const key = form.dataset.endpoint, url = (CFG.endpoints || {})[key];
+    if (!url && wa) {
+      // Sin backend: se abre WhatsApp con la solicitud escrita; el envío lo confirma la persona en WhatsApp
+      const link = `https://wa.me/${wa}?text=${encodeURIComponent(waMensaje(form, key))}`;
+      window.open(link, "_blank", "noopener");
+      status.classList.add("warn");
+      status.innerHTML = "<b>Abrimos WhatsApp con tus datos ya escritos.</b> Toca <b>Enviar</b> en WhatsApp para que recibamos tu " + (key === "solicitud" ? "solicitud" : "registro") + "."
+        + (key === "solicitud" && fotos.length ? " Luego adjunta tus fotos en el mismo chat." : "")
+        + ` <a class="wa-link" href="${link}" target="_blank" rel="noopener">Si no se abrió, toca aquí para abrir WhatsApp</a>.`;
+      return;
+    }
     if (!url) {
-      // Sin backend conectado: no se simula ningún envío
+      // Sin backend ni WhatsApp: no se simula ningún envío
       status.classList.add("warn");
       status.innerHTML = "<b>Este formulario todavía no está conectado.</b> Tus datos <b>no se enviaron</b>. Estamos terminando de habilitarlo; vuelve a intentarlo pronto.";
       return;
