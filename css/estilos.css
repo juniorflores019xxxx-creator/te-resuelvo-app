@@ -427,6 +427,7 @@ main,.footer{overflow-x:clip}
 
 /* ---------- Página 404 ---------- */
 .nf{min-height:70vh;display:grid;place-items:center;text-align:center;padding-block:80px}
-.nf .big{font-weight:900;font-size:clamp(6rem,22vw,13rem);line-height:.85;letter-spacing:-.06em;margin:0}
-.nf p{color:var(--ink-70);max-width:44ch;margin:18px auto 0}
+.nf .big{color:var(--black);margin-bottom:22px !important;font-weight:900;font-size:clamp(6rem,22vw,13rem);line-height:.85;letter-spacing:-.06em;margin:0}
+.nf h1{line-height:1.05}
+.nf p:not(.big){color:var(--ink-70);max-width:44ch;margin:18px auto 0}
 .nf .acts{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:30px}
