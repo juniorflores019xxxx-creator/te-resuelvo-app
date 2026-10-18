@@ -251,7 +251,7 @@
   };
   const waMensaje = (form, key) => {
     const filas = key === "solicitud"
-      ? [["Servicio", "servicio"], ["Problema", "detalle"], ["Ciudad y zona", "zona"], ["Para cuándo", "cuando"], ["Nombre", "nombre"], ["Celular", "telefono"]]
+      ? [["Servicio", "servicio"], ["Problema", "detalle"], ["Ciudad y zona", "zona"], ["Precio que propongo (Bs)", "presupuesto"], ["Para cuándo", "cuando"], ["Nombre", "nombre"], ["Celular", "telefono"]]
       : [["Oficios", "oficios"], ["Nombre", "nombre"], ["Celular", "telefono"], ["Zonas donde trabajo", "zona"], ["Experiencia", "experiencia"], ["Sobre mi trabajo", "mensaje"]];
     const lineas = filas.map(([t, n]) => [t, val(form, n)]).filter(([, v]) => v).map(([t, v]) => `*${t}:* ${v}`);
     const inicio = key === "solicitud" ? "Hola Te Resuelvo, quiero solicitar un servicio." : "Hola Te Resuelvo, quiero trabajar como técnico en la app.";

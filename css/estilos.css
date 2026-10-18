@@ -431,3 +431,4 @@ main,.footer{overflow-x:clip}
 .nf h1{line-height:1.05}
 .nf p:not(.big){color:var(--ink-70);max-width:44ch;margin:18px auto 0}
 .nf .acts{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:30px}
+.scr-sug{display:block !important;font-size:.8rem;margin:10px 0 12px}.scr-sug b{white-space:nowrap;background:var(--yellow);padding:0 6px;border-radius:6px}
