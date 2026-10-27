@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es-BO">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Descarga Te Resuelvo</title>
+<meta name="description" content="Enlace de descarga de la app Te Resuelvo: abre Google Play o App Store según tu celular.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#161616">
+<meta property="og:title" content="Descarga Te Resuelvo">
+<meta property="og:description" content="Técnicos verificados cerca de ti. Abre este enlace desde tu celular.">
+<meta property="og:image" content="https://juniorflores019xxxx-creator.github.io/te-resuelvo-app/img/compartir.jpg">
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><symbol id="i-flecha" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol></defs></svg>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+
+<header class="header scrolled">
+  <div class="wrap header-in">
+    <a class="logo" href="index.html" aria-label="Te Resuelvo, ir al inicio"><img src="img/logo-96.png" alt="" width="40" height="40"><span>Te Resuelvo</span></a>
+  </div>
+</header>
+
+<!-- Enlace inteligente: js/paginas.js muestra un bloque según el celular y los enlaces de js/config.js -->
+<main id="contenido" class="nf">
+  <div class="wrap">
+    <!-- La app todavía no está en las tiendas (apps.android y apps.ios vacíos) -->
+    <div data-descarga="pronto">
+      <p class="badge"><span class="dot-live" aria-hidden="true"></span>Próximamente en Santa Cruz</p>
+      <h1 class="title-lg">La app está <span class="hl">en camino.</span></h1>
+      <p>Todavía no está disponible en las tiendas. Pre-regístrate y te avisamos por WhatsApp apenas esté lista.</p>
+      <div class="acts">
+        <a class="btn btn-yellow btn-lg" href="index.html#contacto">Pre-regístrate <svg class="ico" aria-hidden="true"><use href="#i-flecha"/></svg></a>
+      </div>
+    </div>
+
+    <!-- Celular detectado: se abre su tienda; los botones quedan por si no se abrió -->
+    <div data-descarga="abriendo" hidden>
+      <h1 class="title-lg">Te llevamos a <span class="hl">tu tienda.</span></h1>
+      <p>Si no se abrió sola, toca el botón para descargar Te Resuelvo.</p>
+      <div class="acts" data-tiendas></div>
+    </div>
+
+    <!-- Computadora u otro equipo: se muestran todas las tiendas -->
+    <div data-descarga="elegir" hidden>
+      <h1 class="title-lg">Descarga <span class="hl">Te Resuelvo.</span></h1>
+      <p>Abre este enlace desde tu celular o elige tu tienda.</p>
+      <div class="acts" data-tiendas></div>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-bottom footer-solo">
+    <p>© <span id="anio">2026</span> Te Resuelvo · Un producto de <a href="https://sibnova.com.bo" target="_blank" rel="noopener">SIBNOVA LTDA.</a></p>
+    <p><a href="terminos.html">Términos y condiciones</a> · <a href="privacidad.html">Política de privacidad</a></p>
+  </div>
+</footer>
+<script src="js/config.js"></script>
+<script src="js/paginas.js"></script>
+</body>
+</html>

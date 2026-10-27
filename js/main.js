@@ -215,7 +215,7 @@
       if (!first || first.compareDocumentPosition(el) & Node.DOCUMENT_POSITION_PRECEDING) first = el;
     };
     $$(".field", form).forEach(clearErr);
-    // Grupos obligatorios (oficios, disponibilidad, tipo de celular): al menos una opción marcada
+    // Grupos obligatorios (oficios, disponibilidad): al menos una opción marcada
     $$("fieldset[data-requerido]", form).forEach((fs) => { const ops = $$("input", fs); if (!ops.some((o) => o.checked)) bad(ops[0]); });
     $$("input[required]:not([type=radio]):not([type=checkbox]), textarea[required]", form).forEach((el) => {
       const v = el.value.trim();
@@ -241,8 +241,8 @@
     return els[0].value.trim();
   };
   const FILAS = {
-    usuario: [["Nombre", "nombre"], ["Celular", "telefono"], ["Ciudad y zona", "zona"], ["Mi celular es", "sistema"], ["Servicios que me interesan", "intereses"]],
-    trabajador: [["Oficios", "oficios"], ["Nombre", "nombre"], ["Celular", "telefono"], ["Zonas donde trabajo", "zona"], ["Experiencia", "experiencia"], ["Herramientas propias", "herramientas"], ["Disponibilidad", "disponibilidad"], ["Mi celular es", "sistema"], ["Sobre mi trabajo", "mensaje"]],
+    usuario: [["Nombre", "nombre"], ["Celular", "telefono"], ["Ciudad y zona", "zona"], ["Servicios que me interesan", "intereses"]],
+    trabajador: [["Oficios", "oficios"], ["Nombre", "nombre"], ["Celular", "telefono"], ["Zonas donde trabajo", "zona"], ["Experiencia", "experiencia"], ["Herramientas propias", "herramientas"], ["Disponibilidad", "disponibilidad"], ["Sobre mi trabajo", "mensaje"]],
   };
   const waMensaje = (form, key) => {
     const lineas = FILAS[key].map(([t, n]) => [t, val(form, n)]).filter(([, v]) => v).map(([t, v]) => `*${t}:* ${v}`);

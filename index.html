@@ -468,21 +468,12 @@
           <input id="u-tel" name="telefono" type="tel" inputmode="tel" autocomplete="tel" required placeholder="Ejemplo: 7xxxxxxx">
           <p class="err" data-err="telefono">Escribe un número válido (al menos 8 dígitos).</p>
         </div>
-        <div class="field">
+        <div class="field full">
           <label for="u-zona">Ciudad y zona <span class="req">*</span></label>
           <input id="u-zona" name="zona" type="text" required placeholder="Ejemplo: Santa Cruz, zona norte" aria-describedby="u-zona-ayuda">
           <p class="hint" id="u-zona-ayuda">Empezamos en Santa Cruz. Si vives en otra ciudad, anótate igual y te avisamos cuando lleguemos.</p>
           <p class="err" data-err="zona">Indica tu ciudad y zona.</p>
         </div>
-        <fieldset class="field" data-requerido aria-describedby="u-sistema-ayuda">
-          <legend>Tu celular es <span class="req">*</span></legend>
-          <div class="cat-pick">
-            <label><input type="radio" name="sistema" value="Android"><span>Android</span></label>
-            <label><input type="radio" name="sistema" value="iPhone"><span>iPhone</span></label>
-          </div>
-          <p class="hint" id="u-sistema-ayuda">Lo preguntamos para mandarte el enlace correcto: Google Play si es Android o App Store si es iPhone.</p>
-          <p class="err" data-err="sistema">Elige el tipo de celular, así te mandamos el enlace correcto.</p>
-        </fieldset>
         <fieldset class="field full">
           <legend>Servicios que te interesan <span class="opt">(opcional, puedes marcar varios)</span></legend>
           <div class="cat-pick">
@@ -566,7 +557,7 @@
           <input id="t-tel" name="telefono" type="tel" inputmode="tel" autocomplete="tel" required placeholder="Ejemplo: 7xxxxxxx">
           <p class="err" data-err="telefono">Escribe un número válido (al menos 8 dígitos).</p>
         </div>
-        <div class="field">
+        <div class="field full">
           <label for="t-zona">Ciudad y zonas donde trabajas <span class="req">*</span></label>
           <input id="t-zona" name="zona" type="text" required placeholder="Ejemplo: Santa Cruz, zona norte y centro">
           <p class="err" data-err="zona">Indica dónde trabajas.</p>
@@ -583,15 +574,6 @@
             <option>Sí, todas las que necesito</option><option>Algunas</option><option>Todavía no</option>
           </select>
         </div>
-        <fieldset class="field" data-requerido aria-describedby="t-sistema-ayuda">
-          <legend>Tu celular es <span class="req">*</span></legend>
-          <div class="cat-pick">
-            <label><input type="radio" name="sistema" value="Android"><span>Android</span></label>
-            <label><input type="radio" name="sistema" value="iPhone"><span>iPhone</span></label>
-          </div>
-          <p class="hint" id="t-sistema-ayuda">Lo preguntamos para mandarte el enlace correcto: Google Play si es Android o App Store si es iPhone.</p>
-          <p class="err" data-err="sistema">Elige el tipo de celular, así te mandamos el enlace correcto.</p>
-        </fieldset>
         <fieldset class="field full" data-requerido>
           <legend>¿Cuándo puedes trabajar? <span class="req">*</span> <span class="opt">(puedes marcar varios)</span></legend>
           <div class="cat-pick">

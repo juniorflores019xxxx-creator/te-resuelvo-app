@@ -8,17 +8,22 @@ Sitio estático (HTML, CSS y JavaScript sin dependencias). Se abre con doble cli
 |---|---|
 | `index.html` | Secciones: encabezado, portada, servicios (3 composiciones), los 11 servicios, cómo funciona, confianza, trabajadores, pre-registro (dos partes: usuarios y técnicos, cada una con sus requisitos y su formulario), llamada final y pie |
 | `terminos.html` · `privacidad.html` | Páginas legales |
+| `app.html` | **Enlace inteligente de descarga** (`/app`): abre Google Play o App Store según el celular |
 | `404.html` | Página de error de GitHub Pages (funciona en el servidor; abierta con doble clic no carga estilos) |
 | `sitemap.xml` | Mapa del sitio para buscadores |
 | `css/estilos.css` | Diseño. Paleta: negro `#161616`, amarillo `#F5CD47`, blanco `#FFFFFF`. Tipografía Inter |
 | `js/config.js` | **Puntos de integración** (WhatsApp, redes, formularios, tiendas y páginas legales) |
 | `js/main.js` | Portada: subtítulos animados, reel, revelados, pasos de «Cómo funciona», pestañas y formularios |
-| `js/paginas.js` | Páginas legales y 404: año del pie y enlaces de WhatsApp tomados de `config.js` |
+| `js/paginas.js` | Páginas legales, 404 y `app.html`: año del pie, enlaces de WhatsApp y enlace inteligente, tomados de `config.js` |
 | `img/` | Fotos en WebP (900 y 1600 px), logo oficial (`logo-te-resuelvo.png`, 512 px) y su versión liviana para el encabezado (`logo-96.png`) |
 
 ## Modo pre-lanzamiento
 
 La app todavía no está publicada: la web invita a **pre-registrarse** (arrancamos en Santa Cruz) para avisar por WhatsApp, con el enlace de descarga, cuando esté lista. Al lanzar, hay que cambiar los textos «Próximamente», «Muy pronto», «Sé de los primeros» y «Así funcionará la app», y cargar `apps.android` / `apps.ios`.
+
+## Enlace inteligente de descarga
+
+Comparte siempre **un solo enlace**: `/app` (con el dominio, `teresuelvo.com.bo/app`). En un Android abre Google Play; en un iPhone o iPad, App Store; en una computadora muestra los dos botones. Mientras `apps.android` y `apps.ios` estén vacíos, dice «Próximamente» e invita a pre-registrarse. Para activarlo al lanzar, basta con cargar esos dos enlaces en `js/config.js`.
 
 ## Cómo se envían los formularios hoy
 
@@ -28,8 +33,8 @@ Sin endpoint ni WhatsApp, el formulario valida pero **no envía nada** y lo avis
 
 ## Integraciones (`js/config.js`)
 
-- `endpoints.usuario` · URL que recibe los pre-registros de clientes por `POST` (multipart/form-data): `nombre`, `telefono`, `zona`, `sistema` (Android o iPhone), `intereses` (separados por comas), `acepto` y `origen=web`.
-- `endpoints.trabajador` · URL que recibe los pre-registros de técnicos: `oficios` y `disponibilidad` (separados por comas), `nombre`, `telefono`, `zona`, `experiencia`, `herramientas`, `sistema`, `mensaje`, `acepto` y `origen=web`.
+- `endpoints.usuario` · URL que recibe los pre-registros de clientes por `POST` (multipart/form-data): `nombre`, `telefono`, `zona`, `intereses` (separados por comas), `acepto` y `origen=web`.
+- `endpoints.trabajador` · URL que recibe los pre-registros de técnicos: `oficios` y `disponibilidad` (separados por comas), `nombre`, `telefono`, `zona`, `experiencia`, `herramientas`, `mensaje`, `acepto` y `origen=web`.
 - `apps.android` / `apps.ios` · enlaces de descarga de la app (aparecen solos en la llamada final).
 - `contacto.whatsapp` / `contacto.correo` · contacto público (pie, botón flotante, formularios, páginas legales y 404).
 - `redes.*` · Facebook, Instagram y TikTok (vacío = no se muestra).
