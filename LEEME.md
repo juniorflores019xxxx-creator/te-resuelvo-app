@@ -6,7 +6,7 @@ Sitio estático (HTML, CSS y JavaScript sin dependencias). Se abre con doble cli
 
 | Archivo | Qué contiene |
 |---|---|
-| `index.html` | Secciones: encabezado, portada, servicios (3 composiciones), los 11 servicios, cómo funciona, confianza, trabajadores, formularios (contacto), llamada final y pie |
+| `index.html` | Secciones: encabezado, portada, servicios (3 composiciones), los 11 servicios, cómo funciona, confianza, trabajadores, pre-registro (dos partes: usuarios y técnicos, cada una con sus requisitos y su formulario), llamada final y pie |
 | `terminos.html` · `privacidad.html` | Páginas legales |
 | `404.html` | Página de error de GitHub Pages (funciona en el servidor; abierta con doble clic no carga estilos) |
 | `sitemap.xml` | Mapa del sitio para buscadores |
@@ -16,16 +16,20 @@ Sitio estático (HTML, CSS y JavaScript sin dependencias). Se abre con doble cli
 | `js/paginas.js` | Páginas legales y 404: año del pie y enlaces de WhatsApp tomados de `config.js` |
 | `img/` | Fotos en WebP (900 y 1600 px), logo oficial (`logo-te-resuelvo.png`, 512 px) y su versión liviana para el encabezado (`logo-96.png`) |
 
+## Modo pre-lanzamiento
+
+La app todavía no está publicada: la web invita a **pre-registrarse** (arrancamos en Santa Cruz) para avisar por WhatsApp, con el enlace de descarga, cuando esté lista. Al lanzar, hay que cambiar los textos «Próximamente», «Muy pronto», «Sé de los primeros» y «Así funcionará la app», y cargar `apps.android` / `apps.ios`.
+
 ## Cómo se envían los formularios hoy
 
-Mientras `endpoints` esté vacío y haya número en `contacto.whatsapp`, cada formulario **abre WhatsApp con los datos ya escritos** y la persona solo toca «Enviar». En ese modo se oculta el campo de fotos y se le pide mandarlas en el mismo chat.
+Mientras `endpoints` esté vacío y haya número en `contacto.whatsapp`, cada formulario **abre WhatsApp con los datos ya escritos** y la persona solo toca «Enviar».
 
 Sin endpoint ni WhatsApp, el formulario valida pero **no envía nada** y lo avisa. Con un endpoint configurado: muestra estado de carga, éxito solo si el servidor responde bien, y error (conservando los datos) si falla.
 
 ## Integraciones (`js/config.js`)
 
-- `endpoints.solicitud` · URL que recibe las solicitudes de servicio por `POST` (multipart/form-data): `servicio`, `detalle`, `zona`, `presupuesto`, `cuando`, `nombre`, `telefono`, `fotos` (hasta 3 imágenes de máx. 5 MB) y `origen=web`.
-- `endpoints.trabajador` · URL que recibe los registros de trabajadores: `oficios` (separados por comas), `nombre`, `telefono`, `zona`, `experiencia`, `mensaje`, `origen=web`.
+- `endpoints.usuario` · URL que recibe los pre-registros de clientes por `POST` (multipart/form-data): `nombre`, `telefono`, `zona`, `sistema` (Android o iPhone), `intereses` (separados por comas), `acepto` y `origen=web`.
+- `endpoints.trabajador` · URL que recibe los pre-registros de técnicos: `oficios` y `disponibilidad` (separados por comas), `nombre`, `telefono`, `zona`, `experiencia`, `herramientas`, `sistema`, `mensaje`, `acepto` y `origen=web`.
 - `apps.android` / `apps.ios` · enlaces de descarga de la app (aparecen solos en la llamada final).
 - `contacto.whatsapp` / `contacto.correo` · contacto público (pie, botón flotante, formularios, páginas legales y 404).
 - `redes.*` · Facebook, Instagram y TikTok (vacío = no se muestra).

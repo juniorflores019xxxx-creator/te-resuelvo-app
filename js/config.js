@@ -5,11 +5,11 @@
 window.TR_CONFIG = {
   /* URL que recibirá cada formulario por POST (FormData):
      tu backend, la API de la app, Formspree, un webhook de Make/Zapier, etc.
-     Mientras estén vacías, la web NO envía datos: muestra un aviso
-     honesto de que el formulario todavía no está conectado. */
+     Mientras estén vacías, los formularios se envían por WhatsApp
+     (contacto.whatsapp); sin WhatsApp, avisan que todavía no están conectados. */
   endpoints: {
-    solicitud: "",   // Solicitudes de servicio de clientes (incluye hasta 3 fotos)
-    trabajador: ""   // Registros de trabajadores y técnicos
+    usuario: "",     // Pre-registros de clientes (lista de espera de la app)
+    trabajador: ""   // Pre-registros de técnicos
   },
 
   /* Enlaces de descarga de la app. Vacíos = los botones de tienda no se muestran. */
@@ -21,7 +21,7 @@ window.TR_CONFIG = {
   /* Datos de contacto públicos de Te Resuelvo. Vacíos = no se muestran. */
   contacto: {
     whatsapp: "59176365928",   // solo dígitos con código de país
-    whatsappMensaje: "Hola Te Resuelvo, necesito un servicio.",
+    whatsappMensaje: "Hola Te Resuelvo, tengo una consulta.",
     correo: ""
   },
 

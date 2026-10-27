@@ -95,6 +95,7 @@ main,.footer{overflow-x:clip}
 .hero{padding:clamp(28px,5vw,64px) 0 clamp(48px,7vw,96px);overflow:hidden}
 .hero-grid{display:grid;gap:44px;align-items:center}
 @media (min-width:960px){.hero-grid{grid-template-columns:1fr 1.05fr;gap:56px}}
+.badge{display:inline-flex;align-items:center;gap:10px;margin:0 0 20px;padding:8px 16px;border-radius:999px;background:var(--black);color:var(--yellow);font-weight:800;font-size:.82rem;text-transform:uppercase;letter-spacing:.06em}
 .hero-text{font-size:clamp(1.08rem,1.7vw,1.3rem);color:var(--ink-70);max-width:44ch;margin:26px 0 0}
 .hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
 @media (max-width:520px){.hero-ctas .btn{width:100%}}
@@ -246,6 +247,16 @@ main,.footer{overflow-x:clip}
 .tab.is-on{background:var(--black);color:var(--yellow)}
 @media (max-width:440px){.tab{padding:12px 14px;font-size:.88rem}}
 .panel{max-width:860px;margin:28px auto 0}
+/* Requisitos de cada pre-registro (sobre el formulario) */
+.info{margin-bottom:18px;padding:clamp(22px,4vw,36px);border-radius:28px;background:var(--black);color:var(--white)}
+.info h3{margin:0;font-weight:900;font-size:clamp(1.2rem,2.6vw,1.55rem);letter-spacing:-.02em;line-height:1.1;text-transform:uppercase}
+.info-sub{margin:10px 0 0;color:var(--w-70)}
+.info-list{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:10px}
+@media (min-width:720px){.info-list{grid-template-columns:1fr 1fr;gap:12px 28px}}
+.info-list li{display:flex;gap:10px;align-items:flex-start;font-weight:600;line-height:1.4}
+.info-list .ico{color:var(--black);background:var(--yellow);border-radius:50%;padding:3px;width:22px;height:22px}
+.info-nota{margin:20px 0 0;padding-top:18px;border-top:1px solid var(--w-line);font-size:.94rem;color:var(--w-70)}
+.info-nota b{color:var(--yellow)}
 .form{display:grid;gap:18px 20px;padding:clamp(22px,4vw,40px);border-radius:28px;border:1.5px solid var(--line);background:var(--white);box-shadow:0 40px 80px -60px rgba(22,22,22,.5)}
 @media (min-width:720px){.form{grid-template-columns:1fr 1fr}}
 .full{grid-column:1/-1}
@@ -258,6 +269,8 @@ main,.footer{overflow-x:clip}
 .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--black);box-shadow:0 0 0 4px rgba(245,205,71,.55)}
 .field ::placeholder{color:rgba(22,22,22,.42)}
 .hint{margin:0;font-size:.86rem;color:var(--ink-70)}
+.check{display:flex;gap:12px;align-items:flex-start;cursor:pointer;line-height:1.45}
+.check input{flex:none;width:22px;height:22px;margin:1px 0 0;accent-color:var(--black);cursor:pointer}
 .cat-pick{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
 .cat-pick label{position:relative;cursor:pointer}
 .cat-pick input{position:absolute;opacity:0;width:1px;height:1px}
@@ -265,15 +278,6 @@ main,.footer{overflow-x:clip}
 .cat-pick input:checked+span{background:var(--yellow);border-color:var(--black)}
 .cat-pick input:focus-visible+span{outline:3px solid var(--black);outline-offset:2px}
 .cat-pick span:hover{transform:translateY(-2px)}
-.drop{display:flex;align-items:center;justify-content:center;gap:10px;min-height:76px;border:2px dashed var(--line);border-radius:16px;cursor:pointer;color:var(--ink-70);font-weight:600;text-align:center;padding:12px;transition:border-color .2s,background-color .2s}
-.drop:hover{border-color:var(--black);background:var(--tint)}
-.field{position:relative}
-.field input[type=file].file{position:absolute;left:0;top:0;width:1px;height:1px;min-height:0;padding:0;border:0;opacity:0;clip:rect(0 0 0 0);overflow:hidden}
-.field input[type=file].file:focus-visible~.previews,.field input[type=file].file:focus-visible+.previews{outline:3px solid var(--yellow)}
-.previews{display:flex;flex-wrap:wrap;gap:10px}
-.previews figure{position:relative;margin:0;width:88px;height:88px;border-radius:12px;overflow:hidden;border:1.5px solid var(--line)}
-.previews img{width:100%;height:100%;object-fit:cover}
-.previews button{position:absolute;top:4px;right:4px;width:26px;height:26px;border-radius:50%;border:0;background:var(--black);color:var(--white);cursor:pointer;font-size:1rem;line-height:1}
 .err{display:none;margin:0;font-size:.86rem;font-weight:600;color:var(--black);background:rgba(245,205,71,.35);border-left:4px solid var(--yellow);padding:6px 10px;border-radius:6px}
 .field.bad .err{display:block}
 .field.bad input,.field.bad textarea,.field.bad select{border-color:var(--black)}

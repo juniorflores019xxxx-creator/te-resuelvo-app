@@ -35,7 +35,7 @@
     waBtn.href = waUrl; waBtn.hidden = false;
     // Se oculta sobre los formularios para no tapar los botones de envío
     const forms = document.getElementById("contacto");
-    new IntersectionObserver(([e]) => waBtn.classList.toggle("is-away", e.isIntersecting), { threshold: 0.25 }).observe(forms);
+    new IntersectionObserver(([e]) => waBtn.classList.toggle("is-away", e.isIntersecting)).observe(forms);
   }
   const legal = [];
   if (CFG.legal.terminos) legal.push(`<a href="${CFG.legal.terminos}">Términos y condiciones</a>`);
@@ -177,50 +177,22 @@
     });
   });
 
-  // Botones que llevan al formulario (y preseleccionan servicio o problema)
-  const goForm = (tab, cat, detalle) => {
+  // Botones que llevan al pre-registro (y marcan el servicio de interés)
+  const goForm = (tab, cat) => {
     showTab(tab);
-    if (tab === "solicitud" && cat) {
-      const r = $(`#form-solicitud input[name="servicio"][value="${cat}"]`);
-      if (r) { r.checked = true; clearErr(r.closest(".field")); }
+    if (tab === "usuario" && cat) {
+      const c = $(`#form-usuario input[name="intereses"][value="${cat}"]`);
+      if (c) c.checked = true;
     }
-    const ta = $("#s-detalle");
-    if (detalle && ta && !ta.value.trim()) ta.value = detalle + ". ";
-    const target = document.getElementById("contacto");
-    target.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
-    const focusEl = tab === "solicitud" ? (detalle ? ta : $("#form-solicitud input[name=servicio]:checked") || $("#form-solicitud input[name=servicio]")) : $("#form-trabajador input[name=oficios]");
+    document.getElementById("contacto").scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+    const focusEl = $("#form-" + tab + " input");
     setTimeout(() => focusEl && focusEl.focus({ preventScroll: true }), reduce ? 0 : 650);
   };
   $$("[data-form-open]").forEach((a) => a.addEventListener("click", (e) => { e.preventDefault(); setMenu(false); goForm(a.dataset.formOpen, a.dataset.cat); }));
-  $$(".chips button").forEach((b) => b.addEventListener("click", () => goForm("solicitud", b.dataset.cat, b.dataset.detalle)));
+  $$(".chips button").forEach((b) => b.addEventListener("click", () => goForm("usuario", b.dataset.cat)));
   // Tarjetas de los 11 servicios
-  $$(".svc-card").forEach((b) => b.addEventListener("click", () => goForm("solicitud", b.dataset.cat)));
+  $$(".svc-card").forEach((b) => b.addEventListener("click", () => goForm("usuario", b.dataset.cat)));
   $$(".svc-grid").forEach((g) => { $$("li", g).forEach((li, i) => li.style.setProperty("--n", i)); io.observe(g); });
-
-  /* ---------- Fotos adjuntas (máximo 3, 5 MB cada una) ---------- */
-  const fileInput = $("#s-fotos"), previews = $("#s-previews");
-  let fotos = [];
-  const renderFotos = () => {
-    $$("img", previews).forEach((img) => URL.revokeObjectURL(img.src));
-    previews.innerHTML = "";
-    fotos.forEach((f, idx) => {
-      const fig = document.createElement("figure");
-      const img = document.createElement("img"); img.alt = "Foto adjunta " + (idx + 1); img.src = URL.createObjectURL(f);
-      const del = document.createElement("button"); del.type = "button"; del.textContent = "×"; del.setAttribute("aria-label", "Quitar foto " + (idx + 1));
-      del.addEventListener("click", () => { fotos.splice(idx, 1); renderFotos(); });
-      fig.append(img, del); previews.appendChild(fig);
-    });
-  };
-  if (fileInput) fileInput.addEventListener("change", () => {
-    const field = fileInput.closest(".field");
-    const nuevas = [...fileInput.files].filter((f) => f.type.startsWith("image/"));
-    const malas = nuevas.filter((f) => f.size > 5 * 1024 * 1024);
-    const todas = fotos.concat(nuevas.filter((f) => f.size <= 5 * 1024 * 1024));
-    fotos = todas.slice(0, 3);
-    field.classList.toggle("bad", malas.length > 0 || todas.length > 3);
-    fileInput.value = "";
-    renderFotos();
-  });
 
   /* ---------- Validación ---------- */
   const digits = (v) => v.replace(/\D/g, "");
@@ -228,7 +200,7 @@
   $$(".form").forEach((form) => $$(".err[data-err]", form).forEach((p) => { p.id = form.id + "-err-" + p.dataset.err; }));
   const marcar = (field, on) => {
     const err = $(".err", field);
-    $$("input:not([type=file]), textarea, select", field).forEach((c) => {
+    $$("input, textarea, select", field).forEach((c) => {
       const ids = (c.getAttribute("aria-describedby") || "").split(" ").filter((x) => x && (!err || x !== err.id));
       if (on) { c.setAttribute("aria-invalid", "true"); if (err) ids.push(err.id); } else c.removeAttribute("aria-invalid");
       if (ids.length) c.setAttribute("aria-describedby", ids.join(" ")); else c.removeAttribute("aria-describedby");
@@ -237,20 +209,21 @@
   function clearErr(field) { if (field) { field.classList.remove("bad"); marcar(field, false); } }
   function validate(form) {
     let first = null;
-    const bad = (el) => { const f = el.closest(".field"); f.classList.add("bad"); marcar(f, true); if (!first) first = el; };
+    // El foco va al primer error según el orden de la página
+    const bad = (el) => {
+      const f = el.closest(".field"); f.classList.add("bad"); marcar(f, true);
+      if (!first || first.compareDocumentPosition(el) & Node.DOCUMENT_POSITION_PRECEDING) first = el;
+    };
     $$(".field", form).forEach(clearErr);
-    const radios = $$("input[name=servicio]", form);
-    if (radios.length && !radios.some((r) => r.checked)) bad(radios[0]);
-    const checks = $$("input[name=oficios]", form);
-    if (checks.length && !checks.some((c) => c.checked)) bad(checks[0]);
-    $$("input[required]:not([type=radio]), textarea[required]", form).forEach((el) => {
+    // Grupos obligatorios (oficios, disponibilidad, tipo de celular): al menos una opción marcada
+    $$("fieldset[data-requerido]", form).forEach((fs) => { const ops = $$("input", fs); if (!ops.some((o) => o.checked)) bad(ops[0]); });
+    $$("input[required]:not([type=radio]):not([type=checkbox]), textarea[required]", form).forEach((el) => {
       const v = el.value.trim();
       if (!v) return bad(el);
       if (el.type === "tel" && digits(v).length < 8) return bad(el);
       if (el.minLength > 0 && v.length < el.minLength) return bad(el);
     });
-    const presu = $("input[name=presupuesto]", form);
-    if (presu && presu.value.trim() && !/^[\d.,\s]*\d[\d.,\s]*$/.test(presu.value)) bad(presu);
+    $$("input[type=checkbox][required]", form).forEach((c) => { if (!c.checked) bad(c); });
     if (first) first.focus();
     return !first;
   }
@@ -267,21 +240,22 @@
     if (els[0].type === "radio" || els[0].type === "checkbox") return els.filter((el) => el.checked).map((el) => el.value).join(", ");
     return els[0].value.trim();
   };
-  const waMensaje = (form, key) => {
-    const filas = key === "solicitud"
-      ? [["Servicio", "servicio"], ["Problema", "detalle"], ["Ciudad y zona", "zona"], ["Precio que propongo (Bs)", "presupuesto"], ["Para cuándo", "cuando"], ["Nombre", "nombre"], ["Celular", "telefono"]]
-      : [["Oficios", "oficios"], ["Nombre", "nombre"], ["Celular", "telefono"], ["Zonas donde trabajo", "zona"], ["Experiencia", "experiencia"], ["Sobre mi trabajo", "mensaje"]];
-    const lineas = filas.map(([t, n]) => [t, val(form, n)]).filter(([, v]) => v).map(([t, v]) => `*${t}:* ${v}`);
-    const inicio = key === "solicitud" ? "Hola Te Resuelvo, quiero solicitar un servicio." : "Hola Te Resuelvo, quiero trabajar como técnico en la app.";
-    return inicio + "\n\n" + lineas.join("\n");
+  const FILAS = {
+    usuario: [["Nombre", "nombre"], ["Celular", "telefono"], ["Ciudad y zona", "zona"], ["Mi celular es", "sistema"], ["Servicios que me interesan", "intereses"]],
+    trabajador: [["Oficios", "oficios"], ["Nombre", "nombre"], ["Celular", "telefono"], ["Zonas donde trabajo", "zona"], ["Experiencia", "experiencia"], ["Herramientas propias", "herramientas"], ["Disponibilidad", "disponibilidad"], ["Mi celular es", "sistema"], ["Sobre mi trabajo", "mensaje"]],
   };
-  // Mientras el formulario no tenga endpoint, se avisa que se enviará por WhatsApp.
-  // Por WhatsApp no viajan archivos: el campo de fotos se oculta y se piden en el chat.
+  const waMensaje = (form, key) => {
+    const lineas = FILAS[key].map(([t, n]) => [t, val(form, n)]).filter(([, v]) => v).map(([t, v]) => `*${t}:* ${v}`);
+    const inicio = key === "usuario"
+      ? "Hola Te Resuelvo, quiero pre-registrarme para usar la app. Avísenme cuando esté lista."
+      : "Hola Te Resuelvo, quiero pre-registrarme como técnico. Avísenme cuando pueda registrarme en la app.";
+    return inicio + "\n\n" + lineas.join("\n") + "\n\nAcepto que me escriban por WhatsApp para avisarme del lanzamiento.";
+  };
+  // Mientras el formulario no tenga endpoint, se avisa que se enviará por WhatsApp
   $$(".form").forEach((form) => {
     if (!(CFG.endpoints || {})[form.dataset.endpoint] && wa) {
-      const note = $(".form-note", form), conFotos = form.contains(fileInput);
-      if (note) note.insertAdjacentHTML("afterbegin", conFotos ? "<b>Se enviará por WhatsApp</b>, donde también podrás mandarnos fotos del problema. " : "<b>Se enviará por WhatsApp.</b> ");
-      if (conFotos) fileInput.closest(".field").hidden = true;
+      const note = $(".form-note", form);
+      if (note) note.insertAdjacentHTML("afterbegin", "<b>Se enviará por WhatsApp.</b> ");
     }
   });
 
@@ -293,12 +267,11 @@
 
     const key = form.dataset.endpoint, url = (CFG.endpoints || {})[key];
     if (!url && wa) {
-      // Sin backend: se abre WhatsApp con la solicitud escrita; el envío lo confirma la persona en WhatsApp
+      // Sin backend: se abre WhatsApp con el pre-registro escrito; el envío lo confirma la persona en WhatsApp
       const link = `https://wa.me/${wa}?text=${encodeURIComponent(waMensaje(form, key))}`;
       window.open(link, "_blank", "noopener");
       status.classList.add("warn");
-      status.innerHTML = "<b>Abrimos WhatsApp con tus datos ya escritos.</b> Toca <b>Enviar</b> en WhatsApp para que recibamos tu " + (key === "solicitud" ? "solicitud" : "registro") + "."
-        + (key === "solicitud" ? " Si tienes fotos del problema, mándalas en el mismo chat." : "")
+      status.innerHTML = "<b>Abrimos WhatsApp con tus datos ya escritos.</b> Toca <b>Enviar</b> en WhatsApp para completar tu pre-registro. Te escribiremos por ese mismo chat cuando la app esté lista."
         + ` <a class="wa-link" href="${link}" target="_blank" rel="noopener">Si no se abrió, toca aquí para abrir WhatsApp</a>.`;
       return;
     }
@@ -310,9 +283,8 @@
     }
 
     const data = new FormData(form);
-    data.delete("fotos");
-    if (key === "solicitud") fotos.forEach((f, i) => data.append("fotos", f, f.name || "foto-" + (i + 1) + ".jpg"));
-    if (key === "trabajador") { data.delete("oficios"); data.append("oficios", $$("input[name=oficios]:checked", form).map((c) => c.value).join(", ")); }
+    // Las casillas múltiples viajan como un solo texto separado por comas
+    ["intereses", "oficios", "disponibilidad"].forEach((n) => { if (data.has(n)) { const v = val(form, n); data.delete(n); data.append(n, v); } });
     data.append("origen", "web");
 
     btn.setAttribute("aria-busy", "true");
@@ -321,10 +293,10 @@
       const res = await fetch(url, { method: "POST", body: data, headers: { Accept: "application/json" }, signal: ctrl.signal });
       if (!res.ok) throw new Error("HTTP " + res.status);
       status.classList.add("ok");
-      status.innerHTML = key === "solicitud"
-        ? "<b>¡Recibimos tu solicitud!</b> Te contactaremos por el número que nos dejaste."
-        : "<b>¡Recibimos tus datos!</b> Te contactaremos para verificar tu perfil.";
-      form.reset(); fotos = []; renderFotos && renderFotos();
+      status.innerHTML = key === "usuario"
+        ? "<b>¡Listo, ya estás pre-registrado!</b> Te avisaremos por WhatsApp cuando la app esté lista."
+        : "<b>¡Recibimos tus datos!</b> Te escribiremos por WhatsApp cuando puedas completar tu registro en la app.";
+      form.reset();
     } catch (err) {
       status.classList.add("fail");
       status.innerHTML = "<b>No pudimos enviar el formulario.</b> Revisa tu conexión e inténtalo de nuevo. Tus datos siguen escritos.";
