@@ -57,6 +57,8 @@
   burger.addEventListener("click", () => setMenu(!menu.classList.contains("open")));
   $$("a", menu).forEach((a) => a.addEventListener("click", () => setMenu(false)));
   document.addEventListener("keydown", (e) => { if (e.key === "Escape" && menu.classList.contains("open")) { setMenu(false); burger.focus(); } });
+  // Si la pantalla pasa a escritorio con el menú abierto, se cierra para no dejar bloqueado el scroll
+  window.matchMedia("(min-width: 1000px)").addEventListener("change", (e) => { if (e.matches) setMenu(false); });
   const onScroll = () => header.classList.toggle("scrolled", window.scrollY > 8);
   window.addEventListener("scroll", onScroll, { passive: true }); onScroll();
 
@@ -131,7 +133,9 @@
 
   /* ---------- Cómo funciona: pasos sincronizados con el teléfono ---------- */
   const steps = $$(".step"), screens = $$(".scr");
+  let actual = 0;
   const setStep = (n) => {
+    actual = n;
     steps.forEach((s) => s.classList.toggle("is-on", +s.dataset.step === n));
     screens.forEach((s) => s.classList.toggle("is-on", +s.dataset.scr === n));
   };
@@ -143,10 +147,10 @@
     // En celulares el teléfono queda debajo de los pasos: avanza solo mientras se ve
     const phone = $(".phone-como");
     if (phone && !reduce) {
-      let auto = null, cur = 0;
+      let auto = null;
       new IntersectionObserver(([e]) => {
         const small = window.innerWidth < 960;
-        if (e.isIntersecting && small) { auto = setInterval(() => { cur = (cur + 1) % 4; setStep(cur); }, 2400); }
+        if (e.isIntersecting && small) { auto = setInterval(() => setStep((actual + 1) % 4), 2400); }
         else { clearInterval(auto); auto = null; }
       }, { threshold: 0.6 }).observe(phone);
     }
@@ -197,6 +201,7 @@
   const fileInput = $("#s-fotos"), previews = $("#s-previews");
   let fotos = [];
   const renderFotos = () => {
+    $$("img", previews).forEach((img) => URL.revokeObjectURL(img.src));
     previews.innerHTML = "";
     fotos.forEach((f, idx) => {
       const fig = document.createElement("figure");

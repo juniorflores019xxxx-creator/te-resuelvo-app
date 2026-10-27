@@ -41,6 +41,7 @@ main,.footer{overflow-x:clip}
 .title-lg{font-size:clamp(2.1rem,5.6vw,4.1rem)}
 .center{text-align:center;margin-inline:auto}
 .section-lead{font-size:clamp(1.05rem,1.6vw,1.2rem);color:var(--ink-70);max-width:52ch;margin:18px auto 0}
+.lead-left{margin-left:0}
 /* Palabra destacada: en fondo claro se subraya con un marcador amarillo; en fondo oscuro se pinta amarilla */
 .hl{position:relative;display:inline;background:linear-gradient(var(--yellow),var(--yellow)) no-repeat 0 88%/100% .34em;padding:0 .06em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 .on-dark .hl,.reel .hl{background:none;color:var(--yellow);padding:0}
@@ -307,6 +308,7 @@ main,.footer{overflow-x:clip}
 .footer-contact{display:grid;gap:6px}
 .footer-bottom{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;margin-top:40px;padding-top:22px;border-top:1px solid var(--w-line);font-size:.84rem}
 .footer-bottom p{margin:0}
+.footer-solo{margin-top:0;border-top:0;padding-top:0}
 
 /* =========================================================
    ANIMACIONES (solo con JavaScript activo y sin «reducir movimiento»)
@@ -433,8 +435,8 @@ main,.footer{overflow-x:clip}
 
 /* ---------- Página 404 ---------- */
 .nf{min-height:70vh;display:grid;place-items:center;text-align:center;padding-block:80px}
-.nf .big{color:var(--black);margin-bottom:22px !important;font-weight:900;font-size:clamp(6rem,22vw,13rem);line-height:.85;letter-spacing:-.06em;margin:0}
+.nf .big{color:var(--black);font-weight:900;font-size:clamp(6rem,22vw,13rem);line-height:.85;letter-spacing:-.06em;margin:0 0 22px}
 .nf h1{line-height:1.05}
 .nf p:not(.big){color:var(--ink-70);max-width:44ch;margin:18px auto 0}
 .nf .acts{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:30px}
-.scr-sug{display:block !important;font-size:.8rem;margin:10px 0 12px}.scr-sug b{white-space:nowrap;background:var(--yellow);padding:0 6px;border-radius:6px}
+.phone-row.scr-sug{display:block;font-size:.8rem;margin:10px 0 12px}.scr-sug b{white-space:nowrap;background:var(--yellow);padding:0 6px;border-radius:6px}
