@@ -257,6 +257,10 @@ main,.footer{overflow-x:clip}
 .info-list .ico{color:var(--black);background:var(--yellow);border-radius:50%;padding:3px;width:22px;height:22px}
 .info-nota{margin:20px 0 0;padding-top:18px;border-top:1px solid var(--w-line);font-size:.94rem;color:var(--w-70)}
 .info-nota b{color:var(--yellow)}
+div.info-nota{display:grid;gap:10px}
+.info-nota p{margin:0}
+.info-pagos{margin:0;padding-left:20px;display:grid;gap:8px}
+.info-pagos li::marker{color:var(--yellow)}
 .form{display:grid;gap:18px 20px;padding:clamp(22px,4vw,40px);border-radius:28px;border:1.5px solid var(--line);background:var(--white);box-shadow:0 40px 80px -60px rgba(22,22,22,.5)}
 @media (min-width:720px){.form{grid-template-columns:1fr 1fr}}
 .full{grid-column:1/-1}
