@@ -242,6 +242,7 @@ main,.footer{overflow-x:clip}
 
 /* ---------- Formularios ---------- */
 .contacto{padding:clamp(72px,10vw,130px) 0}
+.contacto .badge{display:flex;width:max-content;max-width:100%;margin:0 auto 20px}
 .tabs{display:flex;justify-content:center;gap:6px;margin:36px auto 0;padding:6px;border-radius:999px;background:var(--tint);width:max-content;max-width:100%}
 .tab{border:0;background:transparent;border-radius:999px;padding:12px 22px;font-weight:800;font-size:.95rem;cursor:pointer;transition:background-color .25s,color .25s}
 .tab.is-on{background:var(--black);color:var(--yellow)}
@@ -446,6 +447,5 @@ div.info-nota{display:grid;gap:10px}
 .nf .big{color:var(--black);font-weight:900;font-size:clamp(6rem,22vw,13rem);line-height:.85;letter-spacing:-.06em;margin:0 0 22px}
 .nf h1{line-height:1.05}
 .nf p:not(.big){color:var(--ink-70);max-width:44ch;margin:18px auto 0}
-.nf p.badge{color:var(--yellow);margin:0 0 22px;max-width:none}
 .nf .acts{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:30px}
 .phone-row.scr-sug{display:block;font-size:.8rem;margin:10px 0 12px}.scr-sug b{white-space:nowrap;background:var(--yellow);padding:0 6px;border-radius:6px}

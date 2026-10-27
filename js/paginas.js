@@ -9,29 +9,17 @@
   const anio = document.getElementById("anio");
   if (anio) anio.textContent = new Date().getFullYear();
 
-  /* ---------- Enlace inteligente (app.html): abre la tienda según el celular ---------- */
-  const bloques = document.querySelectorAll("[data-descarga]");
-  if (bloques.length) {
+  /* ---------- Enlace inteligente (app.html) ----------
+     Celular con su tienda cargada en config.js → Google Play o App Store.
+     Cualquier otro caso (app sin publicar, computadora) → pre-registro de la web. */
+  if (document.body.hasAttribute("data-enlace-app")) {
     const apps = (window.TR_CONFIG || {}).apps || {};
     const ua = navigator.userAgent || "";
     // Los iPad recientes se presentan como Mac: se reconocen por la pantalla táctil
     const ios = /iPhone|iPad|iPod/i.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
     const android = /Android/i.test(ua);
-    const tiendas = [["Descargar en Google Play", apps.android], ["Descargar en App Store", apps.ios]].filter(([, url]) => url);
-    const destino = android ? apps.android : ios ? apps.ios : "";
-    const ver = !tiendas.length ? "pronto" : destino ? "abriendo" : "elegir";
-    bloques.forEach((b) => { b.hidden = b.dataset.descarga !== ver; });
-    // En el celular se muestra solo su tienda; en la computadora, todas
-    const botones = destino ? tiendas.filter(([, url]) => url === destino) : tiendas;
-    document.querySelectorAll("[data-tiendas]").forEach((cont) => {
-      botones.forEach(([texto, url], i) => {
-        const a = document.createElement("a");
-        a.className = "btn btn-lg " + (i ? "btn-black" : "btn-yellow");
-        a.href = url; a.textContent = texto;
-        cont.appendChild(a);
-      });
-    });
-    if (destino) location.replace(destino);
+    location.replace((android && apps.android) || (ios && apps.ios) || "index.html#contacto");
+    return;
   }
 
   const c = (window.TR_CONFIG || {}).contacto || {};

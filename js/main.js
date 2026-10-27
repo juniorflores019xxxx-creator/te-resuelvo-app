@@ -59,6 +59,13 @@
   document.addEventListener("keydown", (e) => { if (e.key === "Escape" && menu.classList.contains("open")) { setMenu(false); burger.focus(); } });
   // Si la pantalla pasa a escritorio con el menú abierto, se cierra para no dejar bloqueado el scroll
   window.matchMedia("(min-width: 1000px)").addEventListener("change", (e) => { if (e.matches) setMenu(false); });
+  // Al llegar con un ancla (p. ej. desde /app → #contacto) se salta directo, sin animar el recorrido de toda la página
+  const ancla = location.hash && document.getElementById(decodeURIComponent(location.hash.slice(1)));
+  if (ancla) {
+    document.documentElement.style.scrollBehavior = "auto";
+    ancla.scrollIntoView();
+    window.addEventListener("load", () => { ancla.scrollIntoView(); document.documentElement.style.scrollBehavior = ""; }, { once: true });
+  }
   const onScroll = () => header.classList.toggle("scrolled", window.scrollY > 8);
   window.addEventListener("scroll", onScroll, { passive: true }); onScroll();
 

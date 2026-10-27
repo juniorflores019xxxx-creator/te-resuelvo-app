@@ -8,7 +8,7 @@ Sitio estático (HTML, CSS y JavaScript sin dependencias). Se abre con doble cli
 |---|---|
 | `index.html` | Secciones: encabezado, portada, servicios (3 composiciones), los 11 servicios, cómo funciona, confianza, trabajadores, pre-registro (dos partes: usuarios y técnicos, cada una con sus requisitos y su formulario), llamada final y pie |
 | `terminos.html` · `privacidad.html` | Páginas legales |
-| `app.html` | **Enlace inteligente de descarga** (`/app`): abre Google Play o App Store según el celular |
+| `app.html` | **Enlace inteligente de descarga** (`/app`): abre Google Play o App Store según el celular; si no hay tienda, lleva al pre-registro de la web |
 | `404.html` | Página de error de GitHub Pages (funciona en el servidor; abierta con doble clic no carga estilos) |
 | `sitemap.xml` | Mapa del sitio para buscadores |
 | `css/estilos.css` | Diseño. Paleta: negro `#161616`, amarillo `#F5CD47`, blanco `#FFFFFF`. Tipografía Inter |
@@ -23,7 +23,7 @@ La app todavía no está publicada: la web invita a **pre-registrarse** (arranca
 
 ## Enlace inteligente de descarga
 
-Comparte siempre **un solo enlace**: `/app` (con el dominio, `teresuelvo.com.bo/app`). En un Android abre Google Play; en un iPhone o iPad, App Store; en una computadora muestra los dos botones. Mientras `apps.android` y `apps.ios` estén vacíos, dice «Próximamente» e invita a pre-registrarse. Para activarlo al lanzar, basta con cargar esos dos enlaces en `js/config.js`.
+Comparte siempre **un solo enlace**: `/app` (con el dominio, `teresuelvo.com.bo/app`). En un Android abre Google Play; en un iPhone o iPad, App Store. En cualquier otro caso (computadora, o mientras `apps.android` y `apps.ios` estén vacíos) lleva directo a la sección de pre-registro de la web (`index.html#contacto`). Para activarlo al lanzar, basta con cargar esos dos enlaces en `js/config.js`.
 
 ## Cómo se envían los formularios hoy
 
