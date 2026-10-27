@@ -51,7 +51,7 @@ main,.footer{overflow-x:clip}
 .btn:hover{transform:translateY(-2px)}
 .btn:hover .ico{transform:translateX(4px)}
 .btn:active{transform:translateY(0) scale(.97)}
-.btn-lg{--h:60px;padding:0 30px;font-size:1.02rem}
+.btn-lg{--h:60px;padding:0 30px;font-size:1.02rem;text-transform:uppercase}
 .btn-sm{--h:44px;padding:0 18px;font-size:.9rem}
 .btn-yellow{background:var(--yellow);color:var(--black);box-shadow:0 10px 26px -14px rgba(22,22,22,.55),inset 0 -3px 0 rgba(22,22,22,.12)}
 .btn-yellow:hover{box-shadow:0 16px 32px -14px rgba(22,22,22,.6),inset 0 -3px 0 rgba(22,22,22,.12)}
@@ -314,6 +314,8 @@ main,.footer{overflow-x:clip}
 /* Efecto subtítulo: palabras que entran una a una; las destacadas se encienden al final */
 .js [data-subs] .w{display:inline-block;opacity:0;transform:translateY(.45em) scale(.92);transition:opacity .35s,transform .6s var(--ease)}
 .js [data-subs].in .w{opacity:1;transform:none;transition-delay:calc(var(--i) * 75ms)}
+.js [data-subs] .w.p,.reel-line .w.p{display:inline}
+.nw{white-space:nowrap}
 .js [data-subs] .hl{background-size:0 .34em;transition:background-size .7s var(--ease)}
 .js [data-subs].lit .hl{background-size:100% .34em}
 .js .on-dark[data-subs] .hl .w,.js .reel .hl .w{color:var(--white);transition:opacity .35s,transform .6s var(--ease),color .4s}

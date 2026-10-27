@@ -78,7 +78,8 @@
           if (!part) return;
           if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
           const w = document.createElement("span");
-          w.className = "w"; w.style.setProperty("--i", i++); w.textContent = part;
+          // Signos sueltos («¿», «.», «?») van en línea (clase p) para que no se separen de su palabra
+          w.className = /^[^\p{L}\p{N}]+$/u.test(part) ? "w p" : "w"; w.style.setProperty("--i", i++); w.textContent = part;
           frag.appendChild(w);
         });
         ch.replaceWith(frag);
