@@ -32,6 +32,16 @@ window.TR_CONFIG = {
     tiktok: "https://www.tiktok.com/@te.resuelvo1"
   },
 
+  /* Estadísticas de visitas con Umami (sin cookies, no identifica a las personas).
+     umami vacío = no se mide nada. El ID se copia del panel de Umami
+     (Settings → Websites → Edit → Tracking code: el valor de data-website-id). */
+  analitica: {
+    umami: "",
+    script: "https://cloud.umami.is/script.js",
+    // Solo se cuenta en estos dominios (abrir la web en tu computadora no suma visitas)
+    dominios: "juniorflores019xxxx-creator.github.io,teresuelvo.com.bo,www.teresuelvo.com.bo"
+  },
+
   /* Páginas legales. Vacías = no se muestran en el pie de página. */
   legal: {
     terminos: "terminos.html",

@@ -18,8 +18,19 @@
     // Los iPad recientes se presentan como Mac: se reconocen por la pantalla táctil
     const ios = /iPhone|iPad|iPod/i.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
     const android = /Android/i.test(ua);
-    location.replace((android && apps.android) || (ios && apps.ios) || "index.html#contacto");
+    // utm_source=app: en las estadísticas se ve cuántas visitas llegaron por el enlace /app (redes, QR)
+    location.replace((android && apps.android) || (ios && apps.ios) || "index.html?utm_source=app#contacto");
     return;
+  }
+
+  /* ---------- Estadísticas (Umami, sin cookies; se activa con analitica.umami en config.js) ---------- */
+  const an = (window.TR_CONFIG || {}).analitica || {};
+  if (an.umami) {
+    const s = document.createElement("script");
+    s.defer = true; s.src = an.script || "https://cloud.umami.is/script.js";
+    s.dataset.websiteId = an.umami;
+    if (an.dominios) s.dataset.domains = an.dominios;
+    document.head.appendChild(s);
   }
 
   const c = (window.TR_CONFIG || {}).contacto || {};

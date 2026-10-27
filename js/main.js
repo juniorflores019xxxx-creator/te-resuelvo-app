@@ -10,6 +10,18 @@
   const $$ = (s, el = document) => [...el.querySelectorAll(s)];
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  /* ---------- Estadísticas (Umami, sin cookies; se activa con analitica.umami en config.js) ---------- */
+  const AN = CFG.analitica || {};
+  if (AN.umami) {
+    const s = document.createElement("script");
+    s.defer = true; s.src = AN.script || "https://cloud.umami.is/script.js";
+    s.dataset.websiteId = AN.umami;
+    if (AN.dominios) s.dataset.domains = AN.dominios;
+    document.head.appendChild(s);
+  }
+  // Cuenta una acción (nunca datos personales); si las estadísticas no están activas, no hace nada
+  const medir = (evento, datos) => { try { if (window.umami) window.umami.track(evento, datos); } catch (e) { /* sin estadísticas */ } };
+
   /* ---------- Configuración: contacto, tiendas y páginas legales ---------- */
   $("#anio").textContent = new Date().getFullYear();
   const fc = $("#footer-contact");
@@ -33,6 +45,7 @@
   const waBtn = $("#wa-float");
   if (waBtn && waUrl) {
     waBtn.href = waUrl; waBtn.hidden = false;
+    waBtn.addEventListener("click", () => medir("boton-whatsapp"));
     // Se oculta sobre los formularios para no tapar los botones de envío
     const forms = document.getElementById("contacto");
     new IntersectionObserver(([e]) => waBtn.classList.toggle("is-away", e.isIntersecting)).observe(forms);
@@ -195,7 +208,8 @@
     const focusEl = $("#form-" + tab + " input");
     setTimeout(() => focusEl && focusEl.focus({ preventScroll: true }), reduce ? 0 : 650);
   };
-  $$("[data-form-open]").forEach((a) => a.addEventListener("click", (e) => { e.preventDefault(); setMenu(false); goForm(a.dataset.formOpen, a.dataset.cat); }));
+  $$("[data-form-open]").forEach((a) => a.addEventListener("click", (e) => { e.preventDefault(); setMenu(false); medir("ir-a-pre-registro", { tipo: a.dataset.formOpen }); goForm(a.dataset.formOpen, a.dataset.cat); }));
+  $$(".chips button, .svc-card").forEach((b) => b.addEventListener("click", () => medir("servicio-tocado", { servicio: b.dataset.cat })));
   $$(".chips button").forEach((b) => b.addEventListener("click", () => goForm("usuario", b.dataset.cat)));
   // Tarjetas de los 11 servicios
   $$(".svc-card").forEach((b) => b.addEventListener("click", () => goForm("usuario", b.dataset.cat)));
@@ -273,7 +287,12 @@
     if (!validate(form)) return;
 
     const key = form.dataset.endpoint, url = (CFG.endpoints || {})[key];
+    // Para las estadísticas solo se cuentan los servicios u oficios marcados, nunca nombre, teléfono ni zona
+    const resumen = key === "usuario"
+      ? { intereses: val(form, "intereses") || "ninguno" }
+      : { oficios: val(form, "oficios"), disponibilidad: val(form, "disponibilidad") };
     if (!url && wa) {
+      medir("pre-registro-" + key, resumen);
       // Sin backend: se abre WhatsApp con el pre-registro escrito; el envío lo confirma la persona en WhatsApp
       const link = `https://wa.me/${wa}?text=${encodeURIComponent(waMensaje(form, key))}`;
       window.open(link, "_blank", "noopener");
@@ -303,6 +322,7 @@
       status.innerHTML = key === "usuario"
         ? "<b>¡Listo, ya estás pre-registrado!</b> Te avisaremos por WhatsApp cuando la app esté lista."
         : "<b>¡Recibimos tus datos!</b> Te escribiremos por WhatsApp cuando puedas completar tu registro en la app.";
+      medir("pre-registro-" + key, resumen);
       form.reset();
     } catch (err) {
       status.classList.add("fail");

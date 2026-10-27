@@ -25,6 +25,20 @@ La app todavía no está publicada: la web invita a **pre-registrarse** (arranca
 
 Comparte siempre **un solo enlace**: `/app` (con el dominio, `teresuelvo.com.bo/app`). En un Android abre Google Play; en un iPhone o iPad, App Store. En cualquier otro caso (computadora, o mientras `apps.android` y `apps.ios` estén vacíos) lleva directo a la sección de pre-registro de la web (`index.html#contacto`). Para activarlo al lanzar, basta con cargar esos dos enlaces en `js/config.js`.
 
+## Estadísticas (Umami)
+
+Se activan poniendo el ID del sitio en `analitica.umami` (`js/config.js`). Umami no usa cookies ni identifica a las personas, y solo cuenta en los dominios de `analitica.dominios`. Acciones que se cuentan:
+
+| Acción | Datos que guarda |
+|---|---|
+| `servicio-tocado` | el servicio de la tarjeta o del problema frecuente |
+| `ir-a-pre-registro` | `usuario` o `trabajador` |
+| `pre-registro-usuario` | servicios que le interesan |
+| `pre-registro-trabajador` | oficios y disponibilidad |
+| `boton-whatsapp` | — |
+
+Las visitas que llegan por el enlace `/app` aparecen con `utm_source=app`. Nunca se envían nombre, teléfono ni zona.
+
 ## Cómo se envían los formularios hoy
 
 Mientras `endpoints` esté vacío y haya número en `contacto.whatsapp`, cada formulario **abre WhatsApp con los datos ya escritos** y la persona solo toca «Enviar».
