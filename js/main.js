@@ -218,10 +218,20 @@
 
   /* ---------- Validación ---------- */
   const digits = (v) => v.replace(/\D/g, "");
-  function clearErr(field) { if (field) field.classList.remove("bad"); }
+  // Cada error se enlaza a su campo (aria-describedby) solo mientras está visible, para que el lector de pantalla lo lea
+  $$(".form").forEach((form) => $$(".err[data-err]", form).forEach((p) => { p.id = form.id + "-err-" + p.dataset.err; }));
+  const marcar = (field, on) => {
+    const err = $(".err", field);
+    $$("input:not([type=file]), textarea, select", field).forEach((c) => {
+      const ids = (c.getAttribute("aria-describedby") || "").split(" ").filter((x) => x && (!err || x !== err.id));
+      if (on) { c.setAttribute("aria-invalid", "true"); if (err) ids.push(err.id); } else c.removeAttribute("aria-invalid");
+      if (ids.length) c.setAttribute("aria-describedby", ids.join(" ")); else c.removeAttribute("aria-describedby");
+    });
+  };
+  function clearErr(field) { if (field) { field.classList.remove("bad"); marcar(field, false); } }
   function validate(form) {
     let first = null;
-    const bad = (el) => { const f = el.closest(".field"); f.classList.add("bad"); if (!first) first = el; };
+    const bad = (el) => { const f = el.closest(".field"); f.classList.add("bad"); marcar(f, true); if (!first) first = el; };
     $$(".field", form).forEach(clearErr);
     const radios = $$("input[name=servicio]", form);
     if (radios.length && !radios.some((r) => r.checked)) bad(radios[0]);
