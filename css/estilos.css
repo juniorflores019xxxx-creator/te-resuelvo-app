@@ -366,6 +366,8 @@ main,.footer{overflow-x:clip}
 .todos{padding:clamp(72px,10vw,120px) 0 clamp(56px,8vw,100px)}
 .svc-grid{list-style:none;padding:0;margin:40px 0 0;display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
 @media (max-width:520px){.svc-grid{grid-template-columns:1fr 1fr;gap:10px}}
+/* Celulares angostos: «CLIMATIZACIÓN» no entra en media columna */
+@media (max-width:379px){.svc-grid{grid-template-columns:1fr}}
 .svc-card{width:100%;height:100%;display:flex;flex-direction:column;align-items:flex-start;gap:10px;padding:22px;border-radius:var(--radius);border:1.5px solid var(--line);background:var(--white);text-align:left;cursor:pointer;transition:transform .45s var(--ease),box-shadow .45s var(--ease),background-color .25s,border-color .25s}
 .svc-card b{font-weight:900;font-size:1.25rem;letter-spacing:-.02em;text-transform:uppercase;line-height:1.1}
 .svc-ico{width:52px;height:52px;border-radius:15px;display:grid;place-items:center;background:var(--yellow);color:var(--black);transition:background-color .25s,color .25s,transform .45s var(--ease)}
