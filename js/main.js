@@ -233,6 +233,8 @@
       if (el.type === "tel" && digits(v).length < 8) return bad(el);
       if (el.minLength > 0 && v.length < el.minLength) return bad(el);
     });
+    const presu = $("input[name=presupuesto]", form);
+    if (presu && presu.value.trim() && !/^[\d.,\s]*\d[\d.,\s]*$/.test(presu.value)) bad(presu);
     if (first) first.focus();
     return !first;
   }
@@ -255,15 +257,15 @@
       : [["Oficios", "oficios"], ["Nombre", "nombre"], ["Celular", "telefono"], ["Zonas donde trabajo", "zona"], ["Experiencia", "experiencia"], ["Sobre mi trabajo", "mensaje"]];
     const lineas = filas.map(([t, n]) => [t, val(form, n)]).filter(([, v]) => v).map(([t, v]) => `*${t}:* ${v}`);
     const inicio = key === "solicitud" ? "Hola Te Resuelvo, quiero solicitar un servicio." : "Hola Te Resuelvo, quiero trabajar como técnico en la app.";
-    let txt = inicio + "\n\n" + lineas.join("\n");
-    if (key === "solicitud" && fotos.length) txt += `\n\nTengo ${fotos.length} foto${fotos.length > 1 ? "s" : ""} del problema; las envío en este chat.`;
-    return txt;
+    return inicio + "\n\n" + lineas.join("\n");
   };
-  // Mientras el formulario no tenga endpoint, se avisa que se enviará por WhatsApp
+  // Mientras el formulario no tenga endpoint, se avisa que se enviará por WhatsApp.
+  // Por WhatsApp no viajan archivos: el campo de fotos se oculta y se piden en el chat.
   $$(".form").forEach((form) => {
     if (!(CFG.endpoints || {})[form.dataset.endpoint] && wa) {
-      const note = $(".form-note", form);
-      if (note) note.insertAdjacentHTML("afterbegin", "<b>Se enviará por WhatsApp.</b> ");
+      const note = $(".form-note", form), conFotos = form.contains(fileInput);
+      if (note) note.insertAdjacentHTML("afterbegin", conFotos ? "<b>Se enviará por WhatsApp</b>, donde también podrás mandarnos fotos del problema. " : "<b>Se enviará por WhatsApp.</b> ");
+      if (conFotos) fileInput.closest(".field").hidden = true;
     }
   });
 
@@ -280,7 +282,7 @@
       window.open(link, "_blank", "noopener");
       status.classList.add("warn");
       status.innerHTML = "<b>Abrimos WhatsApp con tus datos ya escritos.</b> Toca <b>Enviar</b> en WhatsApp para que recibamos tu " + (key === "solicitud" ? "solicitud" : "registro") + "."
-        + (key === "solicitud" && fotos.length ? " Luego adjunta tus fotos en el mismo chat." : "")
+        + (key === "solicitud" ? " Si tienes fotos del problema, mándalas en el mismo chat." : "")
         + ` <a class="wa-link" href="${link}" target="_blank" rel="noopener">Si no se abrió, toca aquí para abrir WhatsApp</a>.`;
       return;
     }

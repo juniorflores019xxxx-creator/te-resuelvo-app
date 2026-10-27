@@ -484,7 +484,9 @@
         </div>
         <div class="field">
           <label for="s-presu">¿Cuánto quieres pagar? <span class="opt">(opcional, en Bs)</span></label>
-          <input id="s-presu" name="presupuesto" type="text" inputmode="numeric" maxlength="12" placeholder="Si lo dejas vacío, te sugerimos un precio">
+          <input id="s-presu" name="presupuesto" type="text" inputmode="numeric" maxlength="12" placeholder="Ejemplo: 150" aria-describedby="s-presu-ayuda">
+          <p class="hint" id="s-presu-ayuda">Si lo dejas vacío, te sugerimos un precio.</p>
+          <p class="err" data-err="presupuesto">Escribe solo el monto en números, por ejemplo 150.</p>
         </div>
         <div class="field">
           <label for="s-cuando">¿Para cuándo?</label>
