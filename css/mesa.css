@@ -1,0 +1,249 @@
+/* =========================================================
+   TE RESUELVO · Mundo «mesa de herramientas» (solo la portada)
+   Una mesa de trabajo negra vista desde arriba, de principio a fin.
+   Amarillo solo donde se puede tocar y en las palabras clave.
+   Se carga después de estilos.css y lo reemplaza en index.html.
+   ========================================================= */
+.mesa{
+  --mesa:#0d0d0c;--mesa-2:#141412;--mesa-3:#1c1b18;--linea:#2a2a27;--linea-2:#3a3934;
+  --ama:#F5CD47;--ama-2:#ffdc6a;--texto:#f1ede4;--texto-2:#b4ae9f;--tinta:#0d0d0c;
+  --display:"Big Shoulders Display","Arial Narrow",sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1);
+  background:var(--mesa);color:var(--texto);
+}
+.mesa ::selection{background:var(--ama);color:var(--tinta)}
+.mesa{scrollbar-color:#4a4842 var(--mesa)}
+.mesa :focus-visible{outline:3px solid var(--ama);outline-offset:3px;border-radius:2px}
+.mesa a{text-underline-offset:.2em}
+
+/* ---------- Tipografía: rótulos de catálogo industrial ---------- */
+.mesa .title-xl,.mesa .title-lg{font-family:var(--display);font-weight:900;text-transform:uppercase;letter-spacing:-.005em;line-height:.94}
+.mesa .title-xl{font-size:clamp(3.6rem,9vw,6rem)}
+.mesa .title-lg{font-size:clamp(3rem,7vw,5.4rem)}
+.mesa .section-lead{color:var(--texto-2)}
+.mesa .hl{background:none;color:var(--ama);padding:0}
+.js .mesa [data-subs] .hl{background:none}
+.js .mesa [data-subs] .hl .w{color:var(--texto)}
+.js .mesa [data-subs].lit .hl .w{color:var(--ama)}
+
+/* ---------- Botones ---------- */
+.mesa .btn{border-radius:2px;font-family:var(--display);font-weight:800;text-transform:uppercase;letter-spacing:.04em;font-size:1.15rem;box-shadow:none}
+.mesa .btn-lg{--h:62px;font-size:1.3rem;padding:0 28px}
+.mesa .btn-sm{font-size:1.05rem}
+.mesa .btn-yellow{background:var(--ama);color:var(--tinta)}
+.mesa .btn-yellow:hover{background:var(--ama-2);box-shadow:0 18px 34px -18px rgba(245,205,71,.55)}
+.mesa .btn-black{background:var(--tinta);color:var(--texto);border-color:var(--linea-2)}
+.mesa .btn-black:hover{color:var(--ama);border-color:var(--ama)}
+.mesa .btn-outline{color:var(--texto);border:1.5px solid rgba(241,237,228,.45);background:transparent}
+.mesa .btn-outline:hover{border-color:var(--ama);color:var(--ama)}
+
+/* ---------- Encabezado ---------- */
+.mesa .header{background:rgba(13,13,12,.86);backdrop-filter:saturate(1.2) blur(10px);-webkit-backdrop-filter:saturate(1.2) blur(10px)}
+.mesa .header.scrolled{box-shadow:0 1px 0 var(--linea)}
+.mesa .logo{color:var(--texto);font-family:var(--display);font-weight:900;font-size:1.55rem;text-transform:uppercase;letter-spacing:.01em}
+.mesa .nav a{font-family:var(--display);font-weight:800;font-size:1.05rem;text-transform:uppercase;letter-spacing:.05em;color:var(--texto-2)}
+.mesa .nav a:hover,.mesa .nav a.is-active{color:var(--texto)}
+.mesa .burger{background:var(--ama)}
+.mesa .burger span,.mesa .burger span::before,.mesa .burger span::after{background:var(--tinta)}
+.mesa .burger[aria-expanded="true"] span{background:transparent}
+.mesa .menu-movil{background:var(--mesa)}
+.mesa .menu-movil a:not(.btn){font-family:var(--display);font-weight:900;font-size:clamp(2.4rem,11vw,3.2rem);border-bottom-color:var(--linea)}
+@media (min-width:1000px){.mesa .hero{margin-top:calc(var(--header) * -1)}.mesa .header:not(.scrolled){background:linear-gradient(180deg,rgba(13,13,12,.92),rgba(13,13,12,.55) 70%,rgba(13,13,12,0));backdrop-filter:none;-webkit-backdrop-filter:none}}
+
+/* =========================================================
+   PORTADA: la mesa
+   ========================================================= */
+.mesa .hero{position:relative;padding:0;overflow:hidden;background:var(--mesa);isolation:isolate}
+.mesa .hero-grid{display:block;padding:0;max-width:none}
+.mesa .hero-copy{position:relative;z-index:2;padding:0 20px 34px}
+.mesa .hero-text{color:var(--texto-2);margin-top:22px}
+.mesa .hero-tags li{border:1px solid var(--linea-2);border-radius:2px;color:var(--texto-2);font-family:var(--display);font-weight:800;font-size:.98rem;text-transform:uppercase;letter-spacing:.04em;padding:5px 10px}
+.mesa .hero-visual{position:relative;padding:0}
+.mesa .hero-photo{border-radius:0;box-shadow:none;aspect-ratio:auto;height:min(118vw,620px)}
+.mesa .hero-photo img{object-position:50% 46%;transform:scale(1.04);transition:transform 2.6s var(--ease)}
+.js .mesa .hero-photo img{animation:asentar 2.4s var(--ease) both}
+@keyframes asentar{from{transform:scale(1.14) translateY(2%);filter:brightness(.6)}to{transform:scale(1.04);filter:none}}
+/* La foto se funde con la mesa negra hacia el texto */
+.mesa .hero-photo::after{background:linear-gradient(180deg,rgba(13,13,12,0) 55%,var(--mesa) 98%)}
+.mesa .reel{bottom:26px;padding:0 20px;justify-items:center}
+.mesa .reel-line{text-align:center;font-family:var(--display);font-weight:900;font-size:clamp(1.8rem,5vw,3rem);letter-spacing:.01em;-webkit-text-stroke:0;text-shadow:0 4px 28px rgba(0,0,0,.85),0 1px 2px rgba(0,0,0,.9)}
+.mesa .reel-line .hl .w{color:var(--texto)}
+.mesa .reel-line.is-lit .hl .w{color:var(--ama)}
+/* El teléfono de ejemplo, apoyado sobre la mesa como una herramienta más */
+.mesa .phone{background:#111;border-radius:30px;box-shadow:0 30px 60px -18px rgba(0,0,0,.9),0 0 0 1px rgba(255,255,255,.08) inset}
+.mesa .phone-hero{left:auto;right:16px;bottom:auto;top:16px;width:170px;transform:rotate(7deg)}
+.mesa .phone-screen{color:var(--tinta)}
+.mesa .phone-big{font-family:var(--display);font-weight:900;font-size:1.45rem;text-transform:uppercase;line-height:.95}
+@media (max-width:420px){.mesa .phone-hero{width:150px}}
+@media (min-width:960px){
+  .mesa .hero{height:clamp(680px,100svh,1000px)}
+  .mesa .hero-visual{position:absolute;inset:0 0 0 34%}
+  .mesa .hero-photo{position:absolute;inset:0;height:auto}
+  .mesa .hero-photo::after{background:linear-gradient(90deg,var(--mesa) 0%,rgba(13,13,12,.55) 16%,rgba(13,13,12,0) 38%),linear-gradient(180deg,rgba(13,13,12,0) 70%,rgba(13,13,12,.75))}
+  .mesa .hero-copy{position:absolute;z-index:2;left:max(32px,calc((100vw - 1240px)/2 + 32px));top:0;bottom:0;width:min(44%,600px);display:flex;flex-direction:column;justify-content:center;padding:calc(var(--header) + 10px) 0 60px}
+  .mesa .phone-hero{right:6%;top:auto;bottom:16%;width:210px}
+  .mesa .reel{left:34%;bottom:34px}
+}
+@media (max-width:959px){
+  .mesa .hero-grid{display:flex;flex-direction:column}
+  .mesa .hero-visual{order:1}
+  .mesa .hero-copy{order:2;margin-top:-96px}
+  .mesa .hero-photo{height:min(112vw,560px)}
+  .mesa .hero .title-xl{font-size:clamp(3.2rem,15vw,4.6rem)}
+  .mesa .hero-visual{width:100%}
+  .mesa .phone-hero{width:160px;top:10px;right:6px;transform:rotate(7deg) scale(.74);transform-origin:100% 0}
+  .mesa .phone-hero .phone-screen{padding:22px 12px 14px}
+  .mesa .phone-hero .phone-big{font-size:1.15rem}
+  .mesa .hero .reel{display:none}
+}
+/* El signo «¿» baja de la línea: el título de portada respira un poco más */
+.mesa .hero .title-xl{line-height:1.02}
+
+/* ---------- Franja ---------- */
+.mesa .ticker{background:var(--ama);color:var(--tinta);border-block:0;padding:14px 0}
+.mesa .ticker-track{font-family:var(--display);font-weight:900;font-size:clamp(1.5rem,3vw,2.2rem);letter-spacing:.02em;text-transform:uppercase}
+.mesa .ticker i{font-size:0;width:8px;height:8px;background:var(--tinta);display:inline-block;transform:rotate(45deg)}
+.mesa .ticker .y{color:var(--tinta);text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:4px}
+
+/* =========================================================
+   RECORRIDO SOBRE LA MESA
+   Sin .recorrido-vivo (sin JavaScript o con «reducir movimiento»)
+   es una lista normal con la imagen de cada oficio.
+   ========================================================= */
+.recorrido{background:var(--mesa)}
+.recorrido-marco,.recorrido-indice,.recorrido-contador{display:none}
+.recorrido-pasos{width:100%;max-width:1240px;margin:0 auto;padding:clamp(64px,9vw,110px) 20px;display:grid;gap:56px}
+.paso-intro .paso-nombre-intro{font-size:clamp(3rem,7vw,5.4rem)}
+.paso-poster{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:2px;margin-bottom:18px}
+.paso-nombre{margin:0;font-family:var(--display);font-weight:900;font-size:clamp(3rem,8vw,5.4rem);line-height:.86;text-transform:uppercase;color:var(--texto)}
+.paso-frase{margin:12px 0 0;font-family:var(--display);font-weight:800;font-size:clamp(1.6rem,3vw,2.3rem);line-height:.95;text-transform:uppercase;color:var(--texto)}
+.paso-texto{margin:12px 0 0;color:var(--texto-2);max-width:50ch}
+.paso-texto b{color:var(--texto)}
+.paso .chips{margin:18px 0 22px}
+@media (min-width:860px){.recorrido-pasos{grid-template-columns:1fr 1fr;gap:64px 48px}.paso-intro{grid-column:1/-1}}
+
+.recorrido-vivo .recorrido-pista{height:calc(var(--n) * 95svh + 100svh)}
+.recorrido-vivo .recorrido-escena{position:sticky;top:0;height:100svh;overflow:hidden;perspective:1400px;background:var(--mesa)}
+.recorrido-vivo .recorrido-marco{display:block;position:absolute;inset:0;transform-style:preserve-3d;will-change:transform;transform-origin:50% 60%}
+.recorrido-lienzo{display:block;width:100%;height:100%}
+/* Velo oscuro detrás del texto, para que se lea sobre cualquier video */
+.recorrido-vivo .recorrido-escena::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(13,13,12,.88) 0%,rgba(13,13,12,.55) 34%,rgba(13,13,12,0) 62%),linear-gradient(0deg,rgba(13,13,12,.7) 0%,rgba(13,13,12,0) 40%)}
+.recorrido-vivo .recorrido-pasos{position:absolute;inset:0;max-width:none;padding:0;display:block;pointer-events:none;z-index:2}
+.recorrido-vivo .paso{position:absolute;left:max(28px,calc((100vw - 1240px)/2 + 32px));bottom:clamp(40px,8vh,90px);width:min(620px,calc(100% - 56px));visibility:hidden;pointer-events:auto}
+.recorrido-vivo .paso-poster{display:none}
+.recorrido-vivo .paso-nombre{font-size:clamp(3.8rem,8.4vw,7.4rem);perspective:800px;white-space:nowrap}
+.recorrido-vivo .paso-intro{bottom:auto;top:50%;translate:0 -50%}
+.recorrido-vivo .paso-nombre-intro{font-size:clamp(3.4rem,7vw,6rem);white-space:normal}
+.recorrido-vivo .paso .l{display:inline-block;transform-origin:50% 70%;will-change:transform,opacity;opacity:0}
+.recorrido-vivo .paso-frase,.recorrido-vivo .paso-texto,.recorrido-vivo .paso .chips,.recorrido-vivo .paso-accion{will-change:transform,opacity}
+.recorrido-vivo .paso-texto{color:#d6d0c2;font-size:1.06rem}
+.recorrido-vivo .recorrido-contador{display:block;position:absolute;z-index:2;left:max(28px,calc((100vw - 1240px)/2 + 32px));top:calc(var(--header) + 22px);margin:0;font-family:var(--display);font-weight:900;font-size:1.5rem;letter-spacing:.06em;color:var(--ama)}
+.recorrido-vivo .recorrido-indice{display:block;position:absolute;z-index:2;right:max(24px,calc((100vw - 1240px)/2 + 24px));top:50%;transform:translateY(-50%)}
+.recorrido-indice ul{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+.recorrido-indice button{background:none;border:0;cursor:pointer;font-family:var(--display);font-weight:800;font-size:1.12rem;letter-spacing:.05em;text-transform:uppercase;color:rgba(241,237,228,.55);text-align:right;padding:4px 0 4px 26px;position:relative;width:100%;text-shadow:0 1px 8px rgba(0,0,0,.8);transition:color .3s}
+.recorrido-indice button::before{content:"";position:absolute;left:0;top:50%;width:14px;height:2px;background:currentColor;transition:width .4s var(--ease)}
+.recorrido-indice button:hover{color:var(--texto)}
+.recorrido-indice button.is-on{color:var(--ama)}
+.recorrido-indice button.is-on::before{width:20px}
+@media (max-width:959px){.recorrido-vivo .recorrido-indice{display:none}}
+@media (max-width:759px){
+  .recorrido-vivo .recorrido-pista{height:calc(var(--n) * 85svh + 100svh)}
+  .recorrido-vivo .recorrido-escena::after{background:linear-gradient(0deg,rgba(13,13,12,.95) 0%,rgba(13,13,12,.7) 38%,rgba(13,13,12,0) 66%)}
+  .recorrido-vivo .paso{left:18px;right:18px;bottom:22px;width:auto}
+  .recorrido-vivo .paso-intro{top:auto;bottom:26px;translate:none}
+  .recorrido-vivo .paso-nombre{font-size:clamp(3rem,14vw,4.2rem)}
+  .recorrido-vivo .paso-nombre-intro{font-size:clamp(2.8rem,12vw,3.6rem)}
+  .recorrido-vivo .paso-frase{font-size:1.55rem}
+  .recorrido-vivo .paso-texto{font-size:.95rem;margin-top:6px}
+  .recorrido-vivo .paso .chips{margin:10px 0 14px;gap:6px}
+  .recorrido-vivo .paso .chips button{padding:7px 11px;font-size:.84rem}
+  .recorrido-vivo .paso-accion{width:100%}
+  .recorrido-vivo .recorrido-contador{left:18px;top:calc(var(--header) + 14px)}
+}
+
+/* Problemas frecuentes: piezas sobre la mesa */
+.mesa .chips button{background:rgba(13,13,12,.55);color:var(--texto);border:1px solid rgba(241,237,228,.28);border-radius:2px;font-weight:600;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.mesa .chips button:hover{background:var(--ama);border-color:var(--ama);color:var(--tinta)}
+
+/* ---------- Cómo funciona ---------- */
+.mesa .como{background:var(--mesa-2);border-top:0}
+.mesa .step{background:transparent;border:0;border-top:1px solid var(--linea);border-radius:0;padding:22px 0}
+.mesa .step h3{font-family:var(--display);font-weight:900;font-size:clamp(1.8rem,3vw,2.4rem);text-transform:uppercase;line-height:.92}
+.mesa .step p{color:var(--texto-2)}
+.mesa .step-n{background:transparent;border:1.5px solid var(--linea-2);border-radius:2px;color:var(--texto-2);font-family:var(--display);font-weight:900;font-size:1.8rem}
+.mesa .step.is-on{transform:none;box-shadow:none;border-top-color:var(--ama)}
+.mesa .step.is-on .step-n{background:var(--ama);border-color:var(--ama);color:var(--tinta)}
+
+/* ---------- Confianza: filas sobre la mesa ---------- */
+.mesa .trust{background:var(--mesa)}
+.mesa .trust .section-lead b{color:var(--texto)}
+.mesa .trust-grid{grid-template-columns:1fr;gap:0;border-top:1px solid var(--linea)}
+.mesa .trust-grid li{background:none;border:0;border-bottom:1px solid var(--linea);border-radius:0;display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:22px;padding:26px 0}
+.mesa .trust-grid li>b,.mesa .trust-grid li>p{grid-column:2}
+.mesa .trust-grid .svc-ico{grid-row:1/3;background:transparent;border:1.5px solid var(--ama);color:var(--ama);border-radius:2px}
+.mesa .trust-grid b{font-family:var(--display);font-weight:900;font-size:clamp(1.9rem,3.2vw,2.6rem);line-height:.9;color:var(--texto)}
+.mesa .trust-grid p{color:var(--texto-2);font-size:1rem;max-width:58ch}
+@media (min-width:860px){.mesa .trust-grid li{grid-template-columns:auto minmax(0,24ch) minmax(0,1fr);align-items:center}.mesa .trust-grid li>b{grid-column:2}.mesa .trust-grid li>p{grid-column:3}.mesa .trust-grid .svc-ico{grid-row:auto}}
+
+/* ---------- Trabajadores: todo amarillo ---------- */
+.mesa .workers{background:var(--ama);color:var(--tinta)}
+.mesa .workers .title-lg{color:var(--tinta)}
+.mesa .workers .hl,.js .mesa .workers [data-subs] .hl{background:var(--tinta);color:var(--ama);padding:0 .1em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.js .mesa .workers [data-subs] .hl .w,.js .mesa .workers [data-subs].lit .hl .w{color:var(--ama)}
+.mesa .workers-text,.mesa .workers-trades{color:#2f2a1c}
+.mesa .workers-list .ico{background:var(--tinta);color:var(--ama)}
+.mesa .workers-photo{position:relative;border:0;border-radius:2px;transform:rotate(-1.2deg);box-shadow:0 40px 60px -30px rgba(0,0,0,.6)}
+.mesa .workers-caption{font-family:var(--display);font-weight:900;-webkit-text-stroke:0;color:var(--texto);background:var(--tinta);padding:8px 14px 6px;left:-10px;bottom:-18px}
+.mesa .workers-caption .hl{color:var(--ama)}
+.mesa .workers .btn-yellow{background:var(--tinta);color:var(--ama)}
+.mesa .workers .btn-yellow:hover{background:#000;box-shadow:0 18px 34px -18px rgba(0,0,0,.7)}
+.vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;background:var(--tinta)}
+.vid-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;font-family:var(--display);font-weight:800;font-size:1.1rem;text-transform:uppercase;color:var(--tinta);cursor:pointer;padding:12px 18px;background:var(--ama);border:0;border-radius:2px}
+
+/* ---------- Pre-registro ---------- */
+.mesa .contacto{background:var(--mesa-2)}
+.mesa .badge{background:transparent;border:1px solid var(--linea-2);color:var(--ama);font-family:var(--display);font-weight:800;font-size:.95rem}
+.mesa .tabs{background:var(--mesa);border:1px solid var(--linea);border-radius:2px}
+.mesa .tab{border-radius:2px;font-family:var(--display);font-weight:800;font-size:1.1rem;text-transform:uppercase;letter-spacing:.04em;color:var(--texto-2)}
+.mesa .tab.is-on{background:var(--ama);color:var(--tinta)}
+.mesa .info{background:var(--mesa);border:1px solid var(--linea);border-radius:2px}
+.mesa .info h3{font-family:var(--display);font-weight:900;font-size:clamp(1.8rem,3.4vw,2.3rem)}
+.mesa .form{background:var(--mesa);border:1px solid var(--linea);border-radius:2px;box-shadow:none;color:var(--texto)}
+.mesa .field input:not([type=radio]):not([type=checkbox]),.mesa .field select,.mesa .field textarea{background:#f4f1ea;color:var(--tinta);border:1.5px solid transparent;border-radius:2px}
+.mesa .field input:focus,.mesa .field select:focus,.mesa .field textarea:focus{border-color:var(--ama);box-shadow:0 0 0 4px rgba(245,205,71,.35)}
+.mesa .field ::placeholder{color:#6f6a5e}
+.mesa .opt,.mesa .hint,.mesa .form-note{color:var(--texto-2)}
+.mesa .form-note a{color:var(--ama)}
+.mesa .req{background:var(--ama);color:var(--tinta)}
+.mesa .check input{accent-color:var(--ama)}
+.mesa .cat-pick span{border:1px solid var(--linea-2);border-radius:2px;color:var(--texto)}
+.mesa .cat-pick input:checked+span{background:var(--ama);border-color:var(--ama);color:var(--tinta)}
+.mesa .cat-pick input:focus-visible+span{outline-color:var(--ama)}
+.mesa .err{color:var(--tinta);background:var(--ama);border-left:0;border-radius:2px}
+.mesa .field.bad input,.mesa .field.bad textarea,.mesa .field.bad select{border-color:var(--ama)}
+.mesa .form .btn-black{background:var(--ama);color:var(--tinta);border-color:var(--ama)}
+.mesa .form-status{border-radius:2px}
+.mesa .form-status.ok{background:var(--ama);color:var(--tinta)}.mesa .form-status.ok b{color:var(--tinta)}
+.mesa .form-status.warn{background:var(--mesa-3);border-color:var(--ama);color:var(--texto)}
+.mesa .form-status.fail{background:var(--mesa-3);border-color:var(--texto);color:var(--texto)}
+.mesa .form-status a{color:var(--ama)}
+
+/* ---------- Llamada final ---------- */
+.mesa .final{background:var(--mesa)}
+.mesa .final-media{border-radius:2px;transform:rotate(2deg);box-shadow:0 40px 60px -30px rgba(0,0,0,.9)}
+.mesa .social a{border-radius:2px;border-color:var(--linea-2)}
+.mesa .social a:hover{background:var(--ama);border-color:var(--ama);color:var(--tinta)}
+
+/* ---------- Pie ---------- */
+.mesa .footer{background:var(--mesa);border-top:1px solid var(--linea)}
+.mesa .footer-tag{font-family:var(--display);font-weight:900;font-size:1.5rem;text-transform:uppercase}
+
+/* ---------- WhatsApp ---------- */
+.mesa .wa-float{background:var(--tinta);box-shadow:0 18px 40px -14px rgba(0,0,0,.8),0 0 0 2px var(--ama)}
+
+/* «¿» más chico y alto: en esta letra baja mucho de la línea */
+.mesa .sig{display:inline-block;font-size:.7em;vertical-align:.2em;margin-right:.02em}
+
+/* Títulos con resaltado en bloque: un poco más de aire entre líneas */
+.mesa .workers .title-lg{line-height:1.04}
+.mesa .phone-como .phone-screen{min-height:390px}

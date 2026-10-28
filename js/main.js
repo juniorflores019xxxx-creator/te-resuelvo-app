@@ -46,9 +46,10 @@
   if (waBtn && waUrl) {
     waBtn.href = waUrl; waBtn.hidden = false;
     waBtn.addEventListener("click", () => medir("boton-whatsapp"));
-    // Se oculta sobre los formularios para no tapar los botones de envío
-    const forms = document.getElementById("contacto");
-    new IntersectionObserver(([e]) => waBtn.classList.toggle("is-away", e.isIntersecting)).observe(forms);
+    // Se oculta sobre los botones de la portada, el recorrido y los formularios, para no tapar las acciones principales
+    const tapa = new Set();
+    const vigilar = new IntersectionObserver((es) => { es.forEach((e) => (e.isIntersecting ? tapa.add(e.target) : tapa.delete(e.target))); waBtn.classList.toggle("is-away", tapa.size > 0); });
+    [document.getElementById("contacto")].concat($$(".hero-ctas, .recorrido-pasos")).forEach((el) => el && vigilar.observe(el));
   }
   const legal = [];
   if (CFG.legal.terminos) legal.push(`<a href="${CFG.legal.terminos}">Términos y condiciones</a>`);
