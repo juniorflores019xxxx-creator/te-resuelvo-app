@@ -69,7 +69,7 @@ La URL completa está escrita en: `canonical`, `og:url`, `og:image` y JSON-LD de
 - El teléfono de la portada y el de «Cómo funciona» muestran **ejemplos ficticios** (perfiles, calificaciones y precios), marcados como «Ejemplo ilustrativo».
 - Fotografías de [Pexels](https://www.pexels.com) con licencia libre de uso comercial (IDs: 6050244, 6050247, 5463575, 6419128, 14319099, 35287856, 11429199, 32913797, 8961155).
 - Portada «mesa de herramientas»: foto de Pexels 4312860 (Anna Shvets), en `img/mesa/` (1000 y 2000 px).
-- Videos de los 11 servicios en `video/` (`<oficio>-1080.mp4` para computadora y `-720.mp4` para celular); pósters en `img/video/`. Pexels: electricidad 18780266, plomería 9890450, climatización 34572318, limpieza 7551100, pintura 6474086, cerrajería 9792637, mudanzas 9507645, fumigación 4205628. Mixkit: jardinería 10472, carpintería 45144, albañilería 20874 y técnico 23529. Para cambiar uno por un video propio, se reemplazan sus dos archivos con el mismo nombre y su póster.
+- Fotos de los 11 servicios en `img/oficios/` (dos por oficio, `<oficio>-1` y `-2`, en 1600 px para computadora y 900 px para celular), todas de Pexels con técnicos con uniforme. IDs: electricidad 35154098 y 442160; plomería 39885422 y 29226620; climatización 5463575 y 32588555; limpieza 6196677 y 9462636; jardinería 38936338 y 33357127; carpintería 313776 y 5974413; pintura 37556460 y 5493662; cerrajería 35578808 y 35287856; albañilería 30081237 y 19688828; mudanzas 20706507 y 7464262; fumigación 32055757 y 19789837; técnico de la sección de trabajadores 21812146. Para cambiar una foto por una propia, se reemplazan sus dos tamaños con el mismo nombre.
 
 ## Accesibilidad y rendimiento
 

@@ -252,3 +252,11 @@
 .mesa .chips .chip-mas{border-color:var(--ama);color:var(--ama);background:rgba(13,13,12,.55)}
 .mesa .chips .chip-mas:hover{background:var(--ama);color:var(--tinta)}
 .mesa .hero-tags .tag-mas{border-color:var(--ama);color:var(--ama)}
+
+/* Dos fotos juntas por oficio (vista sin animación) */
+.paso-fotos{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:18px}
+.paso-fotos img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:2px}
+.recorrido-vivo .paso-fotos{display:none}
+/* El índice se lee sobre cualquier foto */
+.recorrido-vivo .recorrido-indice ul{background:rgba(13,13,12,.78);padding:12px 16px;border-radius:2px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.recorrido-vivo .recorrido-contador{background:rgba(13,13,12,.78);padding:4px 10px 2px}

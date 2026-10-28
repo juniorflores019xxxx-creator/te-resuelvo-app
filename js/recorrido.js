@@ -3,9 +3,9 @@
    Una escena fija mientras se baja. Empieza con la mesa de
    herramientas de la portada; al bajar, la imagen se corta en
    piezas que se levantan de la mesa con su sombra, giran en
-   perspectiva y caen en su lugar formando el video del siguiente
-   oficio. El scroll mueve cada video cuadro a cuadro, el nombre
-   entra letra por letra y el mouse inclina la mesa.
+   perspectiva y caen en su lugar formando las dos fotos del
+   siguiente oficio. El nombre entra letra por letra y el mouse
+   inclina la mesa.
    Sin JavaScript o con «reducir movimiento» la sección queda como
    una lista normal con la imagen de cada oficio.
    ========================================================= */
@@ -16,8 +16,6 @@
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const lienzo = sec.querySelector(".recorrido-lienzo");
   if (reduce || !lienzo || !lienzo.getContext) return;
-  const con = navigator.connection || {};
-  const ahorro = !!con.saveData || /(^|-)2g$/.test(con.effectiveType || "");
 
   const pista = sec.querySelector(".recorrido-pista");
   const escena = sec.querySelector(".recorrido-escena");
@@ -45,24 +43,34 @@
     p._resto = (p._letras.length ? [] : [h]).concat([...p.querySelectorAll(".paso-frase, .paso-texto, .chips, .paso-accion")]);
   });
 
-  /* ---------- Imágenes y videos (se cargan el actual y los vecinos) ---------- */
+  /* ---------- Fotos: cada oficio son dos fotos juntas (lado a lado; una sobre otra en celular) ---------- */
   const movil = () => window.matchMedia("(max-width: 759px)").matches;
-  const medios = pasos.map((p) => ({ slug: p.dataset.video, foto: p.dataset.foto, v: null, poster: null, listo: false }));
+  const medios = pasos.map((p) => ({ fotos: (p.dataset.fotos || p.dataset.foto || "").split(",").filter(Boolean), imgs: null, lienzo: null, clave: "" }));
   function preparar(i) {
-    const m = medios[i]; if (!m) return;
-    if (!m.poster) {
-      m.poster = new Image();
-      m.poster.src = m.foto ? (movil() ? m.foto.replace("-2000", "-1000") : m.foto) : `img/video/${m.slug}.webp`;
-    }
-    if (ahorro || m.v || !m.slug) return;
-    const v = document.createElement("video");
-    v.muted = true; v.playsInline = true; v.setAttribute("playsinline", ""); v.preload = "auto";
-    v.src = `video/${m.slug}-${movil() ? 720 : 1080}.mp4`;
-    // Algunos celulares no muestran cuadros hasta que el video se reprodujo una vez
-    v.addEventListener("loadeddata", () => { m.listo = true; const pr = v.play(); if (pr) pr.then(() => v.pause()).catch(() => {}); }, { once: true });
-    m.v = v;
+    const m = medios[i]; if (!m || m.imgs) return;
+    m.imgs = m.fotos.map((src) => { const im = new Image(); im.decoding = "async"; im.src = movil() ? src.replace("-1600", "-900").replace("-2000", "-1000") : src; return im; });
   }
-  const fuente = (m) => (m && m.listo && m.v.readyState >= 2 ? m.v : m && m.poster && m.poster.complete && m.poster.naturalWidth ? m.poster : null);
+  // Recorte «cover» de una foto dentro de un rectángulo
+  function cubrir(c, im, x, y, w, h) {
+    const k = Math.max(w / im.naturalWidth, h / im.naturalHeight), sw = w / k, sh = h / k;
+    c.drawImage(im, (im.naturalWidth - sw) / 2, (im.naturalHeight - sh) / 2, sw, sh, x, y, w, h);
+  }
+  // Compone las fotos del oficio en un lienzo del tamaño de la escena (se rehace si cambia el tamaño)
+  function fuente(m) {
+    if (!m || !m.imgs || !m.imgs.every((im) => im.complete && im.naturalWidth)) return null;
+    const clave = W + "x" + H;
+    if (m.clave === clave) return m.lienzo;
+    const k = m.lienzo || document.createElement("canvas"); k.width = W; k.height = H;
+    const c = k.getContext("2d"); c.imageSmoothingQuality = "high"; c.fillStyle = "#0d0d0c"; c.fillRect(0, 0, W, H);
+    if (m.imgs.length === 1) cubrir(c, m.imgs[0], 0, 0, W, H);
+    else {
+      const g = Math.round(6 * dpr);
+      if (W >= H) { const a = Math.floor((W - g) / 2); cubrir(c, m.imgs[0], 0, 0, a, H); cubrir(c, m.imgs[1], a + g, 0, W - a - g, H); }
+      else { const a = Math.floor((H - g) / 2); cubrir(c, m.imgs[0], 0, 0, W, a); cubrir(c, m.imgs[1], 0, a + g, W, H - a - g); }
+    }
+    m.lienzo = k; m.clave = clave;
+    return k;
+  }
 
   /* ---------- Piezas: cada una con su rumbo, giro y altura ---------- */
   let W = 0, H = 0, COLS = 0, ROWS = 0, piezas = [], SOMBRA = null, dpr = 1;
@@ -85,7 +93,7 @@
   }
 
   function encuadre(f) {
-    const fw = f.videoWidth || f.naturalWidth, fh = f.videoHeight || f.naturalHeight;
+    const fw = f.naturalWidth || f.width, fh = f.naturalHeight || f.height;
     const k = Math.max(W / fw, H / fh);
     return { k, ox: (W - fw * k) / 2, oy: (H - fh * k) / 2, fw, fh };
   }
@@ -107,11 +115,11 @@
       if (salida > 0) {
         p = lim((salida - b.demora * 0.6) / (1 - b.demora * 0.6)); q = suave(p);
         alto = q * b.alto; dx = (b.jx * 0.55 + (b.c / COLS - 0.5) * 0.9) * W * q; dy = (b.jy * 0.4 - 0.25 * q) * H * q;
-        giro = b.giro * q; alfa = 1 - Math.pow(p, 3);
+        giro = b.giro * q; alfa = p < 0.86 ? 1 : (1 - p) / 0.14; // sólida: se va sin transparencias a medias
       } else {
         p = lim((llegada - (0.3 - b.demora) * 0.6) / (1 - (0.3 - b.demora) * 0.6)); q = 1 - salidaExp(1 - p);
         alto = q * b.alto * 1.2; dx = b.jx * 0.35 * W * q; dy = (b.jy * 0.3 - 0.35 * q) * H * q;
-        giro = -b.giro * 1.2 * q; alfa = 1 - Math.pow(p, 2);
+        giro = -b.giro * 1.2 * q; alfa = p < 0.82 ? 1 : (1 - p) / 0.18;
       }
       if (alfa <= 0.01) continue;
       const x0 = b.c * tw, y0 = b.r * th, cx = x0 + tw / 2 + dx, cy = y0 + th / 2 + dy;
@@ -141,15 +149,6 @@
     pistaTop = r.top + window.scrollY;
     tramo = Math.max(1, (pista.offsetHeight - window.innerHeight) / N);
   }
-  // Cada video avanza con el scroll (se usa su tramo central: varios clips empiezan oscuros)
-  function mover(m, t) {
-    if (!m || !m.listo) return;
-    const v = m.v, dur = Math.min(v.duration || 0, 10);
-    if (!dur) return;
-    const objetivo = (0.15 + lim(t) * 0.7) * dur;
-    if (!v.seeking && Math.abs(v.currentTime - objetivo) > 1 / 40) v.currentTime = objetivo;
-  }
-
   function textos(s) {
     pasos.forEach((p, j) => {
       const u = s - j;
@@ -189,8 +188,6 @@
     const i = Math.floor(s), t = s - i;
     [i - 1, i, i + 1, i + 2].forEach((k) => k >= 0 && k < N && preparar(k));
     const actual = medios[i], sig = medios[i + 1];
-    mover(actual, t);
-    if (sig && t > 1 - T) mover(sig, 0);
 
     // La mesa se inclina siguiendo al mouse y se acentúa a mitad del cambio
     const cambio = i < N - 1 ? lim((t - (1 - T)) / T) : 0;
@@ -231,6 +228,6 @@
   // La mesa de entrada queda pintada desde el principio (la portada ya cargó esa foto)
   ajustar(); medir(); textos(0); preparar(0);
   if (contador) contador.hidden = !!intro;
-  const pintarMesa = () => { if (!activo) { ctx.fillStyle = "#0d0d0c"; ctx.fillRect(0, 0, W, H); entero(medios[0].poster, 1); } };
-  if (medios[0].poster.complete && medios[0].poster.naturalWidth) pintarMesa(); else medios[0].poster.addEventListener("load", pintarMesa);
+  const pintarMesa = () => { const f = fuente(medios[0]); if (!activo && f) { ctx.fillStyle = "#0d0d0c"; ctx.fillRect(0, 0, W, H); entero(f, 1); } };
+  medios[0].imgs.forEach((im) => (im.complete ? pintarMesa() : im.addEventListener("load", pintarMesa)));
 })();
