@@ -22,7 +22,7 @@ window.TR_CONFIG = {
   contacto: {
     whatsapp: "59176365928",   // solo dígitos con código de país
     whatsappMensaje: "Hola Te Resuelvo, tengo una consulta.",
-    correo: ""
+    correo: "teresuelvoo@gmail.com"
   },
 
   /* Redes sociales. Vacías = no se muestran. */
