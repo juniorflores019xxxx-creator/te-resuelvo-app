@@ -264,3 +264,51 @@
 /* Texto del pre-registro: más grande y claro */
 .mesa .lead-registro{color:var(--texto);font-size:clamp(1.15rem,1.9vw,1.4rem);line-height:1.55;max-width:58ch}
 .mesa .lead-registro b{color:var(--ama)}
+
+/* =========================================================
+   Celular de la portada: la app con los 11 servicios
+   ========================================================= */
+.app{--aw:300px;position:absolute;z-index:3;width:var(--aw);aspect-ratio:1/2.04;padding:calc(var(--aw) * .035);border-radius:calc(var(--aw) * .15);background:#0a0a0a;box-shadow:0 50px 90px -30px rgba(0,0,0,.95),0 0 0 1px rgba(255,255,255,.12) inset,0 0 0 calc(var(--aw) * .012) #1d1d1b}
+.app::before{content:"";position:absolute;z-index:5;top:calc(var(--aw) * .055);left:50%;width:calc(var(--aw) * .3);height:calc(var(--aw) * .07);margin-left:calc(var(--aw) * -.15);border-radius:99px;background:#0a0a0a}
+.app-pantalla{position:relative;width:100%;height:100%;overflow:hidden;border-radius:calc(var(--aw) * .12);background:#f6f3ec;container-type:size}
+.cara{position:absolute;inset:0;display:flex;flex-direction:column;padding:15cqw 6cqw 6cqw;color:#0d0d0c}
+.app-barra{position:absolute;left:8cqw;right:8cqw;top:4.6cqw;display:flex;justify-content:space-between;align-items:center;font:700 3.6cqw/1 Inter,system-ui,sans-serif}
+.app-barra i{width:7cqw;height:3.2cqw;border-radius:1cqw;border:.5cqw solid currentColor}
+.app-cab{display:flex;align-items:center;gap:2.6cqw;font-family:var(--display);font-weight:900;font-size:6.4cqw;text-transform:uppercase;line-height:1}
+.app-cab img{width:8cqw;height:8cqw;border-radius:2cqw}
+.app-hola{margin:7cqw 0 0;font-family:var(--display);font-weight:900;font-size:12cqw;line-height:.92;text-transform:uppercase}
+.app-sub{margin:2.6cqw 0 0;font-size:3.8cqw;line-height:1.35;color:#4f4a40}
+.app-grid{list-style:none;margin:5cqw 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr 1fr;gap:2.2cqw}
+.app-grid button,.app-mas span{width:100%;aspect-ratio:1/.86;display:grid;place-items:center;align-content:center;gap:1.6cqw;padding:1.4cqw;border:0;border-radius:3cqw;background:#fff;box-shadow:0 1cqw 3cqw -1cqw rgba(0,0,0,.25);font:700 2.9cqw/1.1 Inter,system-ui,sans-serif;color:#0d0d0c;text-align:center;cursor:pointer;transition:background-color .2s,transform .3s var(--ease)}
+.app-grid .ico{width:6.4cqw;height:6.4cqw}
+.app-grid button:hover,.app-grid button:focus-visible{background:var(--ama);transform:translateY(-1cqw)}
+.app-mas span{background:var(--ama);font-family:var(--display);font-weight:900;font-size:3.6cqw;text-transform:uppercase;cursor:default}
+.app-nota{margin:auto 0 0;font-size:2.8cqw;color:#7a7466;text-align:center;text-transform:uppercase;letter-spacing:.06em}
+.app-hero{right:7%;top:50%;transform:translateY(-46%) rotate(5deg)}
+@media (min-width:960px) and (max-height:760px){.app-hero{--aw:250px}}
+@media (max-width:959px){.app-hero{--aw:168px;right:14px;top:14px;transform:rotate(6deg)}}
+
+/* =========================================================
+   Recorrido en paneles deslizantes (reemplaza a las piezas)
+   ========================================================= */
+.recorrido-vivo .recorrido-pista{height:calc(var(--n) * 60svh + 100svh)}
+.recorrido-vivo .recorrido-escena{perspective:none}
+.recorrido-vivo .recorrido-escena::after{display:none}
+.recorrido-vivo .recorrido-contador,.recorrido-vivo .recorrido-indice{z-index:5}
+.recorrido-vivo .paso{inset:0;width:auto;translate:none;display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;padding:0 max(28px,calc((100vw - 1240px)/2 + 32px)) clamp(40px,8vh,90px);overflow:hidden;background:var(--mesa);will-change:transform}
+.recorrido-vivo .paso>*:not(.paso-fotos){position:relative;z-index:2;max-width:640px}
+.recorrido-vivo .paso-fotos{display:grid;position:absolute;inset:0;z-index:0;margin:0;grid-template-columns:1fr 1fr;gap:6px;will-change:transform}
+.recorrido-vivo .paso-fotos img{width:100%;height:100%;aspect-ratio:auto;object-fit:cover;border-radius:0}
+.recorrido-vivo .paso-fotos-uno{grid-template-columns:1fr}
+/* Velo para leer el texto y sombra del panel que se va */
+.recorrido-vivo .paso::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(13,13,12,.8) 0%,rgba(13,13,12,.4) 28%,rgba(13,13,12,0) 50%),linear-gradient(0deg,rgba(13,13,12,.6) 0%,rgba(13,13,12,0) 32%)}
+.recorrido-vivo .paso::after{content:"";position:absolute;inset:0;z-index:3;background:#000;opacity:var(--sombra,0);pointer-events:none}
+.recorrido-vivo .paso-intro{justify-content:center;top:0;bottom:0}
+@media (max-width:759px){
+  .recorrido-vivo .recorrido-pista{height:calc(var(--n) * 55svh + 100svh)}
+  .recorrido-vivo .paso{padding:0 18px 22px}
+  .recorrido-vivo .paso-fotos{grid-template-columns:1fr;grid-template-rows:1fr 1fr}
+  .recorrido-vivo .paso-fotos-uno{grid-template-rows:1fr}
+  .recorrido-vivo .paso::before{background:linear-gradient(0deg,rgba(13,13,12,.94) 0%,rgba(13,13,12,.65) 38%,rgba(13,13,12,0) 60%)}
+  .recorrido-vivo .paso-intro{justify-content:flex-end}
+}

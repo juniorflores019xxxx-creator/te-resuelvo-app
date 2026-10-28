@@ -21,6 +21,7 @@
   }
   // Cuenta una acción (nunca datos personales); si las estadísticas no están activas, no hace nada
   const medir = (evento, datos) => { try { if (window.umami) window.umami.track(evento, datos); } catch (e) { /* sin estadísticas */ } };
+  window.TR_medir = medir;
 
   /* ---------- Configuración: contacto, tiendas y páginas legales ---------- */
   $("#anio").textContent = new Date().getFullYear();

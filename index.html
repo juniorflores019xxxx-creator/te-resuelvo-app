@@ -123,19 +123,31 @@
         <p class="sr-only">¿Tienes un problema? Encuentra a alguien cerca. Elige la mejor oferta. Y te resuelvo.</p>
       </figure>
 
-      <div class="phone phone-hero" aria-label="Ejemplo ilustrativo de una solicitud en la app">
-        <div class="phone-notch" aria-hidden="true"></div>
-        <div class="phone-screen">
-          <p class="phone-tag">Ejemplo ilustrativo</p>
-          <p class="phone-label">Tu solicitud</p>
-          <p class="phone-big">Fuga en el baño</p>
-          <p class="phone-row"><svg class="ico"><use href="#i-pin"/></svg> Zona norte</p>
-          <div class="phone-quotes">
-            <span class="dot-live" aria-hidden="true"></span>
-            <span><b>3 ofertas</b> recibidas</span>
+      <div class="app app-hero" role="group" aria-label="Ejemplo ilustrativo de la app: elige uno de los 11 servicios">
+        <div class="app-pantalla">
+          <div class="cara cara-inicio">
+            <div class="app-barra" aria-hidden="true"><span>9:41</span><i></i></div>
+            <div class="app-cab"><img src="img/logo-96.png" alt="" width="28" height="28"><b>Te Resuelvo</b></div>
+            <p class="app-hola">¿Qué necesitas?</p>
+            <p class="app-sub">Elige un servicio y recibe ofertas de técnicos cerca de ti.</p>
+            <ul class="app-grid">
+              <li><button type="button" data-ir-servicio="Electricidad"><svg class="ico" aria-hidden="true"><use href="#i-rayo"/></svg>Electricidad</button></li>
+              <li><button type="button" data-ir-servicio="Plomería"><svg class="ico" aria-hidden="true"><use href="#i-llave"/></svg>Plomería</button></li>
+              <li><button type="button" data-ir-servicio="Climatización"><svg class="ico" aria-hidden="true"><use href="#i-copo"/></svg>Climatización</button></li>
+              <li><button type="button" data-ir-servicio="Limpieza"><svg class="ico" aria-hidden="true"><use href="#i-spray"/></svg>Limpieza</button></li>
+              <li><button type="button" data-ir-servicio="Jardinería"><svg class="ico" aria-hidden="true"><use href="#i-hoja"/></svg>Jardinería</button></li>
+              <li><button type="button" data-ir-servicio="Carpintería"><svg class="ico" aria-hidden="true"><use href="#i-serrucho"/></svg>Carpintería</button></li>
+              <li><button type="button" data-ir-servicio="Pintura"><svg class="ico" aria-hidden="true"><use href="#i-rodillo"/></svg>Pintura</button></li>
+              <li><button type="button" data-ir-servicio="Cerrajería"><svg class="ico" aria-hidden="true"><use href="#i-candado"/></svg>Cerrajería</button></li>
+              <li><button type="button" data-ir-servicio="Albañilería"><svg class="ico" aria-hidden="true"><use href="#i-ladrillo"/></svg>Albañilería</button></li>
+              <li><button type="button" data-ir-servicio="Mudanzas"><svg class="ico" aria-hidden="true"><use href="#i-camion"/></svg>Mudanzas</button></li>
+              <li><button type="button" data-ir-servicio="Fumigación"><svg class="ico" aria-hidden="true"><use href="#i-insecto"/></svg>Fumigación</button></li>
+              <li class="app-mas"><span>y muchos más</span></li>
+            </ul>
+            <p class="app-nota">Ejemplo ilustrativo de la app</p>
           </div>
-          <span class="phone-btn">Ver ofertas</span>
         </div>
+      </div>
       </div>
     </div>
   </div>
@@ -153,7 +165,6 @@
 <section class="recorrido" id="servicios" aria-labelledby="serv-titulo">
   <div class="recorrido-pista">
     <div class="recorrido-escena">
-      <div class="recorrido-marco"><canvas class="recorrido-lienzo" aria-hidden="true"></canvas></div>
       <p class="recorrido-contador" aria-hidden="true"></p>
       <nav class="recorrido-indice" aria-label="Ir a un servicio">
         <ul>
@@ -171,12 +182,13 @@
         </ul>
       </nav>
       <div class="recorrido-pasos">
-      <article class="paso paso-intro" data-foto="img/mesa/4312860-2000.jpg">
+      <article class="paso paso-intro">
+        <div class="paso-fotos paso-fotos-uno"><img src="img/mesa/4312860-2000.jpg" srcset="img/mesa/4312860-1000.jpg 1000w, img/mesa/4312860-2000.jpg 2000w" sizes="100vw" alt="" width="2000" height="3000" loading="lazy"></div>
         <h2 id="serv-titulo" class="paso-nombre paso-nombre-intro"><span class="hl">Soluciones</span> rápidas, técnicos <span class="hl">cerca</span>.</h2>
         <p class="paso-texto"><b>11 servicios para tu casa.</b> Baja y mira cómo se resuelve cada uno. Toca el que te interesa para enterarte primero cuando lancemos.</p>
       </article>
-      <article class="paso" data-cat="Electricidad" data-fotos="img/oficios/electricidad-1-1600.jpg,img/oficios/electricidad-2-1600.jpg">
-        <div class="paso-fotos"><img src="img/oficios/electricidad-1-900.jpg" alt="Electricista uniformado revisando un tablero eléctrico" width="900" height="600" loading="lazy"><img src="img/oficios/electricidad-2-900.jpg" alt="Electricista con casco reparando un tomacorriente" width="900" height="600" loading="lazy"></div>
+      <article class="paso" data-cat="Electricidad">
+        <div class="paso-fotos"><img src="img/oficios/electricidad-1-900.jpg" srcset="img/oficios/electricidad-1-900.jpg 900w, img/oficios/electricidad-1-1600.jpg 1600w" sizes="(min-width: 760px) 50vw, 100vw" alt="Electricista uniformado revisando un tablero eléctrico" width="900" height="600" loading="lazy"><img src="img/oficios/electricidad-2-900.jpg" srcset="img/oficios/electricidad-2-900.jpg 900w, img/oficios/electricidad-2-1600.jpg 1600w" sizes="(min-width: 760px) 50vw, 100vw" alt="Electricista con casco reparando un tomacorriente" width="900" height="600" loading="lazy"></div>
         <h3 class="paso-nombre">Electricidad</h3>
         <p class="paso-frase"><span class="hl">Seguridad</span> y <span class="hl">soluciones</span> eléctricas</p>
         <p class="paso-texto">Encuentra electricistas para resolver problemas de instalaciones y seguridad.</p>
@@ -188,8 +200,8 @@
         </ul>
         <a class="btn btn-yellow paso-accion" href="#contacto" data-form-open="usuario" data-cat="Electricidad">Avísame cuando esté lista <svg class="ico"><use href="#i-flecha"/></svg></a>
       </article>
-      <article class="paso" data-cat="Plomería" data-fotos="img/oficios/plomeria-1-1600.jpg,img/oficios/plomeria-2-1600.jpg">
-        <div class="paso-fotos"><img src="img/oficios/plomeria-1-900.jpg" alt="Plomero con uniforme naranja trabajando en las cañerías" width="900" height="600" loading="lazy"><img src="img/oficios/plomeria-2-900.jpg" alt="Plomero con guantes instalando un tubo" width="900" height="600" loading="lazy"></div>
+      <article class="paso" data-cat="Plomería">
+        <div class="paso-fotos"><img src="img/oficios/plomeria-1-900.jpg" srcset="img/oficios/plomeria-1-900.jpg 900w, img/oficios/plomeria-1-1600.jpg 1600w" sizes="(min-width: 760px) 50vw, 100vw" alt="Plomero con uniforme naranja trabajando en las cañerías" width="900" height="600" loading="lazy"><img src="img/oficios/plomeria-2-900.jpg" srcset="img/oficios/plomeria-2-900.jpg 900w, img/oficios/plomeria-2-1600.jpg 1600w" sizes="(min-width: 760px) 50vw, 100vw" alt="Plomero con guantes instalando un tubo" width="900" height="600" loading="lazy"></div>
         <h3 class="paso-nombre">Plomería</h3>
         <p class="paso-frase"><span class="nw">¿<span class="hl">Fugas</span></span> o cañerías <span class="hl">tapadas</span>?</p>
         <p class="paso-texto">Encuentra profesionales para reparar tuberías, grifos, inodoros, bombas e instalaciones de agua.</p>
@@ -202,8 +214,8 @@
         </ul>
         <a class="btn btn-yellow paso-accion" href="#contacto" data-form-open="usuario" data-cat="Plomería">Avísame cuando esté lista <svg class="ico"><use href="#i-flecha"/></svg></a>
       </article>
-      <article class="paso" data-cat="Climatización" data-fotos="img/oficios/climatizacion-1-1600.jpg,img/oficios/climatizacion-2-1600.jpg">
-        <div class="paso-fotos"><img src="img/oficios/climatizacion-1-900.jpg" alt="Técnico uniformado revisando la unidad exterior de un aire acondicionado" width="900" height="600" loading="lazy"><img src="img/oficios/climatizacion-2-900.jpg" alt="Técnico midiendo un equipo de aire acondicionado" width="900" height="600" loading="lazy"></div>
+      <article class="paso" data-cat="Climatización">
+        <div class="paso-fotos"><img src="img/oficios/climatizacion-1-900.jpg" srcset="img/oficios/climatizacion-1-900.jpg 900w, img/oficios/climatizacion-1-1600.jpg 1600w" sizes="(min-width: 760px) 50vw, 100vw" alt="Técnico uniformado revisando la unidad exterior de un aire acondicionado" width="900" height="600" loading="lazy"><img src="img/oficios/climatizacion-2-900.jpg" srcset="img/oficios/climatizacion-2-900.jpg 900w, img/oficios/climatizacion-2-1600.jpg 1600w" sizes="(min-width: 760px) 50vw, 100vw" alt="Técnico midiendo un equipo de aire acondicionado" width="900" height="600" loading="lazy"></div>
         <h3 class="paso-nombre">Climatización</h3>
         <p class="paso-frase">¿Problemas con tu <span class="hl">aire</span>?</p>
         <p class="paso-texto">Encuentra técnicos para reparar, mantener e instalar equipos de aire acondicionado y refrigeración.</p>
@@ -215,8 +227,8 @@
         </ul>
         <a class="btn btn-yellow paso-accion" href="#contacto" data-form-open="usuario" data-cat="Climatización">Avísame cuando esté lista <svg class="ico"><use href="#i-flecha"/></svg></a>
       </article>
-      <article class="paso" data-cat="Limpieza" data-fotos="img/oficios/limpieza-1-1600.jpg,img/oficios/limpieza-2-1600.jpg">
-        <div class="paso-fotos"><img src="img/oficios/limpieza-1-900.jpg" alt="Equipo de limpieza con overoles y sus equipos" width="900" height="600" loading="lazy"><img src="img/oficios/limpieza-2-900.jpg" alt="Personal de limpieza con uniforme" width="900" height="600" loading="lazy"></div>
+      <article class="paso" data-cat="Limpieza">
+        <div class="paso-fotos"><img src="img/oficios/limpieza-1-900.jpg" srcset="img/oficios/limpieza-1-900.jpg 900w, img/oficios/limpieza-1-1600.jpg 1600w" sizes="(min-width: 760px) 50vw, 100vw" alt="Equipo de limpieza con overoles y sus equipos" width="900" height="600" loading="lazy"><img src="img/oficios/limpieza-2-900.jpg" srcset="img/oficios/limpieza-2-900.jpg 900w, img/oficios/limpieza-2-1600.jpg 1600w" sizes="(min-width: 760px) 50vw, 100vw" alt="Personal de limpieza con uniforme" width="900" height="600" loading="lazy"></div>
         <h3 class="paso-nombre">Limpieza</h3>
         <ul class="chips" aria-label="Problemas frecuentes">
           <li><button type="button" data-cat="Limpieza">Limpieza de casa por horas</button></li>
@@ -226,8 +238,8 @@
         </ul>
         <a class="btn btn-yellow paso-accion" href="#contacto" data-form-open="usuario" data-cat="Limpieza">Avísame cuando esté lista <svg class="ico"><use href="#i-flecha"/></svg></a>
       </article>
-      <article class="paso" data-cat="Jardinería" data-fotos="img/oficios/jardineria-1-1600.jpg,img/oficios/jardineria-2-1600.jpg">
-        <div class="paso-fotos"><img src="img/oficios/jardineria-1-900.jpg" alt="Jardinero uniformado podando un cerco" width="900" height="600" loading="lazy"><img src="img/oficios/jardineria-2-900.jpg" alt="Jardinero trabajando en un parque" width="900" height="600" loading="lazy"></div>
+      <article class="paso" data-cat="Jardinería">
+        <div class="paso-fotos"><img src="img/oficios/jardineria-1-900.jpg" srcset="img/oficios/jardineria-1-900.jpg 900w, img/oficios/jardineria-1-1600.jpg 1600w" sizes="(min-width: 760px) 50vw, 100vw" alt="Jardinero uniformado podando un cerco" width="900" height="600" loading="lazy"><img src="img/oficios/jardineria-2-900.jpg" srcset="img/oficios/jardineria-2-900.jpg 900w, img/oficios/jardineria-2-1600.jpg 1600w" sizes="(min-width: 760px) 50vw, 100vw" alt="Jardinero trabajando en un parque" width="900" height="600" loading="lazy"></div>
         <h3 class="paso-nombre">Jardinería</h3>
         <ul class="chips" aria-label="Problemas frecuentes">
           <li><button type="button" data-cat="Jardinería">Corte de césped</button></li>
@@ -237,8 +249,8 @@
         </ul>
         <a class="btn btn-yellow paso-accion" href="#contacto" data-form-open="usuario" data-cat="Jardinería">Avísame cuando esté lista <svg class="ico"><use href="#i-flecha"/></svg></a>
       </article>
-      <article class="paso" data-cat="Carpintería" data-fotos="img/oficios/carpinteria-1-1600.jpg,img/oficios/carpinteria-2-1600.jpg">
-        <div class="paso-fotos"><img src="img/oficios/carpinteria-1-900.jpg" alt="Carpintero trabajando en su mesa de taller" width="900" height="600" loading="lazy"><img src="img/oficios/carpinteria-2-900.jpg" alt="Carpintero martillando una pieza de madera" width="900" height="600" loading="lazy"></div>
+      <article class="paso" data-cat="Carpintería">
+        <div class="paso-fotos"><img src="img/oficios/carpinteria-1-900.jpg" srcset="img/oficios/carpinteria-1-900.jpg 900w, img/oficios/carpinteria-1-1600.jpg 1600w" sizes="(min-width: 760px) 50vw, 100vw" alt="Carpintero trabajando en su mesa de taller" width="900" height="600" loading="lazy"><img src="img/oficios/carpinteria-2-900.jpg" srcset="img/oficios/carpinteria-2-900.jpg 900w, img/oficios/carpinteria-2-1600.jpg 1600w" sizes="(min-width: 760px) 50vw, 100vw" alt="Carpintero martillando una pieza de madera" width="900" height="600" loading="lazy"></div>
         <h3 class="paso-nombre">Carpintería</h3>
         <ul class="chips" aria-label="Problemas frecuentes">
           <li><button type="button" data-cat="Carpintería">Puertas que no cierran</button></li>
@@ -248,8 +260,8 @@
         </ul>
         <a class="btn btn-yellow paso-accion" href="#contacto" data-form-open="usuario" data-cat="Carpintería">Avísame cuando esté lista <svg class="ico"><use href="#i-flecha"/></svg></a>
       </article>
-      <article class="paso" data-cat="Pintura" data-fotos="img/oficios/pintura-1-1600.jpg,img/oficios/pintura-2-1600.jpg">
-        <div class="paso-fotos"><img src="img/oficios/pintura-1-900.jpg" alt="Pintor con casco y chaleco pintando con rodillo" width="900" height="600" loading="lazy"><img src="img/oficios/pintura-2-900.jpg" alt="Pintor con overol y máscara pintando un ambiente" width="900" height="600" loading="lazy"></div>
+      <article class="paso" data-cat="Pintura">
+        <div class="paso-fotos"><img src="img/oficios/pintura-1-900.jpg" srcset="img/oficios/pintura-1-900.jpg 900w, img/oficios/pintura-1-1600.jpg 1600w" sizes="(min-width: 760px) 50vw, 100vw" alt="Pintor con casco y chaleco pintando con rodillo" width="900" height="600" loading="lazy"><img src="img/oficios/pintura-2-900.jpg" srcset="img/oficios/pintura-2-900.jpg 900w, img/oficios/pintura-2-1600.jpg 1600w" sizes="(min-width: 760px) 50vw, 100vw" alt="Pintor con overol y máscara pintando un ambiente" width="900" height="600" loading="lazy"></div>
         <h3 class="paso-nombre">Pintura</h3>
         <ul class="chips" aria-label="Problemas frecuentes">
           <li><button type="button" data-cat="Pintura">Pintar un ambiente</button></li>
@@ -259,8 +271,8 @@
         </ul>
         <a class="btn btn-yellow paso-accion" href="#contacto" data-form-open="usuario" data-cat="Pintura">Avísame cuando esté lista <svg class="ico"><use href="#i-flecha"/></svg></a>
       </article>
-      <article class="paso" data-cat="Cerrajería" data-fotos="img/oficios/cerrajeria-1-1600.jpg,img/oficios/cerrajeria-2-1600.jpg">
-        <div class="paso-fotos"><img src="img/oficios/cerrajeria-1-900.jpg" alt="Cerrajero trabajando en su taller de llaves" width="900" height="600" loading="lazy"><img src="img/oficios/cerrajeria-2-900.jpg" alt="Manos de un cerrajero con sus herramientas" width="900" height="600" loading="lazy"></div>
+      <article class="paso" data-cat="Cerrajería">
+        <div class="paso-fotos"><img src="img/oficios/cerrajeria-1-900.jpg" srcset="img/oficios/cerrajeria-1-900.jpg 900w, img/oficios/cerrajeria-1-1600.jpg 1600w" sizes="(min-width: 760px) 50vw, 100vw" alt="Cerrajero trabajando en su taller de llaves" width="900" height="600" loading="lazy"><img src="img/oficios/cerrajeria-2-900.jpg" srcset="img/oficios/cerrajeria-2-900.jpg 900w, img/oficios/cerrajeria-2-1600.jpg 1600w" sizes="(min-width: 760px) 50vw, 100vw" alt="Manos de un cerrajero con sus herramientas" width="900" height="600" loading="lazy"></div>
         <h3 class="paso-nombre">Cerrajería</h3>
         <p class="paso-texto">Encuentra cerrajeros para resolver problemas de seguridad.</p>
         <ul class="chips" aria-label="Problemas frecuentes">
@@ -271,8 +283,8 @@
         </ul>
         <a class="btn btn-yellow paso-accion" href="#contacto" data-form-open="usuario" data-cat="Cerrajería">Avísame cuando esté lista <svg class="ico"><use href="#i-flecha"/></svg></a>
       </article>
-      <article class="paso" data-cat="Albañilería" data-fotos="img/oficios/albanileria-1-1600.jpg,img/oficios/albanileria-2-1600.jpg">
-        <div class="paso-fotos"><img src="img/oficios/albanileria-1-900.jpg" alt="Albañiles levantando un muro de ladrillo" width="900" height="600" loading="lazy"><img src="img/oficios/albanileria-2-900.jpg" alt="Ladrillos con cemento y badilejo" width="900" height="600" loading="lazy"></div>
+      <article class="paso" data-cat="Albañilería">
+        <div class="paso-fotos"><img src="img/oficios/albanileria-1-900.jpg" srcset="img/oficios/albanileria-1-900.jpg 900w, img/oficios/albanileria-1-1600.jpg 1600w" sizes="(min-width: 760px) 50vw, 100vw" alt="Albañiles levantando un muro de ladrillo" width="900" height="600" loading="lazy"><img src="img/oficios/albanileria-2-900.jpg" srcset="img/oficios/albanileria-2-900.jpg 900w, img/oficios/albanileria-2-1600.jpg 1600w" sizes="(min-width: 760px) 50vw, 100vw" alt="Ladrillos con cemento y badilejo" width="900" height="600" loading="lazy"></div>
         <h3 class="paso-nombre">Albañilería</h3>
         <p class="paso-frase"><span class="hl">Repara</span>, mejora y <span class="hl">construye</span></p>
         <p class="paso-texto">Encuentra trabajadores para reparaciones, mantenimiento y mejoras de tu hogar.</p>
@@ -285,8 +297,8 @@
         </ul>
         <a class="btn btn-yellow paso-accion" href="#contacto" data-form-open="usuario" data-cat="Albañilería">Avísame cuando esté lista <svg class="ico"><use href="#i-flecha"/></svg></a>
       </article>
-      <article class="paso" data-cat="Mudanzas" data-fotos="img/oficios/mudanzas-1-1600.jpg,img/oficios/mudanzas-2-1600.jpg">
-        <div class="paso-fotos"><img src="img/oficios/mudanzas-1-900.jpg" alt="Fleteros con uniforme moviendo cajas" width="900" height="600" loading="lazy"><img src="img/oficios/mudanzas-2-900.jpg" alt="Fletero de overol junto a cajas de mudanza" width="900" height="600" loading="lazy"></div>
+      <article class="paso" data-cat="Mudanzas">
+        <div class="paso-fotos"><img src="img/oficios/mudanzas-1-900.jpg" srcset="img/oficios/mudanzas-1-900.jpg 900w, img/oficios/mudanzas-1-1600.jpg 1600w" sizes="(min-width: 760px) 50vw, 100vw" alt="Fleteros con uniforme moviendo cajas" width="900" height="600" loading="lazy"><img src="img/oficios/mudanzas-2-900.jpg" srcset="img/oficios/mudanzas-2-900.jpg 900w, img/oficios/mudanzas-2-1600.jpg 1600w" sizes="(min-width: 760px) 50vw, 100vw" alt="Fletero de overol junto a cajas de mudanza" width="900" height="600" loading="lazy"></div>
         <h3 class="paso-nombre">Mudanzas</h3>
         <ul class="chips" aria-label="Problemas frecuentes">
           <li><button type="button" data-cat="Mudanzas">Fletes pequeños</button></li>
@@ -296,8 +308,8 @@
         </ul>
         <a class="btn btn-yellow paso-accion" href="#contacto" data-form-open="usuario" data-cat="Mudanzas">Avísame cuando esté lista <svg class="ico"><use href="#i-flecha"/></svg></a>
       </article>
-      <article class="paso" data-cat="Fumigación" data-fotos="img/oficios/fumigacion-1-1600.jpg,img/oficios/fumigacion-2-1600.jpg">
-        <div class="paso-fotos"><img src="img/oficios/fumigacion-1-900.jpg" alt="Fumigador con traje protector fumigando" width="900" height="600" loading="lazy"><img src="img/oficios/fumigacion-2-900.jpg" alt="Fumigador de traje rojo fumigando un patio" width="900" height="600" loading="lazy"></div>
+      <article class="paso" data-cat="Fumigación">
+        <div class="paso-fotos"><img src="img/oficios/fumigacion-1-900.jpg" srcset="img/oficios/fumigacion-1-900.jpg 900w, img/oficios/fumigacion-1-1600.jpg 1600w" sizes="(min-width: 760px) 50vw, 100vw" alt="Fumigador con traje protector fumigando" width="900" height="600" loading="lazy"><img src="img/oficios/fumigacion-2-900.jpg" srcset="img/oficios/fumigacion-2-900.jpg 900w, img/oficios/fumigacion-2-1600.jpg 1600w" sizes="(min-width: 760px) 50vw, 100vw" alt="Fumigador de traje rojo fumigando un patio" width="900" height="600" loading="lazy"></div>
         <h3 class="paso-nombre">Fumigación</h3>
         <ul class="chips" aria-label="Problemas frecuentes">
           <li><button type="button" data-cat="Fumigación">Cucarachas y hormigas</button></li>
