@@ -1,9 +1,8 @@
 /* =========================================================
    TE RESUELVO · Movimiento de cine con GSAP + ScrollTrigger
-   - Portada en parallax: la mesa baja más lento que el texto.
    - Las imágenes se expanden suavemente al hacer scroll
      (entrada al recorrido, técnico y llamada final).
-   - Profundidad en las secciones y cinta de departamentos.
+   - Profundidad en las secciones.
    Si GSAP no carga o la persona pidió «reducir movimiento»,
    la página queda tal cual, sin animaciones.
    ========================================================= */
@@ -18,13 +17,6 @@
   mm.add("(prefers-reduced-motion: no-preference)", () => {
     const suave = { ease: "none" };
 
-    /* ---------- Portada: parallax de la mesa y del texto ---------- */
-    const hero = $(".hero");
-    if (hero) {
-      gsap.to(".hero-photo", { yPercent: 14, scale: 1.12, ...suave, scrollTrigger: { trigger: hero, start: "top top", end: "bottom top", scrub: 0.6 } });
-      gsap.to(".hero-copy", { y: -90, autoAlpha: 0.15, ...suave, scrollTrigger: { trigger: hero, start: "35% top", end: "bottom top", scrub: 0.6 } });
-      gsap.to(".phone-hero", { y: -140, rotate: 2, ...suave, scrollTrigger: { trigger: hero, start: "top top", end: "bottom top", scrub: 0.8 } });
-    }
 
     /* ---------- Entrada al recorrido: la mesa se abre hasta ocupar toda la pantalla ---------- */
     const pista = $(".recorrido-vivo .recorrido-pista");
@@ -58,10 +50,6 @@
       gsap.from(li, { x: -40, autoAlpha: 0, duration: 0.9, ease: "expo.out", delay: (k % 4) * 0.08, scrollTrigger: { trigger: li, start: "top 88%", once: true } });
     });
 
-    /* ---------- Departamentos: la cinta corre con el scroll y los botones suben en cascada ---------- */
-    const cinta = $(".deptos-cinta");
-    if (cinta) gsap.fromTo(cinta, { xPercent: 0 }, { xPercent: -50, ...suave, scrollTrigger: { trigger: ".deptos", start: "top bottom", end: "bottom top", scrub: 0.5 } });
-    gsap.from(".depto", { y: 30, autoAlpha: 0, duration: 0.8, ease: "expo.out", stagger: 0.05, scrollTrigger: { trigger: ".deptos-lista", start: "top 90%", once: true } });
 
     // Las medidas cambian cuando cargan las fotos y las fuentes
     window.addEventListener("load", () => ST.refresh());
