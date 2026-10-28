@@ -2,8 +2,9 @@
    TE RESUELVO · Demo «dentro de la app» (GSAP + ScrollTrigger)
    1. La portada queda fija; al bajar, el texto se aparta y el
       celular pasa al centro y crece: entramos a la app.
-   2. Cada servicio se abre girando como la cara de un cubo 3D
-      (inicio → Electricidad → Plomería → … → Fumigación).
+   2. Cada servicio entra deslizándose de costado, como al pasar
+      de una pantalla a otra en la app (inicio → Electricidad → …).
+      El tramo de cada uno es corto, para llegar pronto al pre-registro.
    3. Al final la escena se desvanece y aparece el pre-registro.
    ========================================================= */
 (function () {
@@ -19,10 +20,11 @@
   const $ = (s, el = document) => el.querySelector(s);
   const app = $(".app", viaje), pantalla = $(".app-pantalla", viaje);
   const caras = [...viaje.querySelectorAll(".cara")];
-  const copia = $(".hero-copy", viaje), velo = $(".viaje-velo", viaje), foto = $(".hero-photo", viaje);
+  const copia = $(".hero-copy", viaje), velo = $(".viaje-velo", viaje);
   const rotulo = $(".viaje-rotulo", viaje), rNum = $(".viaje-num", viaje), rNombre = $(".viaje-nombre", viaje);
   const N = caras.length;            // inicio + 11 servicios
-  const U = 1 + (N - 1) + 1.2;       // entrada + giros + desvanecimiento
+  const L = 0.55;                    // scroll de cada servicio (en pantallas)
+  const U = 1 + (N - 1) * L + 1;     // entrada + servicios + desvanecimiento
   const lim = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
   const suave = (x) => x * x * (3 - 2 * x);
   const escritorio = () => window.matchMedia("(min-width: 960px)").matches;
@@ -41,23 +43,24 @@
     const o = inicio();
     gsap.set(copia, { autoAlpha: 1 - a, x: -80 * a });
     gsap.set(velo, { opacity: 0.25 + 0.5 * a });
-    gsap.set(foto, { scale: 1 + 0.08 * a });
-    const final = suave(lim(u - (U - 1.2), 0, 1));
+    const final = suave(lim(u - (U - 1), 0, 1));
     gsap.set(app, { x: o.x * (1 - a), y: o.y * (1 - a), scale: o.s + (1 - o.s) * a + final * 0.12, rotate: o.r * (1 - a), rotationY: escritorio() ? -14 * (1 - a) : 0 });
     const r2 = suave(lim((u - 0.75) / 0.3));
     if (rotulo) gsap.set(rotulo, { autoAlpha: escritorio() ? r2 * (1 - final) : 0, x: -30 * (1 - r2) });
 
-    // 2. Giros de cubo: cada tramo muestra el servicio y al final gira hacia el siguiente
-    const sRaw = lim(u - 1, 0, N - 1);
+    // 2. Deslizamiento: cada tramo muestra el servicio y al final se desliza hacia el siguiente
+    const sRaw = lim((u - 1) / L, 0, N - 1);
     const base = Math.floor(sRaw), frac = sRaw - base;
-    const s = base + suave(lim((frac - 0.5) / 0.5));
-    const D = pantalla.clientWidth / 2;
+    const s = base + suave(lim((frac - 0.4) / 0.6));
     caras.forEach((c, k) => {
       const r = k - s;
       if (Math.abs(r) >= 1) { c.style.visibility = "hidden"; return; }
       c.style.visibility = "visible";
-      c.style.transform = `translateZ(${-D}px) rotateY(${(r * 90).toFixed(2)}deg) translateZ(${D}px)`;
-      c.style.setProperty("--sombra", (Math.abs(r) * 0.6).toFixed(3));
+      // La pantalla que sale se corre un poco menos y se oscurece, como en las apps
+      const x = r < 0 ? r * 32 : r * 100;
+      c.style.transform = `translate3d(${x.toFixed(2)}%,0,0)`;
+      c.style.zIndex = r < 0 ? 1 : 2;
+      c.style.setProperty("--sombra", (r < 0 ? -r * 0.45 : 0).toFixed(3));
     });
     const k = Math.round(s);
     if (k !== actual) {
@@ -89,9 +92,9 @@
   gsap.fromTo("#contacto", { autoAlpha: 0, y: 80 }, { autoAlpha: 1, y: 0, ease: "none", scrollTrigger: { trigger: "#contacto", start: "top bottom", end: "top 25%", scrub: 0.6 } });
 
   // Las opciones del inicio de la app llevan a su servicio
-  const irA = (k) => window.scrollTo({ top: st.start + ((1 + k + 0.15) / U) * (st.end - st.start), behavior: "smooth" });
+  const irA = (k) => window.scrollTo({ top: st.start + ((1 + (k + 0.1) * L) / U) * (st.end - st.start), behavior: "smooth" });
   viaje.querySelectorAll("[data-ir]").forEach((b) => b.addEventListener("click", () => irA(+b.dataset.ir)));
   // Con el teclado: al enfocar algo de una pantalla, el recorrido va hasta ella
-  caras.forEach((c, k) => c.addEventListener("focusin", () => { if (k !== actual) window.scrollTo({ top: st.start + ((1 + k + 0.15) / U) * (st.end - st.start) }); }));
+  caras.forEach((c, k) => c.addEventListener("focusin", () => { if (k !== actual) window.scrollTo({ top: st.start + ((1 + (k + 0.1) * L) / U) * (st.end - st.start) }); }));
   window.addEventListener("load", () => ST.refresh());
 })();

@@ -1,8 +1,8 @@
 /* =========================================================
    TE RESUELVO · Demo «dentro de la app»
    La portada lleva un celular; al bajar, el celular pasa al
-   centro y los 11 servicios se abren en su pantalla girando
-   como caras de un cubo. Al final todo se desvanece y aparece
+   centro y los 11 servicios pasan por su pantalla deslizándose
+   de costado, como en una app. Al final todo se desvanece y aparece
    el pre-registro. Se carga después de mesa.css.
    ========================================================= */
 .demo .viaje{height:100svh;min-height:600px;margin-top:0}
@@ -16,8 +16,9 @@
 .app::before{content:"";position:absolute;z-index:5;top:calc(var(--aw) * .055);left:50%;width:calc(var(--aw) * .3);height:calc(var(--aw) * .07);margin-left:calc(var(--aw) * -.15);border-radius:99px;background:#0a0a0a}
 .app-pantalla{position:relative;width:100%;height:100%;overflow:hidden;border-radius:calc(var(--aw) * .12);background:#0d0d0c;perspective:calc(var(--aw) * 2.6);container-type:size}
 
-/* Cada pantalla de la app es una cara del cubo */
+/* Cada pantalla de la app */
 .cara{position:absolute;inset:0;display:flex;flex-direction:column;padding:15cqw 6cqw 6cqw;background:#f6f3ec;color:#0d0d0c;backface-visibility:hidden;-webkit-backface-visibility:hidden;transform-origin:50% 50%;overflow:hidden}
+.cara{box-shadow:-2cqw 0 6cqw rgba(0,0,0,.35)}
 .cara::after{content:"";position:absolute;inset:0;background:#000;opacity:var(--sombra,0);pointer-events:none}
 .app-barra{position:absolute;left:8cqw;right:8cqw;top:4.6cqw;display:flex;justify-content:space-between;align-items:center;font:700 3.6cqw/1 Inter,system-ui,sans-serif}
 .app-barra i{width:7cqw;height:3.2cqw;border-radius:1cqw;border:.5cqw solid currentColor}
