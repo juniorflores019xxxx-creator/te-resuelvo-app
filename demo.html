@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="es-BO">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Te Resuelvo · Demo</title>
+<meta name="robots" content="noindex">
+<meta name="description" content="Muy pronto en Santa Cruz: pide un servicio, recibe ofertas de técnicos verificados cerca de ti y elige la que más te convenga. Pre-regístrate y te avisamos cuando la app esté lista. Electricidad, plomería, climatización, limpieza, jardinería, carpintería, pintura, cerrajería, albañilería, mudanzas y fumigación.">
+<meta name="theme-color" content="#0d0d0c">
+<meta property="og:title" content="Te Resuelvo · ¿Necesitas algo? Te Resuelvo.">
+<meta property="og:description" content="Muy pronto en Santa Cruz: pide un servicio, recibe ofertas de técnicos verificados cerca de ti y elige la que más te convenga. Pre-regístrate y te avisamos cuando la app esté lista.">
+<meta property="og:image" content="https://juniorflores019xxxx-creator.github.io/te-resuelvo-app/img/compartir.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Te Resuelvo: ¿Necesitas algo? Te Resuelvo. Técnicos verificados en Bolivia.">
+<meta property="og:url" content="https://juniorflores019xxxx-creator.github.io/te-resuelvo-app/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Te Resuelvo">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://juniorflores019xxxx-creator.github.io/te-resuelvo-app/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Te Resuelvo","url":"https://juniorflores019xxxx-creator.github.io/te-resuelvo-app/","logo":"https://juniorflores019xxxx-creator.github.io/te-resuelvo-app/img/logo-te-resuelvo.png","slogan":"¿Necesitas algo? Te Resuelvo.","description":"Plataforma para pedir técnicos verificados en Bolivia: electricidad, plomería, climatización, limpieza, jardinería, carpintería, pintura, cerrajería, albañilería, mudanzas y fumigación.","parentOrganization":{"@type":"Organization","name":"Soluciones Informáticas de Bolivia SIBNOVA Ltda.","url":"https://sibnova.com.bo"},"areaServed":{"@type":"Country","name":"Bolivia"},"contactPoint":{"@type":"ContactPoint","telephone":"+591-76365928","contactType":"customer service","email":"teresuelvoo@gmail.com","availableLanguage":"es"},"sameAs":["https://www.facebook.com/profile.php?id=61595675542080","https://www.tiktok.com/@te.resuelvo1","https://www.instagram.com/teresuelvo.bo"]}</script>
+<meta property="og:locale" content="es_BO">
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="apple-touch-icon" href="img/logo-te-resuelvo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Inter:wght@400..800&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="img/mesa/4312860-2000.jpg" imagesrcset="img/mesa/4312860-1000.jpg 1000w, img/mesa/4312860-2000.jpg 2000w" imagesizes="(min-width: 960px) 60vw, 100vw">
+<link rel="stylesheet" href="css/estilos.css">
+<link rel="stylesheet" href="css/mesa.css">
+<link rel="stylesheet" href="css/demo.css">
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body class="mesa demo">
+
+<!-- Íconos de herramientas (solo decorativos) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-llave" viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3.5 17.5a2 2 0 0 0 3 3l5.8-5.8a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-manometro" viewBox="0 0 24 24"><circle cx="12" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 11l3.5-3M8 21h8M12 18v3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-tubo" viewBox="0 0 24 24"><path d="M3 9h7a3 3 0 0 1 3 3v9M3 13h5a1 1 0 0 1 1 1v7M3 7v8M11 21h8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-multimetro" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><rect x="8" y="5.5" width="8" height="4" rx="1" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="15" r="2.5" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+    <symbol id="i-rayo" viewBox="0 0 24 24"><path d="M13 2 5 13h6l-1 9 8-11h-6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-candado" viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="10.5" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5M12 14.5v3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-paleta" viewBox="0 0 24 24"><path d="M14 3 21 10l-8.5 2.5L11.5 13 3 21M14 3l-2.5 8.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-nivel" viewBox="0 0 24 24"><rect x="2" y="8" width="20" height="8" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><rect x="9.5" y="10.5" width="5" height="3" rx="1.5" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+    <symbol id="i-ladrillo" viewBox="0 0 24 24"><path d="M3 6h18v12H3zM3 12h18M9 6v6M15 12v6" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-copo" viewBox="0 0 24 24"><path d="M12 2v20M4 6.5l16 11M4 17.5l16-11M9.5 3.5 12 6l2.5-2.5M9.5 20.5 12 18l2.5 2.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-spray" viewBox="0 0 24 24"><path d="M8 9h7v12H8zM9.5 9V6h4v3M13.5 6h3l1.5-2M18 7h2M18 9.5l1.5 1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-hoja" viewBox="0 0 24 24"><path d="M5 19c0-8 5-14 15-15-1 10-7 15-15 15zM5 19l7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-serrucho" viewBox="0 0 24 24"><path d="M3 14 15 4l6 6-12 10H3zM7 16l1.5-1.5M10 13.5l1.5-1.5M13 11l1.5-1.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-rodillo" viewBox="0 0 24 24"><rect x="3" y="3" width="15" height="6" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M18 6h3v5h-9v3M10.5 14h3v7h-3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-camion" viewBox="0 0 24 24"><path d="M2 6h12v10H2zM14 9h4.5L22 12.5V16h-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="6" cy="18" r="2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="18" r="2" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+    <symbol id="i-insecto" viewBox="0 0 24 24"><ellipse cx="12" cy="14" rx="4.5" ry="6" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 8V20M9.5 5.5 8 3M14.5 5.5 16 3M7.5 11 3.5 9.5M16.5 11l4-1.5M7.5 15H3.5M16.5 15h4M8 18.5 5 21M16 18.5l3 2.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-flecha" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="10" r="2.5" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+    <symbol id="i-camara" viewBox="0 0 24 24"><path d="M4 8h3l2-3h6l2 3h3v11H4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.5" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-facebook" viewBox="0 0 24 24"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v6h4v-6h3l1-4h-4V8z" fill="currentColor"/></symbol>
+    <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.3" fill="currentColor"/></symbol>
+    <symbol id="i-tiktok" viewBox="0 0 24 24"><path d="M14.5 3h3c.3 2.2 1.7 3.6 3.5 3.8v3.1c-1.3 0-2.5-.4-3.5-1v6.4a5.8 5.8 0 1 1-5.8-5.8c.3 0 .6 0 .9.1v3.2a2.7 2.7 0 1 0 1.9 2.6z" fill="currentColor"/></symbol>
+    <symbol id="i-whatsapp" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 2.9 2.9 0 0 0-.9 2.2c0 1.3.9 2.5 1 2.7.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.6-.3z"/></symbol>
+    <symbol id="i-estrella" viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.8z" fill="currentColor"/></symbol>
+  </defs>
+</svg>
+
+<a class="skip" href="#principal">Saltar al contenido</a>
+
+<!-- ===================== ENCABEZADO ===================== -->
+<header class="header" id="header">
+  <div class="wrap header-in">
+    <a class="logo" href="#inicio" aria-label="Te Resuelvo, ir al inicio">
+      <img src="img/logo-96.png" alt="" width="40" height="40">
+      <span>Te Resuelvo</span>
+    </a>
+    <nav class="nav" aria-label="Principal">
+      <a href="#inicio">Inicio</a>
+      <a href="#inicio">Servicios</a>
+      <a href="#como-funciona">Cómo funciona</a>
+      <a href="#trabajadores">Para trabajadores</a>
+      <a href="#contacto">Pre-registro</a>
+    </nav>
+    <a class="btn btn-yellow btn-sm header-cta" href="#contacto" data-form-open="usuario">Pre-regístrate</a>
+    <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="menu-movil" aria-label="Abrir menú"><span></span></button>
+  </div>
+</header>
+
+<nav class="menu-movil" id="menu-movil" aria-label="Menú móvil">
+  <a href="#inicio">Inicio</a>
+  <a href="#inicio">Servicios</a>
+  <a href="#como-funciona">Cómo funciona</a>
+  <a href="#trabajadores">Para trabajadores</a>
+  <a href="#contacto">Pre-registro</a>
+  <a class="btn btn-yellow" href="#contacto" data-form-open="usuario">Pre-regístrate</a>
+</nav>
+
+<main id="principal">
+
+<!-- ===================== HERO ===================== -->
+<section class="hero viaje" id="inicio" aria-labelledby="hero-titulo">
+  <div class="viaje-escena">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <h1 id="hero-titulo" class="title-xl on-dark" data-subs data-subs-now><span class="sig">¿</span>Necesitas algo? <span class="hl">Te Resuelvo.</span></h1>
+      <p class="hero-text anim" style="--d:.9s">Muy pronto podrás pedir un servicio, recibir ofertas de técnicos verificados cerca de ti y elegir la que más te convenga. Pre-regístrate y te avisamos cuando la app esté lista.</p>
+      <div class="hero-ctas anim" style="--d:1.05s">
+        <a class="btn btn-yellow btn-lg" href="#contacto" data-form-open="usuario">Quiero usar la app <svg class="ico"><use href="#i-flecha"/></svg></a>
+        <a class="btn btn-outline btn-lg" href="#contacto" data-form-open="trabajador">Quiero trabajar</a>
+      </div>
+      <ul class="hero-tags anim" style="--d:1.2s" aria-label="Servicios disponibles">
+        <li>Electricidad</li><li>Plomería</li><li>Climatización</li><li>Limpieza</li><li>Jardinería</li><li>Carpintería</li><li>Pintura</li><li>Cerrajería</li><li>Albañilería</li><li>Mudanzas</li><li>Fumigación</li><li class="tag-mas">y muchos más</li>
+      </ul>
+    </div>
+    <div class="hero-visual">
+      <figure class="hero-photo">
+        <img src="img/mesa/4312860-2000.jpg" srcset="img/mesa/4312860-1000.jpg 1000w, img/mesa/4312860-2000.jpg 2000w" sizes="(min-width: 960px) 60vw, 100vw" alt="Herramientas amarillas y negras ordenadas sobre una mesa negra, vistas desde arriba: nivel, serrucho, cúter, cinta métrica, amoladora y disco de sierra" width="2000" height="3000" fetchpriority="high">
+      </figure>
+    </div>
+  </div>
+  <div class="viaje-velo" aria-hidden="true"></div>
+
+  <!-- El recorrido de los 11 servicios ocurre dentro de la app -->
+  <div class="viaje-rotulo" aria-hidden="true"><p class="viaje-num"></p><p class="viaje-nombre">Así se verá la app</p></div>
+  <div class="app" role="group" aria-label="Ejemplo ilustrativo de la app Te Resuelvo con sus 11 servicios">
+    <div class="app-pantalla">
+        <div class="cara cara-inicio" data-i="0">
+          <div class="app-barra" aria-hidden="true"><span>9:41</span><i></i></div>
+          <div class="app-cab"><img src="img/logo-96.png" alt="" width="28" height="28"><b>Te Resuelvo</b></div>
+          <p class="app-hola">¿Qué necesitas?</p>
+          <p class="app-sub">Elige un servicio y recibe ofertas de técnicos cerca de ti.</p>
+          <ul class="app-grid">
+            <li><button type="button" data-ir="1"><svg class="ico" aria-hidden="true"><use href="#i-rayo"/></svg>Electricidad</button></li>
+            <li><button type="button" data-ir="2"><svg class="ico" aria-hidden="true"><use href="#i-llave"/></svg>Plomería</button></li>
+            <li><button type="button" data-ir="3"><svg class="ico" aria-hidden="true"><use href="#i-copo"/></svg>Climatización</button></li>
+            <li><button type="button" data-ir="4"><svg class="ico" aria-hidden="true"><use href="#i-spray"/></svg>Limpieza</button></li>
+            <li><button type="button" data-ir="5"><svg class="ico" aria-hidden="true"><use href="#i-hoja"/></svg>Jardinería</button></li>
+            <li><button type="button" data-ir="6"><svg class="ico" aria-hidden="true"><use href="#i-serrucho"/></svg>Carpintería</button></li>
+            <li><button type="button" data-ir="7"><svg class="ico" aria-hidden="true"><use href="#i-rodillo"/></svg>Pintura</button></li>
+            <li><button type="button" data-ir="8"><svg class="ico" aria-hidden="true"><use href="#i-candado"/></svg>Cerrajería</button></li>
+            <li><button type="button" data-ir="9"><svg class="ico" aria-hidden="true"><use href="#i-ladrillo"/></svg>Albañilería</button></li>
+            <li><button type="button" data-ir="10"><svg class="ico" aria-hidden="true"><use href="#i-camion"/></svg>Mudanzas</button></li>
+            <li><button type="button" data-ir="11"><svg class="ico" aria-hidden="true"><use href="#i-insecto"/></svg>Fumigación</button></li>
+            <li class="app-mas"><span>y muchos más</span></li>
+          </ul>
+          <p class="app-nota">Ejemplo ilustrativo de la app</p>
+        </div>
+        <div class="cara" data-i="1" data-cat="Electricidad">
+          <div class="app-barra" aria-hidden="true"><span>9:41</span><i></i></div>
+          <div class="app-cab"><span class="app-atras" aria-hidden="true">‹</span><b>Electricidad</b><svg class="ico" aria-hidden="true"><use href="#i-rayo"/></svg></div>
+          <div class="app-fotos"><img src="img/oficios/electricidad-1-900.jpg" alt="" loading="lazy" width="900" height="600"><img src="img/oficios/electricidad-2-900.jpg" alt="" loading="lazy" width="900" height="600"></div>
+          <h3 class="app-nombre">Electricidad</h3>
+          <p class="app-frase"><span class="hl">Seguridad</span> y soluciones eléctricas</p>
+          <p class="app-preg">¿Qué problema tienes?</p>
+          <ul class="chips app-chips" aria-label="Problemas frecuentes de electricidad">
+            <li><button type="button" data-cat="Electricidad">La ducha eléctrica no calienta</button></li>
+            <li><button type="button" data-cat="Electricidad">Salta el térmico</button></li>
+            <li><button type="button" data-cat="Electricidad">Más enchufes o luces</button></li>
+            <li><button type="button" class="chip-mas" data-cat="Electricidad">Y mucho más…</button></li>
+          </ul>
+          <a class="btn btn-yellow app-cta" href="#contacto" data-form-open="usuario" data-cat="Electricidad">Avísame cuando esté lista</a>
+        </div>
+        <div class="cara" data-i="2" data-cat="Plomería">
+          <div class="app-barra" aria-hidden="true"><span>9:41</span><i></i></div>
+          <div class="app-cab"><span class="app-atras" aria-hidden="true">‹</span><b>Plomería</b><svg class="ico" aria-hidden="true"><use href="#i-llave"/></svg></div>
+          <div class="app-fotos"><img src="img/oficios/plomeria-1-900.jpg" alt="" loading="lazy" width="900" height="600"><img src="img/oficios/plomeria-2-900.jpg" alt="" loading="lazy" width="900" height="600"></div>
+          <h3 class="app-nombre">Plomería</h3>
+          <p class="app-frase">¿<span class="hl">Fugas</span> o cañerías tapadas?</p>
+          <p class="app-preg">¿Qué problema tienes?</p>
+          <ul class="chips app-chips" aria-label="Problemas frecuentes de plomería">
+            <li><button type="button" data-cat="Plomería">Hay una fuga de agua</button></li>
+            <li><button type="button" data-cat="Plomería">Se tapó el inodoro</button></li>
+            <li><button type="button" data-cat="Plomería">La bomba de agua no funciona</button></li>
+            <li><button type="button" data-cat="Plomería">Lavaplatos tapado</button></li>
+            <li><button type="button" class="chip-mas" data-cat="Plomería">Y mucho más…</button></li>
+          </ul>
+          <a class="btn btn-yellow app-cta" href="#contacto" data-form-open="usuario" data-cat="Plomería">Avísame cuando esté lista</a>
+        </div>
+        <div class="cara" data-i="3" data-cat="Climatización">
+          <div class="app-barra" aria-hidden="true"><span>9:41</span><i></i></div>
+          <div class="app-cab"><span class="app-atras" aria-hidden="true">‹</span><b>Climatización</b><svg class="ico" aria-hidden="true"><use href="#i-copo"/></svg></div>
+          <div class="app-fotos"><img src="img/oficios/climatizacion-1-900.jpg" alt="" loading="lazy" width="900" height="600"><img src="img/oficios/climatizacion-2-900.jpg" alt="" loading="lazy" width="900" height="600"></div>
+          <h3 class="app-nombre">Climatización</h3>
+          <p class="app-frase">¿Problemas con tu <span class="hl">aire</span>?</p>
+          <p class="app-preg">¿Qué problema tienes?</p>
+          <ul class="chips app-chips" aria-label="Problemas frecuentes de climatización">
+            <li><button type="button" data-cat="Climatización">El aire no enfría</button></li>
+            <li><button type="button" data-cat="Climatización">Mantenimiento de split</button></li>
+            <li><button type="button" data-cat="Climatización">Instalación de aire</button></li>
+            <li><button type="button" class="chip-mas" data-cat="Climatización">Y mucho más…</button></li>
+          </ul>
+          <a class="btn btn-yellow app-cta" href="#contacto" data-form-open="usuario" data-cat="Climatización">Avísame cuando esté lista</a>
+        </div>
+        <div class="cara" data-i="4" data-cat="Limpieza">
+          <div class="app-barra" aria-hidden="true"><span>9:41</span><i></i></div>
+          <div class="app-cab"><span class="app-atras" aria-hidden="true">‹</span><b>Limpieza</b><svg class="ico" aria-hidden="true"><use href="#i-spray"/></svg></div>
+          <div class="app-fotos"><img src="img/oficios/limpieza-1-900.jpg" alt="" loading="lazy" width="900" height="600"><img src="img/oficios/limpieza-2-900.jpg" alt="" loading="lazy" width="900" height="600"></div>
+          <h3 class="app-nombre">Limpieza</h3>
+          
+          <p class="app-preg">¿Qué problema tienes?</p>
+          <ul class="chips app-chips" aria-label="Problemas frecuentes de limpieza">
+            <li><button type="button" data-cat="Limpieza">Limpieza de casa por horas</button></li>
+            <li><button type="button" data-cat="Limpieza">Limpieza profunda</button></li>
+            <li><button type="button" data-cat="Limpieza">Sofás y colchones</button></li>
+            <li><button type="button" class="chip-mas" data-cat="Limpieza">Y mucho más…</button></li>
+          </ul>
+          <a class="btn btn-yellow app-cta" href="#contacto" data-form-open="usuario" data-cat="Limpieza">Avísame cuando esté lista</a>
+        </div>
+        <div class="cara" data-i="5" data-cat="Jardinería">
+          <div class="app-barra" aria-hidden="true"><span>9:41</span><i></i></div>
+          <div class="app-cab"><span class="app-atras" aria-hidden="true">‹</span><b>Jardinería</b><svg class="ico" aria-hidden="true"><use href="#i-hoja"/></svg></div>
+          <div class="app-fotos"><img src="img/oficios/jardineria-1-900.jpg" alt="" loading="lazy" width="900" height="600"><img src="img/oficios/jardineria-2-900.jpg" alt="" loading="lazy" width="900" height="600"></div>
+          <h3 class="app-nombre">Jardinería</h3>
+          
+          <p class="app-preg">¿Qué problema tienes?</p>
+          <ul class="chips app-chips" aria-label="Problemas frecuentes de jardinería">
+            <li><button type="button" data-cat="Jardinería">Corte de césped</button></li>
+            <li><button type="button" data-cat="Jardinería">Poda de árboles y arbustos</button></li>
+            <li><button type="button" data-cat="Jardinería">Desmalezado</button></li>
+            <li><button type="button" class="chip-mas" data-cat="Jardinería">Y mucho más…</button></li>
+          </ul>
+          <a class="btn btn-yellow app-cta" href="#contacto" data-form-open="usuario" data-cat="Jardinería">Avísame cuando esté lista</a>
+        </div>
+        <div class="cara" data-i="6" data-cat="Carpintería">
+          <div class="app-barra" aria-hidden="true"><span>9:41</span><i></i></div>
+          <div class="app-cab"><span class="app-atras" aria-hidden="true">‹</span><b>Carpintería</b><svg class="ico" aria-hidden="true"><use href="#i-serrucho"/></svg></div>
+          <div class="app-fotos"><img src="img/oficios/carpinteria-1-900.jpg" alt="" loading="lazy" width="900" height="600"><img src="img/oficios/carpinteria-2-900.jpg" alt="" loading="lazy" width="900" height="600"></div>
+          <h3 class="app-nombre">Carpintería</h3>
+          
+          <p class="app-preg">¿Qué problema tienes?</p>
+          <ul class="chips app-chips" aria-label="Problemas frecuentes de carpintería">
+            <li><button type="button" data-cat="Carpintería">Puertas que no cierran</button></li>
+            <li><button type="button" data-cat="Carpintería">Armado de muebles</button></li>
+            <li><button type="button" data-cat="Carpintería">Repisas y muebles a medida</button></li>
+            <li><button type="button" class="chip-mas" data-cat="Carpintería">Y mucho más…</button></li>
+          </ul>
+          <a class="btn btn-yellow app-cta" href="#contacto" data-form-open="usuario" data-cat="Carpintería">Avísame cuando esté lista</a>
+        </div>
+        <div class="cara" data-i="7" data-cat="Pintura">
+          <div class="app-barra" aria-hidden="true"><span>9:41</span><i></i></div>
+          <div class="app-cab"><span class="app-atras" aria-hidden="true">‹</span><b>Pintura</b><svg class="ico" aria-hidden="true"><use href="#i-rodillo"/></svg></div>
+          <div class="app-fotos"><img src="img/oficios/pintura-1-900.jpg" alt="" loading="lazy" width="900" height="600"><img src="img/oficios/pintura-2-900.jpg" alt="" loading="lazy" width="900" height="600"></div>
+          <h3 class="app-nombre">Pintura</h3>
+          
+          <p class="app-preg">¿Qué problema tienes?</p>
+          <ul class="chips app-chips" aria-label="Problemas frecuentes de pintura">
+            <li><button type="button" data-cat="Pintura">Pintar un ambiente</button></li>
+            <li><button type="button" data-cat="Pintura">Manchas de humedad</button></li>
+            <li><button type="button" data-cat="Pintura">Rejas, puertas y portones</button></li>
+            <li><button type="button" class="chip-mas" data-cat="Pintura">Y mucho más…</button></li>
+          </ul>
+          <a class="btn btn-yellow app-cta" href="#contacto" data-form-open="usuario" data-cat="Pintura">Avísame cuando esté lista</a>
+        </div>
+        <div class="cara" data-i="8" data-cat="Cerrajería">
+          <div class="app-barra" aria-hidden="true"><span>9:41</span><i></i></div>
+          <div class="app-cab"><span class="app-atras" aria-hidden="true">‹</span><b>Cerrajería</b><svg class="ico" aria-hidden="true"><use href="#i-candado"/></svg></div>
+          <div class="app-fotos"><img src="img/oficios/cerrajeria-1-900.jpg" alt="" loading="lazy" width="900" height="600"><img src="img/oficios/cerrajeria-2-900.jpg" alt="" loading="lazy" width="900" height="600"></div>
+          <h3 class="app-nombre">Cerrajería</h3>
+          
+          <p class="app-preg">¿Qué problema tienes?</p>
+          <ul class="chips app-chips" aria-label="Problemas frecuentes de cerrajería">
+            <li><button type="button" data-cat="Cerrajería">Me quedé afuera</button></li>
+            <li><button type="button" data-cat="Cerrajería">Cambiar la chapa</button></li>
+            <li><button type="button" data-cat="Cerrajería">Copias y cerraduras digitales</button></li>
+            <li><button type="button" class="chip-mas" data-cat="Cerrajería">Y mucho más…</button></li>
+          </ul>
+          <a class="btn btn-yellow app-cta" href="#contacto" data-form-open="usuario" data-cat="Cerrajería">Avísame cuando esté lista</a>
+        </div>
+        <div class="cara" data-i="9" data-cat="Albañilería">
+          <div class="app-barra" aria-hidden="true"><span>9:41</span><i></i></div>
+          <div class="app-cab"><span class="app-atras" aria-hidden="true">‹</span><b>Albañilería</b><svg class="ico" aria-hidden="true"><use href="#i-ladrillo"/></svg></div>
+          <div class="app-fotos"><img src="img/oficios/albanileria-1-900.jpg" alt="" loading="lazy" width="900" height="600"><img src="img/oficios/albanileria-2-900.jpg" alt="" loading="lazy" width="900" height="600"></div>
+          <h3 class="app-nombre">Albañilería</h3>
+          <p class="app-frase"><span class="hl">Repara</span>, mejora y construye</p>
+          <p class="app-preg">¿Qué problema tienes?</p>
+          <ul class="chips app-chips" aria-label="Problemas frecuentes de albañilería">
+            <li><button type="button" data-cat="Albañilería">Gotera en el techo</button></li>
+            <li><button type="button" data-cat="Albañilería">Grietas en la pared</button></li>
+            <li><button type="button" data-cat="Albañilería">Cerámicas rotas</button></li>
+            <li><button type="button" data-cat="Albañilería">Ampliar o construir</button></li>
+            <li><button type="button" class="chip-mas" data-cat="Albañilería">Y mucho más…</button></li>
+          </ul>
+          <a class="btn btn-yellow app-cta" href="#contacto" data-form-open="usuario" data-cat="Albañilería">Avísame cuando esté lista</a>
+        </div>
+        <div class="cara" data-i="10" data-cat="Mudanzas">
+          <div class="app-barra" aria-hidden="true"><span>9:41</span><i></i></div>
+          <div class="app-cab"><span class="app-atras" aria-hidden="true">‹</span><b>Mudanzas</b><svg class="ico" aria-hidden="true"><use href="#i-camion"/></svg></div>
+          <div class="app-fotos"><img src="img/oficios/mudanzas-1-900.jpg" alt="" loading="lazy" width="900" height="600"><img src="img/oficios/mudanzas-2-900.jpg" alt="" loading="lazy" width="900" height="600"></div>
+          <h3 class="app-nombre">Mudanzas</h3>
+          
+          <p class="app-preg">¿Qué problema tienes?</p>
+          <ul class="chips app-chips" aria-label="Problemas frecuentes de mudanzas">
+            <li><button type="button" data-cat="Mudanzas">Fletes pequeños</button></li>
+            <li><button type="button" data-cat="Mudanzas">Muebles pesados</button></li>
+            <li><button type="button" data-cat="Mudanzas">Mudanza completa</button></li>
+            <li><button type="button" class="chip-mas" data-cat="Mudanzas">Y mucho más…</button></li>
+          </ul>
+          <a class="btn btn-yellow app-cta" href="#contacto" data-form-open="usuario" data-cat="Mudanzas">Avísame cuando esté lista</a>
+        </div>
+        <div class="cara" data-i="11" data-cat="Fumigación">
+          <div class="app-barra" aria-hidden="true"><span>9:41</span><i></i></div>
+          <div class="app-cab"><span class="app-atras" aria-hidden="true">‹</span><b>Fumigación</b><svg class="ico" aria-hidden="true"><use href="#i-insecto"/></svg></div>
+          <div class="app-fotos"><img src="img/oficios/fumigacion-1-900.jpg" alt="" loading="lazy" width="900" height="600"><img src="img/oficios/fumigacion-2-900.jpg" alt="" loading="lazy" width="900" height="600"></div>
+          <h3 class="app-nombre">Fumigación</h3>
+          
+          <p class="app-preg">¿Qué problema tienes?</p>
+          <ul class="chips app-chips" aria-label="Problemas frecuentes de fumigación">
+            <li><button type="button" data-cat="Fumigación">Cucarachas y hormigas</button></li>
+            <li><button type="button" data-cat="Fumigación">Mosquitos (dengue)</button></li>
+            <li><button type="button" data-cat="Fumigación">Termitas y roedores</button></li>
+            <li><button type="button" class="chip-mas" data-cat="Fumigación">Y mucho más…</button></li>
+          </ul>
+          <a class="btn btn-yellow app-cta" href="#contacto" data-form-open="usuario" data-cat="Fumigación">Avísame cuando esté lista</a>
+        </div>
+    </div>
+  </div>
+  </div>
+</section>
+
+
+<!-- ===================== PRE-REGISTRO (CONTACTO) ===================== -->
+<section class="contacto" id="contacto" aria-labelledby="contacto-titulo">
+  <div class="wrap">
+    <p class="badge"><span class="dot-live" aria-hidden="true"></span>Empezamos en Santa Cruz</p>
+    <h2 id="contacto-titulo" class="title-lg center" data-subs><span class="hl">Pre-regístrate</span></h2>
+    <p class="section-lead center reveal lead-registro">La app está en camino. Empezamos en <b>Santa Cruz</b> y, según los pre-registros, si encontramos técnicos en otros departamentos, <b>ampliaremos ahí</b>. Déjanos tus datos y te avisamos por WhatsApp, con el enlace para instalarla, apenas esté lista.</p>
+
+
+    <div class="tabs" role="tablist" aria-label="Tipo de pre-registro">
+      <button class="tab is-on" role="tab" id="tab-usuario" aria-controls="panel-usuario" aria-selected="true" type="button" data-tab="usuario">Quiero usar la app</button>
+      <button class="tab" role="tab" id="tab-trabajador" aria-controls="panel-trabajador" aria-selected="false" type="button" data-tab="trabajador" tabindex="-1">Quiero trabajar</button>
+    </div>
+
+    <!-- Pre-registro de usuarios -->
+    <div class="panel" id="panel-usuario" role="tabpanel" aria-labelledby="tab-usuario">
+      <div class="info">
+        <h3>Para usar la app como cliente</h3>
+        <ul class="info-list">
+          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Ser mayor de 18 años.</li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Un celular Android o iPhone con WhatsApp.</li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Registrarte y recibir ofertas no cuesta nada: solo pagas el servicio que eliges.</li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>En la app agregas la dirección donde necesitas el servicio.</li>
+        </ul>
+        <p class="info-nota"><b>Qué pasa después:</b> te escribimos por WhatsApp con el enlace de descarga cuando la app esté lista en tu ciudad.</p>
+      </div>
+
+      <form class="form" id="form-usuario" data-endpoint="usuario" method="post" novalidate>
+        <div class="field">
+          <label for="u-nombre">Tu nombre <span class="req">*</span></label>
+          <input id="u-nombre" name="nombre" type="text" autocomplete="name" required>
+          <p class="err" data-err="nombre">Escribe tu nombre.</p>
+        </div>
+        <div class="field">
+          <label for="u-tel">Celular o WhatsApp <span class="req">*</span></label>
+          <input id="u-tel" name="telefono" type="tel" inputmode="tel" autocomplete="tel" required placeholder="Ejemplo: 7xxxxxxx">
+          <p class="err" data-err="telefono">Escribe un número válido (al menos 8 dígitos).</p>
+        </div>
+        <div class="field full">
+          <label for="u-zona">Ciudad y zona <span class="req">*</span></label>
+          <input id="u-zona" name="zona" type="text" required placeholder="Ejemplo: Santa Cruz, zona norte" aria-describedby="u-zona-ayuda">
+          <p class="hint" id="u-zona-ayuda">Empezamos en Santa Cruz. Si vives en otro departamento, anótate igual: según los pre-registros, ampliaremos a donde haya técnicos.</p>
+          <p class="err" data-err="zona">Indica tu ciudad y zona.</p>
+        </div>
+        <fieldset class="field full">
+          <legend>Servicios que te interesan <span class="opt">(opcional, puedes marcar varios)</span></legend>
+          <div class="cat-pick">
+            <label><input type="checkbox" name="intereses" value="Electricidad"><span><svg class="ico" aria-hidden="true"><use href="#i-rayo"/></svg>Electricidad</span></label>
+            <label><input type="checkbox" name="intereses" value="Plomería"><span><svg class="ico" aria-hidden="true"><use href="#i-llave"/></svg>Plomería</span></label>
+            <label><input type="checkbox" name="intereses" value="Climatización"><span><svg class="ico" aria-hidden="true"><use href="#i-copo"/></svg>Climatización</span></label>
+            <label><input type="checkbox" name="intereses" value="Limpieza"><span><svg class="ico" aria-hidden="true"><use href="#i-spray"/></svg>Limpieza</span></label>
+            <label><input type="checkbox" name="intereses" value="Jardinería"><span><svg class="ico" aria-hidden="true"><use href="#i-hoja"/></svg>Jardinería</span></label>
+            <label><input type="checkbox" name="intereses" value="Carpintería"><span><svg class="ico" aria-hidden="true"><use href="#i-serrucho"/></svg>Carpintería</span></label>
+            <label><input type="checkbox" name="intereses" value="Pintura"><span><svg class="ico" aria-hidden="true"><use href="#i-rodillo"/></svg>Pintura</span></label>
+            <label><input type="checkbox" name="intereses" value="Cerrajería"><span><svg class="ico" aria-hidden="true"><use href="#i-candado"/></svg>Cerrajería</span></label>
+            <label><input type="checkbox" name="intereses" value="Albañilería"><span><svg class="ico" aria-hidden="true"><use href="#i-ladrillo"/></svg>Albañilería</span></label>
+            <label><input type="checkbox" name="intereses" value="Mudanzas"><span><svg class="ico" aria-hidden="true"><use href="#i-camion"/></svg>Mudanzas</span></label>
+            <label><input type="checkbox" name="intereses" value="Fumigación"><span><svg class="ico" aria-hidden="true"><use href="#i-insecto"/></svg>Fumigación</span></label>
+          </div>
+        </fieldset>
+        <div class="field full">
+          <label class="check"><input type="checkbox" name="acepto" value="Sí" required><span>Acepto que Te Resuelvo me escriba por WhatsApp para avisarme cuando la app esté lista. <span class="req">*</span></span></label>
+          <p class="err" data-err="acepto">Necesitamos tu permiso para avisarte por WhatsApp.</p>
+        </div>
+
+        <div class="form-foot full">
+          <button class="btn btn-yellow btn-lg" type="submit"><span class="btn-label">Pre-registrarme</span><span class="spinner" aria-hidden="true"></span></button>
+          <p class="form-note">Usaremos estos datos solo para avisarte del lanzamiento. Al enviar aceptas los <a href="terminos.html">Términos y condiciones</a> y la <a href="privacidad.html">Política de privacidad</a>.</p>
+        </div>
+        <div class="form-status full" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+
+    <!-- Pre-registro de técnicos -->
+    <div class="panel" id="panel-trabajador" role="tabpanel" aria-labelledby="tab-trabajador" hidden>
+      <div class="info">
+        <h3>Para trabajar como técnico</h3>
+        <p class="info-sub">Cuando abramos los registros en la app te pediremos:</p>
+        <ul class="info-list">
+          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Carnet de identidad vigente.</li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Certificado de antecedentes.</li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Referencias de clientes o trabajos anteriores.</li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Una foto tuya de frente para tu perfil.</li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Herramientas propias para tu oficio.</li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Una cuenta bancaria para recibir tus pagos.</li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Asistir a una capacitación sobre el uso de la app.</li>
+        </ul>
+        <div class="info-nota">
+          <p><b>Promoción de lanzamiento:</b> tu primer trabajo no paga comisión, y por cada técnico que invites y quede verificado, ganas un trabajo gratis más. Vale durante los primeros 3 meses de la app; después, los trabajos gratis no usados se pierden.</p>
+          <p><b>Cómo cobrarás:</b> tú decides qué trabajos tomar y a qué precio. Después de la promoción, Te Resuelvo cobra una comisión desde el 8 % del valor total de cada trabajo; cualquier cambio se avisa con 30 días de anticipación:</p>
+          <ul class="info-pagos">
+            <li><b>Si el cliente paga por la app:</b> recibes tu pago dos veces por semana, con la comisión ya descontada.</li>
+            <li><b>Si el cliente te paga directo</b> (en efectivo o por transferencia): debes tener crédito recargado en la app, y de ese crédito se descuenta la comisión.</li>
+          </ul>
+          <p><b>No envíes tus documentos por aquí:</b> los subirás en la app.</p>
+        </div>
+      </div>
+
+      <form class="form" id="form-trabajador" data-endpoint="trabajador" method="post" novalidate>
+        <fieldset class="field full" data-requerido>
+          <legend>¿Qué sabes hacer? <span class="req">*</span> <span class="opt">(puedes marcar varios)</span></legend>
+          <div class="cat-pick">
+            <label><input type="checkbox" name="oficios" value="Electricidad"><span>Electricidad</span></label>
+            <label><input type="checkbox" name="oficios" value="Plomería"><span>Plomería</span></label>
+            <label><input type="checkbox" name="oficios" value="Climatización"><span>Climatización</span></label>
+            <label><input type="checkbox" name="oficios" value="Limpieza"><span>Limpieza</span></label>
+            <label><input type="checkbox" name="oficios" value="Jardinería"><span>Jardinería</span></label>
+            <label><input type="checkbox" name="oficios" value="Carpintería"><span>Carpintería</span></label>
+            <label><input type="checkbox" name="oficios" value="Pintura"><span>Pintura</span></label>
+            <label><input type="checkbox" name="oficios" value="Cerrajería"><span>Cerrajería</span></label>
+            <label><input type="checkbox" name="oficios" value="Albañilería"><span>Albañilería</span></label>
+            <label><input type="checkbox" name="oficios" value="Mudanzas"><span>Mudanzas</span></label>
+            <label><input type="checkbox" name="oficios" value="Fumigación"><span>Fumigación</span></label>
+            <label><input type="checkbox" name="oficios" value="Otro oficio"><span>Otro oficio</span></label>
+          </div>
+          <p class="err" data-err="oficios">Marca al menos un oficio.</p>
+        </fieldset>
+        <div class="field">
+          <label for="t-nombre">Nombre completo <span class="req">*</span></label>
+          <input id="t-nombre" name="nombre" type="text" autocomplete="name" required>
+          <p class="err" data-err="nombre">Escribe tu nombre completo.</p>
+        </div>
+        <div class="field">
+          <label for="t-tel">Celular o WhatsApp <span class="req">*</span></label>
+          <input id="t-tel" name="telefono" type="tel" inputmode="tel" autocomplete="tel" required placeholder="Ejemplo: 7xxxxxxx">
+          <p class="err" data-err="telefono">Escribe un número válido (al menos 8 dígitos).</p>
+        </div>
+        <div class="field full">
+          <label for="t-zona">Ciudad y zonas donde trabajas <span class="req">*</span></label>
+          <input id="t-zona" name="zona" type="text" required placeholder="Ejemplo: Santa Cruz, zona norte y centro" aria-describedby="t-zona-ayuda">
+          <p class="hint" id="t-zona-ayuda">Empezamos en Santa Cruz. Si trabajas en otro departamento, regístrate igual: si se suman suficientes técnicos, ampliaremos ahí.</p>
+          <p class="err" data-err="zona">Indica dónde trabajas.</p>
+        </div>
+        <div class="field">
+          <label for="t-exp">Años de experiencia</label>
+          <select id="t-exp" name="experiencia">
+            <option>Menos de 1 año</option><option>1 a 3 años</option><option>3 a 5 años</option><option>Más de 5 años</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="t-herr">¿Tienes herramientas propias?</label>
+          <select id="t-herr" name="herramientas">
+            <option>Sí, todas las que necesito</option><option>Algunas</option><option>Todavía no</option>
+          </select>
+        </div>
+        <fieldset class="field full" data-requerido>
+          <legend>¿Cuándo puedes trabajar? <span class="req">*</span> <span class="opt">(puedes marcar varios)</span></legend>
+          <div class="cat-pick">
+            <label><input type="checkbox" name="disponibilidad" value="Mañanas"><span>Mañanas</span></label>
+            <label><input type="checkbox" name="disponibilidad" value="Tardes"><span>Tardes</span></label>
+            <label><input type="checkbox" name="disponibilidad" value="Noches"><span>Noches</span></label>
+            <label><input type="checkbox" name="disponibilidad" value="Fines de semana"><span>Fines de semana</span></label>
+            <label><input type="checkbox" name="disponibilidad" value="Emergencias"><span>Emergencias</span></label>
+          </div>
+          <p class="err" data-err="disponibilidad">Marca al menos un horario.</p>
+        </fieldset>
+        <div class="field full">
+          <label for="t-msg">Cuéntanos de tu trabajo <span class="opt">(opcional)</span></label>
+          <textarea id="t-msg" name="mensaje" rows="3" maxlength="800" placeholder="Especialidades, trabajos que más haces, desde cuándo trabajas…"></textarea>
+        </div>
+        <div class="field full">
+          <label class="check"><input type="checkbox" name="acepto" value="Sí" required><span>Acepto que Te Resuelvo me escriba por WhatsApp para avisarme cuando pueda registrarme en la app. <span class="req">*</span></span></label>
+          <p class="err" data-err="acepto">Necesitamos tu permiso para avisarte por WhatsApp.</p>
+        </div>
+        <div class="form-foot full">
+          <button class="btn btn-black btn-lg" type="submit"><span class="btn-label">Pre-registrarme como técnico</span><span class="spinner" aria-hidden="true"></span></button>
+          <p class="form-note">Usaremos estos datos solo para avisarte cuando puedas completar tu registro. Al enviar aceptas los <a href="terminos.html">Términos y condiciones</a> y la <a href="privacidad.html">Política de privacidad</a>.</p>
+        </div>
+        <div class="form-status full" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CÓMO FUNCIONA ===================== -->
+<section class="como" id="como-funciona" aria-labelledby="como-titulo">
+  <div class="wrap">
+    <h2 id="como-titulo" class="title-lg" data-subs>Así de <span class="hl">rápido</span> se resuelve</h2>
+    <p class="section-lead lead-left reveal">Así funcionará la app cuando esté lista.</p>
+    <div class="como-grid">
+      <ol class="steps" id="steps">
+        <li class="step" data-step="0">
+          <span class="step-n">1</span>
+          <div><h3>Selecciona el servicio</h3><p>Elige entre 11 servicios: electricidad, plomería, climatización, limpieza, jardinería y más.</p></div>
+        </li>
+        <li class="step" data-step="1">
+          <span class="step-n">2</span>
+          <div><h3>Describe tu problema</h3><p>Cuéntalo con tus palabras y adjunta fotos. La app te sugiere un precio y puedes cambiarlo.</p></div>
+        </li>
+        <li class="step" data-step="2">
+          <span class="step-n">3</span>
+          <div><h3>Recibe ofertas</h3><p>Técnicos verificados de tu zona aceptan tu precio o te proponen otro. Si el trabajo supera Bs 10.000, un técnico te visita para cotizar.</p></div>
+        </li>
+        <li class="step" data-step="3">
+          <span class="step-n">4</span>
+          <div><h3>Elige y paga</h3><p>Compara precio, calificación y tiempo de llegada. Paga por QR o tarjeta en la app, o directo al técnico. Siempre tienes 15 días de garantía, y si pagas por la app, también la devolución de tu dinero.</p></div>
+        </li>
+      </ol>
+
+      <div class="phone phone-como" aria-label="Ejemplo ilustrativo de la app. Perfiles y precios ficticios.">
+        <div class="phone-notch" aria-hidden="true"></div>
+        <div class="phone-screen" id="phone-screens">
+          <p class="phone-tag">Ejemplo ilustrativo · perfiles y precios ficticios</p>
+
+          <div class="scr is-on" data-scr="0">
+            <p class="phone-label">¿Qué necesitas?</p>
+            <div class="scr-grid">
+              <span class="is-sel"><svg class="ico"><use href="#i-llave"/></svg>Plomería</span>
+              <span><svg class="ico"><use href="#i-copo"/></svg>Climatización</span>
+              <span><svg class="ico"><use href="#i-rayo"/></svg>Electricidad</span>
+              <span><svg class="ico"><use href="#i-candado"/></svg>Cerrajería</span>
+              <span><svg class="ico"><use href="#i-ladrillo"/></svg>Albañilería</span>
+              <span>+6 servicios más</span>
+            </div>
+          </div>
+
+          <div class="scr" data-scr="1">
+            <p class="phone-label">Describe el problema</p>
+            <p class="scr-input">«Gotea la llave del lavaplatos y hay agua debajo del mueble.»</p>
+            <p class="phone-row scr-sug">Precio sugerido: <b>Bs 180</b> · puedes cambiarlo</p>
+            <div class="scr-photos"><span><svg class="ico"><use href="#i-camara"/></svg></span><span class="ph1"></span><span class="ph2"></span></div>
+            <p class="phone-row"><svg class="ico"><use href="#i-pin"/></svg> Zona norte · Hoy</p>
+          </div>
+
+          <div class="scr" data-scr="2">
+            <p class="phone-label">Ofertas · tu precio Bs 180</p>
+            <ul class="pros">
+              <li><span class="av">CM</span><div><b>Carlos M.</b><small>Plomero · <svg class="ico st"><use href="#i-estrella"/></svg> 4,8</small><small class="ok">Acepta tu precio · hoy</small></div><b class="price">Bs 180</b></li>
+              <li><span class="av">RP</span><div><b>Rosa P.</b><small>Plomera · <svg class="ico st"><use href="#i-estrella"/></svg> 4,9</small><small class="ok">Llega hoy, 16:00</small></div><b class="price">Bs 200</b></li>
+              <li><span class="av">JL</span><div><b>Jorge L.</b><small>Plomero · <svg class="ico st"><use href="#i-estrella"/></svg> 4,6</small><small class="ok">Mañana 9:00</small></div><b class="price">Bs 165</b></li>
+            </ul>
+          </div>
+
+          <div class="scr" data-scr="3">
+            <p class="phone-label">Pago seguro</p>
+            <div class="pro-big"><span class="av">RP</span><div><b>Rosa P.</b><small>Plomera · Bs 200 · elegida</small></div></div>
+            <div class="bubble in">Hola, llego hoy a las 16:00.</div>
+            <div class="bubble out">¡Perfecto, te espero!</div>
+            <span class="phone-btn"><svg class="ico"><use href="#i-check"/></svg> Pagado en la app</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONFIANZA ===================== -->
+<section class="trust" id="confianza" aria-labelledby="trust-titulo">
+  <div class="wrap">
+    <h2 id="trust-titulo" class="title-lg" data-subs>Por qué <span class="hl">confiar</span></h2>
+    <p class="section-lead lead-left reveal">Te Resuelvo es un servicio de <b>SIBNOVA Ltda.</b>, empresa boliviana de soluciones informáticas con sede en Santa Cruz de la Sierra.</p>
+    <ul class="trust-grid">
+      <li class="reveal"><span class="svc-ico" aria-hidden="true"><svg class="ico"><use href="#i-check"/></svg></span><b>Técnicos verificados</b><p>Antes de activar un perfil revisamos su carnet, antecedentes y referencias, y lo capacitamos en persona.</p></li>
+      <li class="reveal"><span class="svc-ico" aria-hidden="true"><svg class="ico"><use href="#i-estrella"/></svg></span><b>Tú eliges la oferta</b><p>La app te sugiere un precio de referencia y tú eliges entre las ofertas de los técnicos. Trabajos de más de Bs 10.000 se cotizan con una visita.</p></li>
+      <li class="reveal"><span class="svc-ico" aria-hidden="true"><svg class="ico"><use href="#i-candado"/></svg></span><b>Pago seguro</b><p>Si pagas por QR o tarjeta en la app, retenemos el dinero y el técnico lo recibe recién cuando confirmas que el trabajo está bien. También puedes pagarle directo.</p></li>
+      <li class="reveal"><span class="svc-ico" aria-hidden="true"><svg class="ico"><use href="#i-llave"/></svg></span><b>Garantía de 15 días</b><p>Si algo sale mal, el técnico vuelve sin costo, pagues como pagues. Si pagaste por la app y no se corrige, te devolvemos tu dinero.</p></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===================== TRABAJADORES ===================== -->
+<section class="workers" id="trabajadores" aria-labelledby="work-titulo">
+  <div class="wrap workers-grid">
+    <div class="workers-copy">
+      <h2 id="work-titulo" class="title-lg on-dark" data-subs>Tu talento merece <span class="hl">más oportunidades</span></h2>
+      <p class="workers-text reveal">Muy pronto vas a recibir solicitudes de clientes cerca de ti. Acepta el precio propuesto o envía tu propia oferta, y cobra seguro por la app.</p>
+      <ul class="workers-list reveal">
+        <li><svg class="ico"><use href="#i-check"/></svg>Solicitudes de clientes cerca de tu zona</li>
+        <li><svg class="ico"><use href="#i-check"/></svg>Tú decides qué trabajos tomar y a qué precio</li>
+        <li><svg class="ico"><use href="#i-check"/></svg>Tu perfil y tus calificaciones hablan por ti</li>
+      </ul>
+      <p class="workers-trades reveal">Electricistas · Plomeros · Técnicos de climatización · Personal de limpieza · Jardineros · Carpinteros · Pintores · Cerrajeros · Albañiles · Mudanzas · Fumigadores</p>
+      <a class="btn btn-yellow btn-lg reveal" href="#contacto" data-form-open="trabajador">Quiero trabajar <svg class="ico"><use href="#i-flecha"/></svg></a>
+    </div>
+    <div class="workers-media reveal">
+      <div class="workers-photo">
+        <img src="img/oficios/trabajador-1600.jpg" srcset="img/oficios/trabajador-900.jpg 900w, img/oficios/trabajador-1600.jpg 1600w" sizes="(min-width: 960px) 50vw, 100vw" alt="Electricista con casco y uniforme trabajando con cables" width="1600" height="1067" loading="lazy">
+      </div>
+      <p class="workers-caption" aria-hidden="true">TU <span class="hl">TRABAJO</span>, TU NOMBRE.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== LLAMADA FINAL ===================== -->
+<section class="final" aria-labelledby="final-titulo">
+  <div class="wrap final-grid">
+    <div class="final-copy">
+      <h2 id="final-titulo" class="title-xl on-dark" data-subs>El próximo problema que tengas, ya sabes a quién llamar: <span class="hl">Te Resuelvo.</span></h2>
+      <div class="final-ctas reveal">
+        <a class="btn btn-yellow btn-lg" href="#contacto" data-form-open="usuario">Quiero usar la app <svg class="ico"><use href="#i-flecha"/></svg></a>
+        <a class="btn btn-outline btn-lg" href="#contacto" data-form-open="trabajador">Quiero ofrecer mis servicios</a>
+      </div>
+      <div class="stores" id="stores" hidden></div>
+      <div class="follow reveal" id="final-follow" hidden>
+        <p>Síguenos</p>
+        <ul class="social social-big" data-social></ul>
+      </div>
+    </div>
+    <div class="final-media reveal">
+      <img src="img/final-1600.webp" srcset="img/final-900.webp 900w, img/final-1600.webp 1600w" sizes="(min-width: 960px) 40vw, 100vw" alt="Técnico sonriente con un taladro haciendo un gesto de aprobación" width="1600" height="1067" loading="lazy">
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===================== PIE ===================== -->
+<footer class="footer">
+  <div class="wrap footer-grid">
+    <div>
+      <a class="logo logo-light" href="#inicio"><img src="img/logo-96.png" alt="" width="40" height="40"><span>Te Resuelvo</span></a>
+      <p class="footer-tag">¿Necesitas algo? Te Resuelvo.</p>
+      <ul class="social" data-social aria-label="Redes sociales de Te Resuelvo"></ul>
+    </div>
+    <nav aria-label="Pie de página">
+      <a href="#inicio">Inicio</a><a href="#inicio">Servicios</a><a href="#como-funciona">Cómo funciona</a><a href="#trabajadores">Para trabajadores</a><a href="#contacto">Pre-registro</a>
+    </nav>
+    <div class="footer-contact" id="footer-contact"></div>
+  </div>
+  <div class="wrap footer-bottom">
+    <p>© <span id="anio">2026</span> Te Resuelvo · Un producto de <a href="https://sibnova.com.bo" target="_blank" rel="noopener">SIBNOVA LTDA.</a></p>
+    <p id="footer-legal"></p>
+    <p class="credits">Fotografías: <a href="https://www.pexels.com" target="_blank" rel="noopener">Pexels</a>. (licencia libre).</p>
+  </div>
+</footer>
+
+<!-- Botón flotante de WhatsApp (se activa con contacto.whatsapp en js/config.js) -->
+<a class="wa-float" id="wa-float" href="#" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp" hidden>
+  <svg aria-hidden="true"><use href="#i-whatsapp"/></svg>
+  <span class="wa-label">¿Te ayudamos?</span>
+</a>
+
+<script src="js/config.js"></script>
+<script src="js/main.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="js/cine.js"></script>
+<script src="js/demo.js"></script>
+</body>
+</html>

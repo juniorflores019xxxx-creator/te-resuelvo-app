@@ -1,0 +1,78 @@
+/* =========================================================
+   TE RESUELVO · Demo «dentro de la app»
+   La portada lleva un celular; al bajar, el celular pasa al
+   centro y los 11 servicios se abren en su pantalla girando
+   como caras de un cubo. Al final todo se desvanece y aparece
+   el pre-registro. Se carga después de mesa.css.
+   ========================================================= */
+.demo .viaje{height:100svh;min-height:600px;margin-top:0}
+@media (min-width:1000px){.demo .viaje{margin-top:calc(var(--header) * -1)}}
+.viaje-escena{position:absolute;inset:0}
+.demo .viaje .hero-grid{position:absolute;inset:0}
+.viaje-velo{position:absolute;inset:0;z-index:1;background:#0d0d0c;opacity:0;pointer-events:none}
+
+/* ---------- El celular ---------- */
+.app{--ah:min(76svh,720px);--aw:calc(var(--ah) * .49);position:absolute;z-index:4;left:50%;top:50%;width:var(--aw);height:var(--ah);margin:calc(var(--ah) / -2) 0 0 calc(var(--aw) / -2);padding:calc(var(--aw) * .035);border-radius:calc(var(--aw) * .15);background:#0a0a0a;box-shadow:0 60px 100px -40px rgba(0,0,0,.95),0 0 0 1px rgba(255,255,255,.12) inset,0 0 0 calc(var(--aw) * .012) #1d1d1b;will-change:transform}
+.app::before{content:"";position:absolute;z-index:5;top:calc(var(--aw) * .055);left:50%;width:calc(var(--aw) * .3);height:calc(var(--aw) * .07);margin-left:calc(var(--aw) * -.15);border-radius:99px;background:#0a0a0a}
+.app-pantalla{position:relative;width:100%;height:100%;overflow:hidden;border-radius:calc(var(--aw) * .12);background:#0d0d0c;perspective:calc(var(--aw) * 2.6);container-type:size}
+
+/* Cada pantalla de la app es una cara del cubo */
+.cara{position:absolute;inset:0;display:flex;flex-direction:column;padding:15cqw 6cqw 6cqw;background:#f6f3ec;color:#0d0d0c;backface-visibility:hidden;-webkit-backface-visibility:hidden;transform-origin:50% 50%;overflow:hidden}
+.cara::after{content:"";position:absolute;inset:0;background:#000;opacity:var(--sombra,0);pointer-events:none}
+.app-barra{position:absolute;left:8cqw;right:8cqw;top:4.6cqw;display:flex;justify-content:space-between;align-items:center;font:700 3.6cqw/1 Inter,system-ui,sans-serif}
+.app-barra i{width:7cqw;height:3.2cqw;border-radius:1cqw;border:.5cqw solid currentColor}
+.app-cab{display:flex;align-items:center;gap:2.6cqw;font-family:var(--display);font-weight:900;font-size:6.4cqw;text-transform:uppercase;line-height:1}
+.app-cab img{width:8cqw;height:8cqw;border-radius:2cqw}
+.app-cab .ico{width:6cqw;height:6cqw;margin-left:auto;color:#b48f12}
+.app-atras{font:400 9cqw/1 Inter,sans-serif;margin-top:-1.4cqw}
+.app-hola{margin:7cqw 0 0;font-family:var(--display);font-weight:900;font-size:12cqw;line-height:.92;text-transform:uppercase}
+.app-sub{margin:2.6cqw 0 0;font-size:3.8cqw;line-height:1.35;color:#4f4a40}
+.app-grid{list-style:none;margin:5cqw 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr 1fr;gap:2.2cqw;flex:1;align-content:start}
+.app-grid button,.app-mas span{width:100%;aspect-ratio:1/0.86;display:grid;place-items:center;align-content:center;gap:1.6cqw;padding:1.4cqw;border:0;border-radius:3cqw;background:#fff;box-shadow:0 1cqw 3cqw -1cqw rgba(0,0,0,.25);font:700 2.9cqw/1.1 Inter,system-ui,sans-serif;color:#0d0d0c;text-align:center;cursor:pointer}
+.app-grid .ico{width:6.4cqw;height:6.4cqw;color:#0d0d0c}
+.app-grid button:hover{background:var(--ama)}
+.app-mas span{background:var(--ama);font-family:var(--display);font-weight:900;font-size:3.6cqw;text-transform:uppercase;cursor:default}
+.app-nota{margin:3cqw 0 0;font-size:2.8cqw;color:#7a7466;text-align:center;text-transform:uppercase;letter-spacing:.06em}
+.app-fotos{display:grid;grid-template-columns:1fr 1fr;gap:1.6cqw;margin:4.4cqw -6cqw 0;height:40cqh}
+.app-fotos img{width:100%;height:100%;object-fit:cover;display:block}
+.app-nombre{margin:4.4cqw 0 0;font-family:var(--display);font-weight:900;font-size:11.5cqw;line-height:.9;text-transform:uppercase}
+.app-frase{margin:1.6cqw 0 0;font-family:var(--display);font-weight:800;font-size:5.2cqw;line-height:1;text-transform:uppercase}
+.app-frase .hl{color:#b48f12}
+.app-preg{margin:3cqw 0 0;font:700 3.4cqw/1 Inter,sans-serif;color:#4f4a40;text-transform:uppercase;letter-spacing:.05em}
+.mesa .app-chips{margin:2cqw 0 0;gap:1.6cqw}
+.mesa .app-chips button{background:#fff;color:#0d0d0c;border:1px solid #d9d3c4;border-radius:99px;padding:1.6cqw 3cqw;font-size:3.2cqw;backdrop-filter:none;-webkit-backdrop-filter:none}
+.mesa .app-chips .chip-mas{border-color:#b48f12;color:#7a5f08;background:#fff8dc}
+.mesa .app-cta{--h:auto;margin-top:auto;padding:3.4cqw;font-size:4.6cqw;width:100%;border-radius:3cqw}
+
+/* ---------- Rótulo fuera del celular (computadora) ---------- */
+.viaje-rotulo{position:absolute;z-index:3;left:max(32px,calc((100vw - 1240px)/2 + 32px));top:50%;transform:translateY(-50%);max-width:30vw;opacity:0;pointer-events:none}
+.viaje-num{margin:0 0 10px;font-family:var(--display);font-weight:900;font-size:1.6rem;letter-spacing:.06em;color:var(--ama)}
+.viaje-nombre{margin:0;font-family:var(--display);font-weight:900;font-size:clamp(2.8rem,4.5vw,4.6rem);line-height:.92;text-transform:uppercase;color:var(--texto);transition:opacity .35s,transform .5s var(--ease)}
+.viaje-nombre.is-cambio{opacity:0;transform:translateY(18px)}
+@media (max-width:959px){.viaje-rotulo{display:none}}
+
+/* ---------- Celular: la portada ocupa la pantalla y el texto va abajo ---------- */
+@media (max-width:959px){
+  .demo .viaje .hero-grid{display:block}
+  .demo .viaje .hero-visual{position:absolute;inset:0;width:100%}
+  .demo .viaje .hero-photo{position:absolute;inset:0;height:auto}
+  .demo .viaje .hero-photo::after{background:linear-gradient(180deg,rgba(13,13,12,0) 25%,rgba(13,13,12,.92) 62%)}
+  .demo .viaje .hero-copy{position:absolute;z-index:2;left:0;right:0;bottom:0;margin:0;padding:0 20px 26px}
+  .demo .viaje .hero-text{font-size:1rem;margin-top:12px}
+  .demo .viaje .hero-tags{display:none}
+  .demo .viaje .hero-ctas{margin-top:16px}
+  .demo .viaje .hero-ctas .btn{--h:54px}
+  .app{--ah:min(74svh,640px)}
+}
+
+/* ---------- Sin animación (sin JavaScript o «reducir movimiento»): el celular muestra su inicio ---------- */
+.viaje-estatico .cara:not(.cara-inicio){display:none}
+.viaje-estatico .app{position:relative;left:auto;top:auto;margin:40px auto}
+.viaje-estatico.viaje{height:auto}
+.viaje-estatico .viaje-escena{position:relative}
+
+.viaje:not(.viaje-vivo) .cara:not(.cara-inicio){display:none}
+@media (min-width:960px){.viaje:not(.viaje-vivo) .app{left:76%}}
+
+/* El pre-registro sube mientras el celular se desvanece (sin pantalla negra en medio) */
+.demo #contacto{position:relative;z-index:5;margin-top:-100svh}
