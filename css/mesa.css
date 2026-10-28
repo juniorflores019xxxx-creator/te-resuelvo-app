@@ -260,3 +260,19 @@
 /* El índice se lee sobre cualquier foto */
 .recorrido-vivo .recorrido-indice ul{background:rgba(13,13,12,.78);padding:12px 16px;border-radius:2px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
 .recorrido-vivo .recorrido-contador{background:rgba(13,13,12,.78);padding:4px 10px 2px}
+
+/* ---------- Pre-registro: llegamos a otros departamentos ---------- */
+.deptos{position:relative;max-width:1040px;margin:44px auto 10px;padding:clamp(26px,4vw,44px);border:1.5px solid var(--ama);border-radius:2px;background:linear-gradient(180deg,rgba(245,205,71,.08),rgba(245,205,71,0) 60%);overflow:hidden;text-align:left}
+.deptos-cinta{display:flex;width:max-content;white-space:nowrap;margin:0 0 22px;font-family:var(--display);font-weight:900;font-size:clamp(2.6rem,6vw,4.6rem);line-height:1;text-transform:uppercase;color:transparent;-webkit-text-stroke:1.2px rgba(245,205,71,.55)}
+.deptos-cinta span{padding-right:.4em}
+.deptos-titulo{margin:0;font-family:var(--display);font-weight:900;font-size:clamp(2.1rem,4.6vw,3.4rem);line-height:1.02;text-transform:uppercase;color:var(--texto)}
+.deptos-texto{margin:14px 0 0;max-width:62ch;color:var(--texto-2);font-size:1.08rem}
+.deptos-texto b{color:var(--texto)}
+.deptos-lista{list-style:none;margin:26px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px}
+.depto{width:100%;min-height:76px;display:grid;align-content:center;gap:3px;text-align:left;padding:12px 16px;background:var(--mesa);color:var(--texto);border:1px solid var(--linea-2);border-radius:2px;cursor:pointer;transition:border-color .25s,transform .4s var(--ease),background-color .25s}
+.depto b{font-family:var(--display);font-weight:900;font-size:1.55rem;line-height:1;text-transform:uppercase}
+.depto span{font-family:var(--display);font-weight:800;font-size:.95rem;letter-spacing:.05em;text-transform:uppercase;color:var(--ama)}
+.depto:hover{border-color:var(--ama);transform:translateY(-3px)}
+.depto.is-aqui{background:var(--ama);border-color:var(--ama);color:var(--tinta)}
+.depto.is-aqui span{color:var(--tinta)}
+@media (max-width:520px){.deptos-lista{grid-template-columns:1fr 1fr}.depto b{font-size:1.3rem}}

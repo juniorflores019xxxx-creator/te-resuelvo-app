@@ -211,6 +211,14 @@
   };
   $$("[data-form-open]").forEach((a) => a.addEventListener("click", (e) => { e.preventDefault(); setMenu(false); medir("ir-a-pre-registro", { tipo: a.dataset.formOpen }); goForm(a.dataset.formOpen, a.dataset.cat); }));
   $$(".chips button, .svc-card").forEach((b) => b.addEventListener("click", () => medir("servicio-tocado", { servicio: b.dataset.cat })));
+  // Departamentos del pre-registro: abre el formulario con el departamento ya escrito en «Ciudad y zona»
+  $$("[data-depto]").forEach((b) => b.addEventListener("click", () => {
+    medir("departamento-tocado", { departamento: b.dataset.depto });
+    goForm("usuario");
+    const zona = $("#u-zona");
+    if (zona && !zona.value.trim()) zona.value = b.dataset.depto + ", ";
+    else if (zona) zona.value = b.dataset.depto + ", " + zona.value.replace(/^[^,]*,\s*/, "");
+  }));
   $$(".chips button").forEach((b) => b.addEventListener("click", () => goForm("usuario", b.dataset.cat)));
   // Tarjetas de los 11 servicios
   $$(".svc-card").forEach((b) => b.addEventListener("click", () => goForm("usuario", b.dataset.cat)));

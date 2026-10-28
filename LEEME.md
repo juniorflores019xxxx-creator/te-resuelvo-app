@@ -77,3 +77,15 @@ La URL completa está escrita en: `canonical`, `og:url`, `og:image` y JSON-LD de
 - Los errores de los formularios se enlazan a su campo (`aria-invalid` y `aria-describedby`).
 - Con «reducir movimiento» activado en el sistema, las animaciones se desactivan.
 - Imágenes con `srcset`, carga diferida fuera de la primera pantalla y la foto principal precargada. Inter se carga como fuente variable.
+
+## Animaciones (GSAP + ScrollTrigger)
+
+- `js/cine.js` usa [GSAP 3.12.5](https://gsap.com) y ScrollTrigger, cargados desde cdnjs:
+  - parallax en la portada;
+  - las imágenes se expanden al hacer scroll: la entrada al recorrido, la foto del técnico y la foto final;
+  - profundidad en los títulos;
+  - la cinta de departamentos corre con el scroll.
+- Con «reducir movimiento» o si la librería no carga, la página funciona igual, sin animaciones.
+- `js/recorrido.js` maneja aparte el recorrido de los 11 servicios: dos fotos por oficio que se cortan en piezas al pasar al siguiente.
+- Pre-registro: cada departamento es un botón que abre el formulario con el departamento ya escrito y lo cuenta en las estadísticas (evento `departamento-tocado`, sin datos personales).
+
