@@ -68,6 +68,8 @@ La URL completa está escrita en: `canonical`, `og:url`, `og:image` y JSON-LD de
 
 - El teléfono de la portada y el de «Cómo funciona» muestran **ejemplos ficticios** (perfiles, calificaciones y precios), marcados como «Ejemplo ilustrativo».
 - Fotografías de [Pexels](https://www.pexels.com) con licencia libre de uso comercial (IDs: 6050244, 6050247, 5463575, 6419128, 14319099, 35287856, 11429199, 32913797, 8961155).
+- Portada «mesa de herramientas»: foto de Pexels 4312860 (Anna Shvets), en `img/mesa/` (1000 y 2000 px).
+- Videos de los 11 servicios en `video/` (`<oficio>-1080.mp4` para computadora y `-720.mp4` para celular); pósters en `img/video/`. Pexels: electricidad 18780266, plomería 9890450, climatización 34572318, limpieza 7551100, pintura 6474086, cerrajería 9792637, mudanzas 9507645, fumigación 4205628. Mixkit: jardinería 10472, carpintería 45144, albañilería 20874 y técnico 23529. Para cambiar uno por un video propio, se reemplazan sus dos archivos con el mismo nombre y su póster.
 
 ## Accesibilidad y rendimiento
 

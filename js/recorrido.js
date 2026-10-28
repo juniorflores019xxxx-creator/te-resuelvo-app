@@ -28,6 +28,7 @@
   const N = pasos.length;
   const intro = pasos[0].classList.contains("paso-intro") ? 1 : 0;
   const ctx = lienzo.getContext("2d", { alpha: false });
+  ctx.imageSmoothingQuality = "high";
   sec.classList.add("recorrido-vivo");
   pista.style.setProperty("--n", N);
 
@@ -56,7 +57,7 @@
     if (ahorro || m.v || !m.slug) return;
     const v = document.createElement("video");
     v.muted = true; v.playsInline = true; v.setAttribute("playsinline", ""); v.preload = "auto";
-    v.src = `video/${m.slug}-${movil() ? 360 : 720}.mp4`;
+    v.src = `video/${m.slug}-${movil() ? 720 : 1080}.mp4`;
     // Algunos celulares no muestran cuadros hasta que el video se reprodujo una vez
     v.addEventListener("loadeddata", () => { m.listo = true; const pr = v.play(); if (pr) pr.then(() => v.pause()).catch(() => {}); }, { once: true });
     m.v = v;
@@ -69,7 +70,7 @@
     dpr = Math.min(window.devicePixelRatio || 1, 2);
     const r = marco.getBoundingClientRect();
     W = Math.round(r.width * dpr); H = Math.round(r.height * dpr);
-    lienzo.width = W; lienzo.height = H;
+    lienzo.width = W; lienzo.height = H; ctx.imageSmoothingQuality = "high";
     COLS = movil() ? 4 : 8; ROWS = Math.max(3, Math.round(COLS * H / W));
     let s = 29; const az = () => { s = (s * 16807) % 2147483647; return s / 2147483647; };
     piezas = [];
@@ -201,7 +202,7 @@
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.fillStyle = "#0d0d0c"; ctx.fillRect(0, 0, W, H);
     const fA = fuente(actual), fB = fuente(sig);
-    if (cambio <= 0) { if (fA) entero(fA, 1.02 + t * 0.05); }
+    if (cambio <= 0) { if (fA) entero(fA, 1); }
     else {
       if (fB) piezasDe(fB, 0, 1 - cambio);
       if (fA) piezasDe(fA, cambio, 0);
@@ -230,6 +231,6 @@
   // La mesa de entrada queda pintada desde el principio (la portada ya cargó esa foto)
   ajustar(); medir(); textos(0); preparar(0);
   if (contador) contador.hidden = !!intro;
-  const pintarMesa = () => { if (!activo) { ctx.fillStyle = "#0d0d0c"; ctx.fillRect(0, 0, W, H); entero(medios[0].poster, 1.02); } };
+  const pintarMesa = () => { if (!activo) { ctx.fillStyle = "#0d0d0c"; ctx.fillRect(0, 0, W, H); entero(medios[0].poster, 1); } };
   if (medios[0].poster.complete && medios[0].poster.naturalWidth) pintarMesa(); else medios[0].poster.addEventListener("load", pintarMesa);
 })();
