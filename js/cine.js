@@ -45,10 +45,6 @@
     if (tel && window.matchMedia("(min-width: 960px)").matches === false) {
       gsap.fromTo(tel, { y: 60 }, { y: -40, ...suave, scrollTrigger: { trigger: tel, start: "top bottom", end: "bottom top", scrub: 0.8 } });
     }
-    // Filas de confianza: entran una tras otra desde la izquierda
-    gsap.utils.toArray(".trust-grid li").forEach((li, k) => {
-      gsap.from(li, { x: -40, autoAlpha: 0, duration: 0.9, ease: "expo.out", delay: (k % 4) * 0.08, scrollTrigger: { trigger: li, start: "top 88%", once: true } });
-    });
 
 
     // Las medidas cambian cuando cargan las fotos y las fuentes
