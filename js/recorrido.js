@@ -82,18 +82,19 @@
   const suave = (x) => x * x * (3 - 2 * x);
 
   /* ---------- Posición según el scroll ---------- */
-  const T = 0.45; // parte de cada tramo en la que el carrusel se mueve
   let pistaTop = 0, tramo = 1;
   function medir() {
     const r = pista.getBoundingClientRect();
     pistaTop = r.top + window.scrollY;
-    tramo = Math.max(1, (pista.offsetHeight - window.innerHeight) / N);
+    // Unos 0,4 de tramo de margen: al entrar y al salir la escena queda quieta un momento
+    tramo = Math.max(1, (pista.offsetHeight - window.innerHeight) / (N - 0.6));
   }
   function textos(s) {
     pasos.forEach((p, j) => {
       const u = s - j;
-      const ent = j === 0 ? 1 : lim((u + T * 0.45) / (T * 0.55));
-      const sal = j === N - 1 ? 0 : lim((u - (1 - T)) / (T * 0.5));
+      // Cada texto entra y sale junto con su tarjeta (el relevo ocurre a mitad del giro)
+      const ent = j === 0 ? 1 : lim((u + 0.42) / 0.3);
+      const sal = j === N - 1 ? 0 : lim((u - 0.12) / 0.3);
       const visible = ent > 0 && sal < 1;
       p.classList.toggle("is-on", visible && ent > 0.5 && sal < 0.5);
       p.style.visibility = visible ? "visible" : "hidden";
@@ -123,13 +124,15 @@
   escena.addEventListener("pointerleave", () => { mx = 0; my = 0; });
 
   /* ---------- Cuadro a cuadro ---------- */
-  let activo = false, raf = 0, ultimoS = -1;
+  let activo = false, raf = 0, ultimoS = -1, pos = 0;
   function cuadro() {
     raf = requestAnimationFrame(cuadro);
-    const sRaw = lim((window.scrollY - pistaTop) / tramo, 0, N - 0.0001);
-    const i = Math.floor(sRaw), t = sRaw - i;
-    // Se queda un rato en cada tarjeta y después se desliza a la siguiente
-    const pos = i + (i < N - 1 ? suave(lim((t - (1 - T)) / T)) : 0);
+    // El carrusel gira de forma continua con el scroll, sin pausas, y alcanza
+    // la posición con un suavizado para que cada pasito de la rueda se sienta fluido
+    const meta = lim((window.scrollY - pistaTop) / tramo - 0.2, 0, N - 1);
+    pos += (meta - pos) * 0.12;
+    if (Math.abs(meta - pos) < 0.0005) pos = meta;
+    const sRaw = pos;
 
     rx += (my * -4 - rx) * 0.08; ry += (mx * 6 - ry) * 0.08;
 
@@ -166,9 +169,9 @@
   window.addEventListener("resize", () => { medir(); ultimoS = -1; });
   window.addEventListener("load", () => { medir(); ultimoS = -1; });
 
-  const irA = (j, suaveScroll) => window.scrollTo({ top: pistaTop + (j + 0.05) * tramo, behavior: suaveScroll ? "smooth" : "auto" });
+  const irA = (j, suaveScroll) => window.scrollTo({ top: pistaTop + (j + 0.2) * tramo, behavior: suaveScroll ? "smooth" : "auto" });
   indice.forEach((b, k) => b.addEventListener("click", () => { medir(); irA(k + intro, true); }));
-  pasos.forEach((p, j) => p.addEventListener("focusin", () => { medir(); const s = (window.scrollY - pistaTop) / tramo; if (Math.floor(s) !== j) irA(j, false); }));
+  pasos.forEach((p, j) => p.addEventListener("focusin", () => { medir(); const s = (window.scrollY - pistaTop) / tramo - 0.2; if (Math.round(s) !== j) irA(j, false); }));
 
   medir(); textos(0);
   if (contador) contador.hidden = !!intro;
