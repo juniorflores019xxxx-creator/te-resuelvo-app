@@ -312,3 +312,34 @@
   .recorrido-vivo .paso::before{background:linear-gradient(0deg,rgba(13,13,12,.94) 0%,rgba(13,13,12,.65) 38%,rgba(13,13,12,0) 60%)}
   .recorrido-vivo .paso-intro{justify-content:flex-end}
 }
+
+/* =========================================================
+   Los 11 servicios en parallax (reemplaza a la escena fija)
+   ========================================================= */
+.recorrido-parallax .recorrido-pasos{max-width:none;padding:0;display:block}
+.recorrido-parallax .paso{position:relative;min-height:max(620px,92svh);display:flex;align-items:flex-end;padding:0 max(28px,calc((100vw - 1240px)/2 + 32px)) clamp(48px,9vh,100px);overflow:hidden;background:var(--mesa);border-top:1px solid var(--linea)}
+.recorrido-parallax .paso-fotos{position:absolute;inset:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:6px;z-index:0}
+.recorrido-parallax .paso-fotos img{width:100%;height:136%;margin-top:-18%;aspect-ratio:auto;object-fit:cover;border-radius:0;will-change:transform}
+.recorrido-parallax .paso-fotos-uno{grid-template-columns:1fr}
+.recorrido-parallax .paso-fotos>img{overflow:hidden}
+.recorrido-parallax .paso-fotos{overflow:hidden}
+.recorrido-parallax .paso-fotos::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(13,13,12,.82) 0%,rgba(13,13,12,.45) 30%,rgba(13,13,12,0) 55%),linear-gradient(0deg,rgba(13,13,12,.65) 0%,rgba(13,13,12,0) 35%)}
+.recorrido-parallax .paso-texto-bloque{position:relative;z-index:2;max-width:640px;will-change:transform}
+.recorrido-parallax .paso-intro{align-items:center}
+.paso-num{margin:0 0 6px;font-family:var(--display);font-weight:900;font-size:1.4rem;letter-spacing:.06em;color:var(--ama)}
+.recorrido-parallax .paso-nombre{font-size:clamp(3.6rem,8.4vw,7.2rem);white-space:nowrap}
+.recorrido-parallax .paso-nombre-intro{font-size:clamp(3.4rem,7vw,6rem);white-space:normal}
+/* Entrada al llegar: letras una por una y luego el resto */
+.recorrido-parallax .paso .l{display:inline-block;opacity:0;transform:translate3d(0,.5em,0);transition:opacity .5s,transform .8s var(--ease);transition-delay:calc(var(--k) * 35ms)}
+.recorrido-parallax .paso.is-on .l{opacity:1;transform:none}
+.recorrido-parallax .paso-texto-bloque>*:not(.paso-nombre):not(.paso-num){opacity:0;translate:0 24px;transition:opacity .7s .25s,translate .9s var(--ease) .25s}
+.recorrido-parallax .paso.is-on .paso-texto-bloque>*{opacity:1;translate:none}
+.recorrido-parallax .paso-intro .paso-texto-bloque>*{opacity:1;translate:none}
+@media (max-width:759px){
+  .recorrido-parallax .paso{min-height:max(560px,88svh);padding:0 18px 28px}
+  .recorrido-parallax .paso-fotos{grid-template-columns:1fr;grid-template-rows:1fr 1fr}
+  .recorrido-parallax .paso-fotos-uno{grid-template-rows:1fr}
+  .recorrido-parallax .paso-fotos::after{background:linear-gradient(0deg,rgba(13,13,12,.94) 0%,rgba(13,13,12,.65) 40%,rgba(13,13,12,0) 62%)}
+  .recorrido-parallax .paso-nombre{font-size:clamp(2.9rem,13.5vw,4.2rem)}
+  .recorrido-parallax .paso-accion{width:100%}
+}
