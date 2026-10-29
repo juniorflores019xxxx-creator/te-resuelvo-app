@@ -36,7 +36,7 @@ window.TR_CONFIG = {
      umami vacío = no se mide nada. El ID se copia del panel de Umami
      (Settings → Websites → Edit → Tracking code: el valor de data-website-id). */
   analitica: {
-    umami: "",
+    umami: "5b3cba79-5941-4125-956c-ef5d21a3e4b5",
     script: "https://cloud.umami.is/script.js",
     // Solo se cuenta en estos dominios (abrir la web en tu computadora no suma visitas)
     dominios: "juniorflores019xxxx-creator.github.io,teresuelvo.com.bo,www.teresuelvo.com.bo"
