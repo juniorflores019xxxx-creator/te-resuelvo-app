@@ -305,3 +305,28 @@
   .recorrido-carrusel .recorrido-marco{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 3vw);mask-image:linear-gradient(90deg,transparent 0,#000 3vw)}
 }
 @media (max-width:759px){.recorrido-carrusel .recorrido-contador{display:none}}
+
+/* =========================================================
+   Carrusel 3D giratorio en el centro (texto a la izquierda,
+   índice a la derecha)
+   ========================================================= */
+.recorrido-carrusel .recorrido-escena{perspective:1500px}
+.recorrido-carrusel .recorrido-marco{inset:calc(var(--header) + 4vh) 19% 5vh 32%;overflow:visible;-webkit-mask-image:none;mask-image:none;transform-style:preserve-3d;transform-origin:50% 50%}
+.anillo{position:absolute;left:50%;top:50%;width:0;height:0;display:block;padding:0;transform-style:preserve-3d;will-change:transform}
+.anillo .tarjeta{position:absolute;left:0;top:0;--tw:min(30vw,calc((100svh - var(--header) - 9vh) * .72));width:var(--tw);height:calc(var(--tw) / .72);margin:calc(var(--tw) / -.72 / 2) 0 0 calc(var(--tw) / -2);flex:none;backface-visibility:hidden;-webkit-backface-visibility:hidden;transform-style:preserve-3d}
+.anillo .tarjeta-recuadro{width:50%}
+.recorrido-carrusel .paso{width:calc(32vw - max(28px,calc((100vw - 1240px)/2 + 32px)) - 24px)}
+.recorrido-carrusel .paso-nombre{font-size:clamp(2.6rem,4.2vw,4.4rem)}
+@media (min-width:960px){.recorrido-carrusel .recorrido-indice{display:block}}
+@media (max-width:759px){
+  .recorrido-carrusel .recorrido-marco{inset:calc(var(--header) + 8px) 0 auto 0;height:46svh}
+  .anillo .tarjeta{--tw:min(56vw,calc(46svh * .72))}
+  .recorrido-carrusel .paso{width:auto}
+}
+
+/* El carrusel cabe entre el texto y el índice; los costados se pierden en lo oscuro */
+@media (min-width:760px){
+  .recorrido-carrusel .recorrido-escena{perspective:none}
+  .recorrido-carrusel .recorrido-marco{inset:calc(var(--header) + 3vh) 20% 4vh 33%;perspective:1300px;overflow:hidden;transform:none!important;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 14%,#000 86%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 14%,#000 86%,transparent 100%)}
+  .anillo .tarjeta{--tw:min(23vw,calc((100svh - var(--header) - 12vh) * .66))}
+}

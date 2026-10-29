@@ -1,11 +1,12 @@
 /* =========================================================
    TE RESUELVO · Recorrido de los 11 servicios en carrusel
-   Escena fija mientras se baja: a la derecha (65 %) un carrusel
-   con una tarjeta por oficio; al bajar se desliza hacia un lado y
-   al subir hacia el otro. Cada tarjeta tiene una foto grande y otra
-   superpuesta en un recuadro, que se mueven a distinta velocidad
-   que la tarjeta (parallax). A la izquierda, el texto del oficio:
-   el nombre entra letra por letra. El mouse inclina el carrusel.
+   Escena fija mientras se baja: en el centro, un carrusel 3D que
+   gira en círculo; la tarjeta del frente es el oficio actual y, al
+   bajar, gira: la del frente se va hacia atrás y la siguiente pasa
+   al frente (al subir, al revés). Cada tarjeta tiene una foto
+   grande y otra superpuesta en un recuadro, con parallax. A la
+   izquierda, el texto del oficio; a la derecha, el índice. El
+   mouse inclina el carrusel.
    Sin JavaScript o con «reducir movimiento» queda como una lista.
    ========================================================= */
 (function () {
@@ -28,7 +29,7 @@
   const lienzo = marco.querySelector("canvas");
   if (lienzo) lienzo.remove();
   const riel = document.createElement("div");
-  riel.className = "carrusel";
+  riel.className = "carrusel anillo";
   riel.setAttribute("aria-hidden", "true");
   const tarjetas = pasos.map((p) => {
     const fotos = (p.dataset.fotos || p.dataset.foto || "").split(",").filter(Boolean)
@@ -117,20 +118,20 @@
     const pos = i + (i < N - 1 ? suave(lim((t - (1 - T)) / T)) : 0);
 
     rx += (my * -4 - rx) * 0.08; ry += (mx * 6 - ry) * 0.08;
-    marco.style.transform = `rotateX(${rx.toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg)`;
 
-    const ancho = tarjetas[0].offsetWidth, paso = ancho + parseFloat(getComputedStyle(riel).columnGap || 0);
-    riel.style.transform = `translate3d(${(-pos * paso).toFixed(1)}px,0,0)`;
+    // Anillo: cada tarjeta en su ángulo alrededor de un eje vertical
+    const ancho = tarjetas[0].offsetWidth, ang = 36, rad = (ancho / 2) / Math.tan((ang / 2) * Math.PI / 180) * 1.08;
+    riel.style.transform = `rotateX(${rx.toFixed(2)}deg) rotateZ(${(ry * 0.15).toFixed(2)}deg) translateZ(${(-rad).toFixed(1)}px) rotateY(${(-pos * ang + ry).toFixed(2)}deg)`;
     tarjetas.forEach((c, k) => {
       const d = k - pos, a = Math.abs(d);
-      if (a > 2.2) { c.style.visibility = "hidden"; return; }
+      if (a > 2.6) { c.style.visibility = "hidden"; return; }
       c.style.visibility = "visible";
-      // La tarjeta del centro, entera; las vecinas, más chicas y apagadas
-      c.style.transform = `scale(${(1 - Math.min(a, 1) * 0.14).toFixed(3)})`;
-      c.style.setProperty("--apagar", Math.min(a, 1) * 0.55);
+      c.style.transform = `rotateY(${(k * ang).toFixed(2)}deg) translateZ(${rad.toFixed(1)}px)`;
+      c.style.setProperty("--apagar", Math.min(a, 2) * 0.32);
+      c.style.zIndex = String(10 - Math.round(a * 3));
       // Parallax dentro de la tarjeta: el fondo va más lento y el recuadro más rápido
-      if (c._fondo) c._fondo.style.transform = `translate3d(${(d * 18 - mx * 2).toFixed(2)}%,${(-my * 2).toFixed(2)}%,0) scale(1.22)`;
-      if (c._recuadro) c._recuadro.style.transform = `translate3d(${(-d * 60 - mx * 14).toFixed(1)}px,${(-my * 12).toFixed(1)}px,0)`;
+      if (c._fondo) c._fondo.style.transform = `translate3d(${(d * 12 - mx * 2).toFixed(2)}%,${(-my * 2).toFixed(2)}%,0) scale(1.22)`;
+      if (c._recuadro) c._recuadro.style.transform = `translate3d(${(-d * 40 - mx * 14).toFixed(1)}px,${(-my * 12).toFixed(1)}px,40px)`;
     });
 
     if (Math.abs(sRaw - ultimoS) > 0.0005) {
