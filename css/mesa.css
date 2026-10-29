@@ -264,3 +264,44 @@
 /* Texto del pre-registro: más grande y claro */
 .mesa .lead-registro{color:var(--texto);font-size:clamp(1.15rem,1.9vw,1.4rem);line-height:1.55;max-width:58ch}
 .mesa .lead-registro b{color:var(--ama)}
+
+/* =========================================================
+   Recorrido en carrusel: texto a la izquierda (35 %),
+   carrusel de tarjetas a la derecha (65 %)
+   ========================================================= */
+.recorrido-carrusel .recorrido-pista{height:calc(var(--n) * 70svh + 100svh)}
+.recorrido-carrusel .recorrido-escena::after{display:none}
+.recorrido-carrusel .recorrido-escena{perspective:1600px}
+.recorrido-carrusel .recorrido-marco{inset:calc(var(--header) + 4vh) 0 5vh 35%;background:none;overflow:visible;transform-origin:30% 50%}
+.carrusel{display:flex;height:100%;column-gap:3vw;padding-left:3vw;will-change:transform}
+.tarjeta{position:relative;flex:0 0 min(46vw,calc((100svh - var(--header) - 9vh) * .9));height:100%;border-radius:4px;overflow:hidden;background:#141412;box-shadow:0 40px 70px -30px rgba(0,0,0,.9);transform-origin:50% 50%;will-change:transform}
+.tarjeta::after{content:"";position:absolute;inset:0;background:#0d0d0c;opacity:var(--apagar,0);pointer-events:none;z-index:3}
+.tarjeta-fondo{position:absolute;inset:0;overflow:hidden}
+.tarjeta-fondo img{width:100%;height:100%;object-fit:cover;will-change:transform}
+.tarjeta-recuadro{position:absolute;z-index:2;right:6%;bottom:7%;width:44%;aspect-ratio:4/3;border:6px solid #0d0d0c;box-shadow:0 30px 50px -18px rgba(0,0,0,.85);will-change:transform}
+.tarjeta-recuadro::after{content:"";position:absolute;left:-6px;bottom:-6px;width:32%;height:4px;background:var(--ama)}
+.tarjeta-recuadro img{width:100%;height:100%;object-fit:cover;display:block}
+.tarjeta-nombre{position:absolute;z-index:2;left:6%;top:5%;margin:0;padding:6px 12px 4px;background:rgba(13,13,12,.8);font-family:var(--display);font-weight:900;font-size:1.25rem;letter-spacing:.05em;text-transform:uppercase;color:var(--ama)}
+/* Texto: columna izquierda, centrado en alto */
+.recorrido-carrusel .paso{left:max(28px,calc((100vw - 1240px)/2 + 32px));right:auto;top:50%;bottom:auto;width:calc(35vw - max(28px,calc((100vw - 1240px)/2 + 32px)) - 20px);transform:translateY(-50%)}
+.recorrido-carrusel .paso-intro{translate:none}
+.recorrido-carrusel .paso-nombre{font-size:clamp(2.8rem,4.6vw,4.8rem)}
+.recorrido-carrusel .paso-nombre-intro{font-size:clamp(2.6rem,4.2vw,4.4rem)}
+.recorrido-carrusel .paso-frase{font-size:clamp(1.4rem,2vw,1.9rem)}
+.recorrido-carrusel .paso-texto{color:var(--texto-2);font-size:1rem}
+.recorrido-carrusel .recorrido-indice{display:none}
+@media (max-width:759px){
+  .recorrido-carrusel .recorrido-pista{height:calc(var(--n) * 60svh + 100svh)}
+  .recorrido-carrusel .recorrido-marco{inset:calc(var(--header) + 10px) 0 auto 0;height:44svh}
+  .carrusel{padding-left:12vw;column-gap:4vw}
+  .tarjeta{flex-basis:76vw}
+  .tarjeta-nombre{font-size:1rem}
+  .recorrido-carrusel .paso{left:18px;right:18px;width:auto;top:auto;bottom:18px;transform:none}
+  .recorrido-carrusel .paso-nombre{font-size:clamp(2.4rem,11vw,3.2rem)}
+  .recorrido-carrusel .paso-texto{display:none}
+  .recorrido-carrusel .recorrido-contador{top:auto;bottom:calc(56svh - 14px)}
+}
+@media (min-width:760px){
+  .recorrido-carrusel .recorrido-marco{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 3vw);mask-image:linear-gradient(90deg,transparent 0,#000 3vw)}
+}
+@media (max-width:759px){.recorrido-carrusel .recorrido-contador{display:none}}

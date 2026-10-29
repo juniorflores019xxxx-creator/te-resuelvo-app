@@ -1,22 +1,18 @@
 /* =========================================================
-   TE RESUELVO · Recorrido sobre la mesa
-   Una escena fija mientras se baja. Empieza con la mesa de
-   herramientas de la portada. Cada oficio es una foto grande de
-   fondo con otra superpuesta en un recuadro, que se mueven a
-   distinta velocidad (parallax) con el scroll y con el mouse. Al
-   cambiar de oficio, el actual sube despacio y se oscurece y el
-   siguiente entra desde abajo por delante. El nombre entra letra
-   por letra y el mouse inclina la escena.
-   Sin JavaScript o con «reducir movimiento» la sección queda como
-   una lista normal con la imagen de cada oficio.
+   TE RESUELVO · Recorrido de los 11 servicios en carrusel
+   Escena fija mientras se baja: a la derecha (65 %) un carrusel
+   con una tarjeta por oficio; al bajar se desliza hacia un lado y
+   al subir hacia el otro. Cada tarjeta tiene una foto grande y otra
+   superpuesta en un recuadro, que se mueven a distinta velocidad
+   que la tarjeta (parallax). A la izquierda, el texto del oficio:
+   el nombre entra letra por letra. El mouse inclina el carrusel.
+   Sin JavaScript o con «reducir movimiento» queda como una lista.
    ========================================================= */
 (function () {
   "use strict";
   const sec = document.querySelector(".recorrido");
   if (!sec) return;
-  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const lienzo = sec.querySelector(".recorrido-lienzo");
-  if (reduce || !lienzo || !lienzo.getContext) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
   const pista = sec.querySelector(".recorrido-pista");
   const escena = sec.querySelector(".recorrido-escena");
@@ -26,9 +22,32 @@
   const contador = sec.querySelector(".recorrido-contador");
   const N = pasos.length;
   const intro = pasos[0].classList.contains("paso-intro") ? 1 : 0;
-  const ctx = lienzo.getContext("2d", { alpha: false });
-  ctx.imageSmoothingQuality = "high";
-  sec.classList.add("recorrido-vivo");
+  const movil = () => window.matchMedia("(max-width: 759px)").matches;
+
+  /* ---------- Carrusel: una tarjeta por oficio ---------- */
+  const lienzo = marco.querySelector("canvas");
+  if (lienzo) lienzo.remove();
+  const riel = document.createElement("div");
+  riel.className = "carrusel";
+  riel.setAttribute("aria-hidden", "true");
+  const tarjetas = pasos.map((p) => {
+    const fotos = (p.dataset.fotos || p.dataset.foto || "").split(",").filter(Boolean)
+      .map((src) => (movil() ? src.replace("-1600", "-900").replace("-2000", "-1000") : src));
+    const t = document.createElement("div");
+    t.className = "tarjeta" + (fotos.length > 1 ? "" : " tarjeta-una");
+    t.innerHTML = `<div class="tarjeta-fondo"><img src="${fotos[0]}" alt="" decoding="async"></div>` +
+      (fotos[1] ? `<div class="tarjeta-recuadro"><img src="${fotos[1]}" alt="" decoding="async"></div>` : "") +
+      (p.dataset.cat ? `<p class="tarjeta-nombre">${p.dataset.cat}</p>` : "");
+    riel.appendChild(t);
+    t._fondo = t.querySelector(".tarjeta-fondo img");
+    t._recuadro = t.querySelector(".tarjeta-recuadro");
+    return t;
+  });
+  marco.appendChild(riel);
+  // Las fotos lejanas se cargan recién al acercarse
+  tarjetas.forEach((t, k) => { if (k > 2) t.querySelectorAll("img").forEach((im) => { im.loading = "lazy"; }); });
+
+  sec.classList.add("recorrido-vivo", "recorrido-carrusel");
   pista.style.setProperty("--n", N);
 
   /* ---------- Letras del nombre, una por una (el título de entrada se mueve entero) ---------- */
@@ -44,62 +63,11 @@
     p._resto = (p._letras.length ? [] : [h]).concat([...p.querySelectorAll(".paso-frase, .paso-texto, .chips, .paso-accion")]);
   });
 
-  /* ---------- Fotos: cada oficio tiene una foto grande y otra superpuesta ---------- */
-  const movil = () => window.matchMedia("(max-width: 759px)").matches;
-  const medios = pasos.map((p) => ({ fotos: (p.dataset.fotos || p.dataset.foto || "").split(",").filter(Boolean), imgs: null, lienzo: null, clave: "" }));
-  function preparar(i) {
-    const m = medios[i]; if (!m || m.imgs) return;
-    m.imgs = m.fotos.map((src) => { const im = new Image(); im.decoding = "async"; im.src = movil() ? src.replace("-1600", "-900").replace("-2000", "-1000") : src; return im; });
-  }
-  // Recorte «cover» de una foto dentro de un rectángulo
-  function cubrir(c, im, x, y, w, h) {
-    const k = Math.max(w / im.naturalWidth, h / im.naturalHeight), sw = w / k, sh = h / k;
-    c.drawImage(im, (im.naturalWidth - sw) / 2, (im.naturalHeight - sh) / 2, sw, sh, x, y, w, h);
-  }
-  const listo = (m) => m && m.imgs && m.imgs.every((im) => im.complete && im.naturalWidth);
-
-  /* ---------- Escena: foto grande de fondo y la segunda encima, en un recuadro ---------- */
-  let W = 0, H = 0, dpr = 1;
-  function ajustar() {
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
-    const r = marco.getBoundingClientRect();
-    W = Math.round(r.width * dpr); H = Math.round(r.height * dpr);
-    lienzo.width = W; lienzo.height = H; ctx.imageSmoothingQuality = "high";
-  }
   const lim = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
   const suave = (x) => x * x * (3 - 2 * x);
-  const sale = (x) => 1 - Math.pow(1 - x, 3);
-
-  // Dibuja un oficio con dos capas en parallax.
-  //   dy: corrimiento vertical de la escena (en fracción de alto); px, py: mouse (-1..1)
-  //   osc: oscurecido (0..1) del oficio que se va
-  function oficio(m, dy, px, py, osc, avance) {
-    const [a, b] = m.imgs;
-    // Fondo: más grande que la pantalla para poder moverse sin dejar bordes
-    const z = 1.14, fw = W * z, fh = H * z;
-    const fx = (W - fw) / 2 - px * W * 0.025, fy = (H - fh) / 2 - py * H * 0.025 + dy * H * 0.55 + (avance - 0.5) * H * 0.04;
-    ctx.save(); ctx.beginPath(); ctx.rect(0, 0, W, H); ctx.clip();
-    cubrir(ctx, a, fx, fy, fw, fh);
-    // Recuadro: la segunda foto encima, se mueve más (está «más cerca»)
-    if (b) {
-      const movil = W < H;
-      const rw = movil ? W * 0.5 : W * 0.26, rh = rw * (movil ? 1.15 : 0.78);
-      const rx = movil ? W - rw - W * 0.06 : W - rw - W * 0.235;
-      const ry0 = H * 0.12;
-      const rx2 = rx - px * W * 0.06, ry = ry0 - py * H * 0.06 + dy * H * 1.05 - (avance - 0.5) * H * 0.1;
-      const borde = 7 * dpr;
-      ctx.shadowColor = "rgba(0,0,0,.65)"; ctx.shadowBlur = 50 * dpr; ctx.shadowOffsetY = 24 * dpr;
-      ctx.fillStyle = "#0d0d0c"; ctx.fillRect(rx2 - borde, ry - borde, rw + borde * 2, rh + borde * 2);
-      ctx.shadowColor = "transparent";
-      cubrir(ctx, b, rx2, ry, rw, rh);
-      ctx.fillStyle = "#F5CD47"; ctx.fillRect(rx2 - borde, ry + rh + borde - 4 * dpr, rw * 0.28, 4 * dpr);
-    }
-    if (osc > 0) { ctx.fillStyle = `rgba(13,13,12,${osc.toFixed(3)})`; ctx.fillRect(0, 0, W, H); }
-    ctx.restore();
-  }
 
   /* ---------- Posición según el scroll ---------- */
-  const T = 0.38; // parte de cada tramo dedicada al cambio
+  const T = 0.45; // parte de cada tramo en la que el carrusel se mueve
   let pistaTop = 0, tramo = 1;
   function medir() {
     const r = pista.getBoundingClientRect();
@@ -116,6 +84,8 @@
       p.style.visibility = visible ? "visible" : "hidden";
       if (!visible) return;
       p.style.opacity = (suave(lim(ent / 0.35)) * (1 - suave(lim((sal - 0.3) / 0.6)))).toFixed(3);
+      // Parallax del texto: sube un poco mientras el oficio está en pantalla
+      p.style.translate = `0 ${((0.5 - lim(u + 0.5)) * 50).toFixed(1)}px`;
       const n = p._letras.length;
       p._letras.forEach((l, k) => {
         const d = (k / Math.max(1, n - 1)) * 0.45;
@@ -128,8 +98,8 @@
     });
   }
 
-  /* ---------- Inclinación 3D de la mesa con el mouse ---------- */
-  let rx = 0, ry = 0, mx = 0, my = 0, ox = 0, oy = 0;
+  /* ---------- Inclinación con el mouse ---------- */
+  let rx = 0, ry = 0, mx = 0, my = 0;
   escena.addEventListener("pointermove", (e) => {
     if (e.pointerType !== "mouse") return;
     const r = escena.getBoundingClientRect();
@@ -141,35 +111,31 @@
   let activo = false, raf = 0, ultimoS = -1;
   function cuadro() {
     raf = requestAnimationFrame(cuadro);
-    const s = lim((window.scrollY - pistaTop) / tramo, 0, N - 0.0001);
-    const i = Math.floor(s), t = s - i;
-    [i - 1, i, i + 1, i + 2].forEach((k) => k >= 0 && k < N && preparar(k));
-    const actual = medios[i], sig = medios[i + 1];
+    const sRaw = lim((window.scrollY - pistaTop) / tramo, 0, N - 0.0001);
+    const i = Math.floor(sRaw), t = sRaw - i;
+    // Se queda un rato en cada tarjeta y después se desliza a la siguiente
+    const pos = i + (i < N - 1 ? suave(lim((t - (1 - T)) / T)) : 0);
 
-    // La mesa se inclina siguiendo al mouse y se acentúa a mitad del cambio
-    const cambio = i < N - 1 ? lim((t - (1 - T)) / T) : 0;
-    const arco = Math.sin(cambio * Math.PI);
-    rx += (my * -5 + arco * 4 - rx) * 0.09;
-    ry += (mx * 8 - ry) * 0.09;
-    marco.style.transform = `rotateX(${rx.toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg) scale(${(1 - arco * 0.03).toFixed(3)})`;
+    rx += (my * -4 - rx) * 0.08; ry += (mx * 6 - ry) * 0.08;
+    marco.style.transform = `rotateX(${rx.toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg)`;
 
-    ctx.setTransform(1, 0, 0, 1, 0, 0);
-    ctx.fillStyle = "#0d0d0c"; ctx.fillRect(0, 0, W, H);
-    ox += (mx - ox) * 0.08; oy += (my - oy) * 0.08;
-    const c = suave(cambio);
-    // El que se va sube despacio y se oscurece; el siguiente entra desde abajo, por delante
-    if (listo(actual)) oficio(actual, -c * 0.35, ox, oy, c * 0.75, t);
-    if (c > 0 && listo(sig)) {
-      const y = Math.round(H * (1 - sale(cambio)));
-      ctx.save(); ctx.beginPath(); ctx.rect(0, y, W, H - y); ctx.clip();
-      oficio(sig, (1 - sale(cambio)) * 0.45, ox, oy, 0, 0);
-      ctx.restore();
-      ctx.fillStyle = "#F5CD47"; ctx.fillRect(0, y - 3 * dpr, W, 3 * dpr);
-    }
+    const ancho = tarjetas[0].offsetWidth, paso = ancho + parseFloat(getComputedStyle(riel).columnGap || 0);
+    riel.style.transform = `translate3d(${(-pos * paso).toFixed(1)}px,0,0)`;
+    tarjetas.forEach((c, k) => {
+      const d = k - pos, a = Math.abs(d);
+      if (a > 2.2) { c.style.visibility = "hidden"; return; }
+      c.style.visibility = "visible";
+      // La tarjeta del centro, entera; las vecinas, más chicas y apagadas
+      c.style.transform = `scale(${(1 - Math.min(a, 1) * 0.14).toFixed(3)})`;
+      c.style.setProperty("--apagar", Math.min(a, 1) * 0.55);
+      // Parallax dentro de la tarjeta: el fondo va más lento y el recuadro más rápido
+      if (c._fondo) c._fondo.style.transform = `translate3d(${(d * 18 - mx * 2).toFixed(2)}%,${(-my * 2).toFixed(2)}%,0) scale(1.22)`;
+      if (c._recuadro) c._recuadro.style.transform = `translate3d(${(-d * 60 - mx * 14).toFixed(1)}px,${(-my * 12).toFixed(1)}px,0)`;
+    });
 
-    if (Math.abs(s - ultimoS) > 0.0005) {
-      textos(s); ultimoS = s;
-      const j = t > 1 - T / 2 && i < N - 1 ? i + 1 : i;
+    if (Math.abs(sRaw - ultimoS) > 0.0005) {
+      textos(pos); ultimoS = sRaw;
+      const j = Math.round(pos);
       indice.forEach((b, k) => b.classList.toggle("is-on", k + intro === j));
       if (contador) { contador.textContent = j >= intro ? `${j - intro + 1} / ${N - intro}` : ""; contador.hidden = j < intro; }
     }
@@ -180,16 +146,13 @@
     if (si) { medir(); raf = requestAnimationFrame(cuadro); } else cancelAnimationFrame(raf);
   }
   new IntersectionObserver(([e]) => encender(e.isIntersecting), { rootMargin: "400px 0px" }).observe(pista);
-  window.addEventListener("resize", () => { ajustar(); medir(); ultimoS = -1; });
+  window.addEventListener("resize", () => { medir(); ultimoS = -1; });
   window.addEventListener("load", () => { medir(); ultimoS = -1; });
 
   const irA = (j, suaveScroll) => window.scrollTo({ top: pistaTop + (j + 0.05) * tramo, behavior: suaveScroll ? "smooth" : "auto" });
   indice.forEach((b, k) => b.addEventListener("click", () => { medir(); irA(k + intro, true); }));
   pasos.forEach((p, j) => p.addEventListener("focusin", () => { medir(); const s = (window.scrollY - pistaTop) / tramo; if (Math.floor(s) !== j) irA(j, false); }));
 
-  // La mesa de entrada queda pintada desde el principio (la portada ya cargó esa foto)
-  ajustar(); medir(); textos(0); preparar(0);
+  medir(); textos(0);
   if (contador) contador.hidden = !!intro;
-  const pintarMesa = () => { if (!activo && listo(medios[0])) { ctx.fillStyle = "#0d0d0c"; ctx.fillRect(0, 0, W, H); oficio(medios[0], 0, 0, 0, 0, 0.5); } };
-  medios[0].imgs.forEach((im) => (im.complete ? pintarMesa() : im.addEventListener("load", pintarMesa)));
 })();
