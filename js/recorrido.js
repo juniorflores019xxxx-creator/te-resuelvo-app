@@ -45,6 +45,20 @@
     return t;
   });
   marco.appendChild(riel);
+  // Luz ambiental: la foto del servicio actual, muy desenfocada, detrás del carrusel
+  const ambiente = document.createElement("div");
+  ambiente.className = "ambiente"; ambiente.setAttribute("aria-hidden", "true");
+  ambiente.innerHTML = "<img alt=''><img alt=''>";
+  escena.insertBefore(ambiente, escena.firstChild);
+  const luces = [...ambiente.querySelectorAll("img")];
+  let luz = 0, luzActual = -1;
+  function ponerLuz(j) {
+    if (j === luzActual) return;
+    luzActual = j; luz = 1 - luz;
+    const src = tarjetas[j]._fondo.src;
+    luces[luz].src = src.replace("-1600", "-900").replace("-2000", "-1000");
+    luces[luz].classList.add("is-on"); luces[1 - luz].classList.remove("is-on");
+  }
   // Las fotos lejanas se cargan recién al acercarse
   tarjetas.forEach((t, k) => { if (k > 2) t.querySelectorAll("img").forEach((im) => { im.loading = "lazy"; }); });
 
@@ -137,6 +151,8 @@
     if (Math.abs(sRaw - ultimoS) > 0.0005) {
       textos(pos); ultimoS = sRaw;
       const j = Math.round(pos);
+      ponerLuz(j);
+      tarjetas.forEach((c, k) => c.classList.toggle("is-frente", k === j && Math.abs(pos - j) < 0.08));
       indice.forEach((b, k) => b.classList.toggle("is-on", k + intro === j));
       if (contador) { contador.textContent = j >= intro ? `${j - intro + 1} / ${N - intro}` : ""; contador.hidden = j < intro; }
     }
